@@ -1,7 +1,5 @@
 # Memory Planes
 
-
-
 A piece that combines Wave Field Synthesis and volumetric lighting to create sound holograms that pair with projection caught in haze.
 
 This is a piece in progress that I plan to debut in 2025. It is inspired by the George Sonnabend exhibit shown at the Museum of Jurassic Technology located in Culver City, CA.
@@ -12,11 +10,11 @@ The past year I have been discovering the most effective timbres and methods of 
 
 This piece also continues my exploration of memory and processes that degrade and simulate the reformation of memories in the form of "sound events." These concepts combine well with George Sonnabend's "Obliscence, Theories of Forgetting and the Problem of Matter". In Sonnabend's description of memory he states that "there is only experience and decay" and posited a theory of forgetting that uses experience planes and cones of confabulations to illustrate this decay.
 
-    “We, amnesiacs all, condemned to live in an eternally fleeting present, have created the most elaborate of human constructions, memory, to buffer ourselves against the intolerable knowledge of the irreversible passage of time and the irretrieveability of its moments and events.”
+>“We, amnesiacs all, condemned to live in an eternally fleeting present, have created the most elaborate of human constructions, memory, to buffer ourselves against the intolerable knowledge of the irreversible passage of time and the irretrieveability of its moments and events.”
 
 Memory Planes will attempt to recreate this Model of Obliscence using Fresnel lenses, volumetric lighting, Wave Field Synthesis, and multiple projectors.
 
-~update~
+update
 
 I installed this piece as part of a sound art residency at the Seoul Institute of the Arts. There were two installs, one on their Ansan campus and another in Seoul at their Namsan campus. The second install involved minor tweaks to programming. While the installation was well received, there are a few things that am experimenting with in response to the two installs.
 
