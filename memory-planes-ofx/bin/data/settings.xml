@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<group>
+	<shape>0</shape>
+	<number_meshes>250</number_meshes>
+	<point_size>0</point_size>
+	<hue_start>0</hue_start>
+	<hue_depth>0</hue_depth>
+	<saturation>1</saturation>
+	<rotate_x>0.05</rotate_x>
+	<fuzzy>0</fuzzy>
+	<random_follow>0.685</random_follow>
+	<simplex_size>0</simplex_size>
+	<simplex_offset>0.001</simplex_offset>
+	<simplex_depth>0.01</simplex_depth>
+	<simplex_wrap>12.5664</simplex_wrap>
+</group>
+<memory_planes>
+	<fresnel_radius>0.985714</fresnel_radius>
+	<future_radius>1</future_radius>
+	<future_distance>1</future_distance>
+	<past_radius>1</past_radius>
+	<past_distance>1</past_distance>
+	<fov>0</fov>
+	<calibration_mode>1</calibration_mode>
+	<fresnel_mute>0</fresnel_mute>
+	<left_mute>0</left_mute>
+	<right_mute>0</right_mute>
+	<blur>0.971429</blur>
+	<noise>0.592857</noise>
+	<octave_multiplier>10</octave_multiplier>
+	<noise_speed>0.0453571</noise_speed>
+	<scale>1</scale>
+</memory_planes>
