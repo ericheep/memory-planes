@@ -16,7 +16,7 @@
 #define BENQ_HEIGHT 1080
 #define PANASONIC_HEIGHT 1200
 
-#define DEV_MODE false
+#define DEV_MODE true
 
 class ofApp : public ofBaseApp{
 public:
@@ -60,9 +60,9 @@ public:
     
     ofParameter<float> scale;
     ofParameter<float> blurAmount;
-    ofParameter<float> noiseAmount;
-    ofParameter<float> octaveMultiplier;
-    ofParameter<float> noiseSpeed;
+    ofParameter<float> shaderNoiseAmount;
+    ofParameter<float> defaultOctaveMultiplier;
+    ofParameter<float> defaultNoiseSpeed;
     
     ofParameter<bool> calibrationMode;
     ofParameter<bool> fresnelMute;
@@ -99,6 +99,6 @@ private:
     MemoryPlane memoryPlane;
     
     float width, height, fresnelHeight;
-    float radius, noiseShaderTime;
+    float radius, shaderNoiseTime;
     bool guiActive;
 };

@@ -19,33 +19,33 @@ MemoryPlane::MemoryPlane(int _width, int _sideHeight, int _mainHeight) {
     rightMute = false;
     
     // memories
-    for (int i = 0; i < 6; i++) {
-        Memory memory = Memory(width, sideHeight, mainHeight, PI * i);
-        memory.setDistance(0.0);
+    for (int i = 0; i < 3; i++) {
+        Memory memory = Memory(width, sideHeight, mainHeight);
         memory.setRadius(0.0);
+        memory.setTheta(PI * i);
         memory.setArcDistance(0);
         memory.setThickness(0);
         memory.setFill(true);
-        memory.setLeftVisibility(0.0);
-        memory.setRightVisibility(0.0);
         memory.setNoiseSpeed(1.0);
         memory.setOctaveMultiplier(1.0);
+        memory.setLeftVisibility(1.0);
+        memory.setRightVisibility(1.0);
         
         memories.push_back(memory);
     }
     
     // calibration memories
     for (int i = 0; i < 2; i++) {
-        Memory memory = Memory(width, sideHeight, mainHeight, PI * i);
-        memory.setDistance(0.0);
-        memory.setRadius(sideHeight / 2.0);
-        memory.setArcDistance(PI / 2);
-        memory.setThickness(50);
+        Memory memory = Memory(width, sideHeight, mainHeight);
+        memory.setRadius(1.0);
+        memory.setTheta(i * PI);
+        memory.setArcDistance(PI);
+        memory.setThickness(0.5);
         memory.setFill(true);
+        memory.setNoiseSpeed(1.0);
+        memory.setOctaveMultiplier(0.5);
         memory.setLeftVisibility(1.0);
         memory.setRightVisibility(1.0);
-        memory.setNoiseSpeed(1.0);
-        memory.setOctaveMultiplier(1.0);
         
         calibrationMemories.push_back(memory);
     }
@@ -53,23 +53,15 @@ MemoryPlane::MemoryPlane(int _width, int _sideHeight, int _mainHeight) {
 
 void MemoryPlane::update() {
     for (int i = 0; i < memories.size(); i++) {
-        memories[i].setNoiseTime(noiseTime);
-        memories[i].setNoiseSpeed(noiseSpeed);
-        memories[i].setOctaveMultiplier(octaveMultiplier);
-
         memories[i].update();
-        if (memories[i].lifetime < 0) {
-            memories.erase(memories.begin() + i);
-        }
     }
     
     if (!calibrationMode) return;
     
     for (int i = 0; i < calibrationMemories.size(); i++) {
-        calibrationMemories[i].setNoiseTime(noiseTime);
         calibrationMemories[i].setNoiseSpeed(noiseSpeed);
         calibrationMemories[i].setOctaveMultiplier(octaveMultiplier);
-
+        
         calibrationMemories[i].update();
     }
 }
@@ -136,10 +128,6 @@ void MemoryPlane::setRightMute(bool _rightMute) {
     rightMute = _rightMute;
 }
 
-void MemoryPlane::setNoiseTime(float _noiseTime) {
-    noiseTime = _noiseTime;
-}
-
 void MemoryPlane::setNoiseSpeed(float _noiseSpeed) {
     noiseSpeed = _noiseSpeed;
 }
@@ -152,38 +140,18 @@ void MemoryPlane::setRadius(float _radius) {
     radius = _radius;
 }
 
-void MemoryPlane::setMemory(int index, float distance, float radius, float theta, float arcDistance, float thickness) {
+void MemoryPlane::setMemory(int index, float radius, float theta, float arcDistance, float thickness, float leftVisibility, float rightVisibility, float noiseSpeed, float octaveMultiplier) {
     
-    bool found = false;
-    int foundIndex = -1;
+    index -= 1;
     
-    for (int i = 0; i < memories.size(); i++) {
-        if (memories[i].index == index) {
-            found = true;
-            foundIndex = i;
-        } else {
-            return;
-        }
-    }
-    
-    if (found) {
-        memories[foundIndex].setDistance(distance);
-        memories[foundIndex].setRadius(radius);
-        memories[foundIndex].setTheta(theta);
-        memories[foundIndex].setArcDistance(arcDistance);
-        memories[foundIndex].setThickness(thickness);
-        memories[foundIndex].setLeftVisibility(0.15);
-        memories[foundIndex].setRightVisibility(0.5);
-        memories[foundIndex].setOctaveMultiplier(octaveMultiplier);
-        memories[foundIndex].keepAlive();
-    } else {
-        /*Memory m = Memory(width, height, theta);
-        m.index = index;
-        m.distance = distance;
-        m.radius = radius;
-        m.arcDistance = arcDistance;
-        m.thickness = thickness;
-        
-        memories.push_back(m);*/
+    if (index >= 0 && index < memories.size()) {
+        memories[index].setRadius(radius);
+        memories[index].setTheta(theta);
+        memories[index].setArcDistance(arcDistance);
+        memories[index].setThickness(thickness);
+        memories[index].setNoiseSpeed(noiseSpeed);
+        memories[index].setOctaveMultiplier(octaveMultiplier);
+        memories[index].setLeftVisibility(leftVisibility);
+        memories[index].setRightVisibility(rightVisibility);
     }
 }

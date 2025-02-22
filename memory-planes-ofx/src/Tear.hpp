@@ -13,17 +13,15 @@
 class Tear {
 public:
     Tear();
-    Tear(int numAnchors);
+    Tear(int numAnchors, int width, int height);
     
     void setRadius(float radius);
-    void setDistance(float distance);
     void setTheta(float theta);
     void setArcDistance(float arcDistance);
     void setThickness(float thickness);
     void setNoiseTime(float noiseTime);
     void setFill(bool fillState);
     void setVisibility(float visibility);
-    void setNoiseSpeed(float speed);
     void setOctaveMultiplier(float octaveMultiplier);
     
     void update();
@@ -35,9 +33,9 @@ private:
     
     ofPolyline tearPolyline;
     
-    int numAnchors;
+    int numAnchors, width, height;
     float radius, theta, arcDistance, velocity, thickness, totalTime;
-    float time, distance, noiseTime, visibility, noiseSpeed, octaveMultiplier;
+    float time, distance, noiseTime, visibility, octaveMultiplier, scaledRadius;
     bool fillState;
 
     ofColor primaryColor;

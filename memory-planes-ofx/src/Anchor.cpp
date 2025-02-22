@@ -46,7 +46,7 @@ void Anchor::update() {
     currentPoint = originPoint;
     currentPoint *= radius + offset;
     
-    float noiseHeading = ofNoise(theta * octaveMultiplier, noiseTime);
+    float noiseHeading = ofNoise(noiseTheta * octaveMultiplier, noiseTime);
     velocity = (radius + deviation * nO) / numAnchors * arcDistance / PI;
     nH = ofMap(noiseHeading, 0.0, 1.0, -PI, PI);
     

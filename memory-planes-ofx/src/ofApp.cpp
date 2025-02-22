@@ -52,7 +52,7 @@ void ofApp::setup(){
     
     setupWarpers();
     setupGui();
-    noiseShaderTime = 0.0f;
+    shaderNoiseTime = 0.0f;
 }
 
 void ofApp::setupWarpers() {
@@ -91,9 +91,9 @@ void ofApp::setupGui() {
     
     gui.add(scale.set("scale", 1.0, 0.0, 3.0));
     gui.add(blurAmount.set("blur", 1.0, 0.0, 1.0));
-    gui.add(noiseAmount.set("noise", 1.0, 0.0, 1.0));
-    gui.add(octaveMultiplier.set("octave multiplier", 1.0, 0.0, 10.0));
-    gui.add(noiseSpeed.set("noise speed", 1.0, 0.01, 1.0));
+    gui.add(shaderNoiseAmount.set("shader noise", 1.0, 0.0, 1.0));
+    gui.add(defaultOctaveMultiplier.set("octave multiplier", 1.0, 0.0, 10.0));
+    gui.add(defaultNoiseSpeed.set("noise speed", 1.0, 0.01, 1.0));
     
     gui.add(calibrationMode.set("calibration mode", false));
     gui.add(fresnelMute.set("fresnel mute", false));
@@ -106,9 +106,8 @@ void ofApp::setupGui() {
 //--------------------------------------------------------------
 void ofApp::update() {
     updateOsc();
-    memoryPlane.setNoiseTime(ofGetElapsedTimef());
-    memoryPlane.setOctaveMultiplier(octaveMultiplier);
-    memoryPlane.setNoiseSpeed(noiseSpeed);
+    memoryPlane.setOctaveMultiplier(defaultOctaveMultiplier);
+    memoryPlane.setNoiseSpeed(defaultNoiseSpeed);
     memoryPlane.setRadius(radius);
     memoryPlane.update();
     
@@ -116,7 +115,7 @@ void ofApp::update() {
     updateLeftFBO();
     updateRightFBO();
     
-    noiseShaderTime = ofGetElapsedTimef() * 0.6;
+    shaderNoiseTime = ofGetElapsedTimef() * 0.6;
 }
 
 //--------------------------------------------------------------
@@ -162,8 +161,8 @@ void ofApp::updateFresnelFBO() {
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     noise.begin();
-    noise.setUniform1f("u_distortion", noiseAmount);
-    noise.setUniform1f("u_time", noiseShaderTime);
+    noise.setUniform1f("u_distortion", shaderNoiseAmount);
+    noise.setUniform1f("u_time", shaderNoiseTime);
     fboFresnel.draw(0, 0);
     noise.end();
     fboFresnelNoise.end();
@@ -196,8 +195,8 @@ void ofApp::updateLeftFBO() {
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     noise.begin();
-    noise.setUniform1f("u_distortion", noiseAmount);
-    noise.setUniform1f("u_time", noiseShaderTime);
+    noise.setUniform1f("u_distortion", shaderNoiseAmount);
+    noise.setUniform1f("u_time", shaderNoiseTime);
     fboLeftWindow.draw(0, 0);
     noise.end();
     fboLeftNoise.end();
@@ -230,8 +229,8 @@ void ofApp::updateRightFBO() {
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     noise.begin();
-    noise.setUniform1f("u_distortion", noiseAmount);
-    noise.setUniform1f("u_time", noiseShaderTime);
+    noise.setUniform1f("u_distortion", shaderNoiseAmount);
+    noise.setUniform1f("u_time", shaderNoiseTime);
     fboRightWindow.draw(0, 0);
     noise.end();
     fboRightNoise.end();
@@ -457,15 +456,18 @@ void ofApp::updateOsc() {
         ofxOscMessage m;
         oscReceiver.getNextMessage(m);
         
-        if (m.getAddress() == "/mem") {
+        if (m.getAddress() == "/m") {
             int index = m.getArgAsInt(0);
-            float distance = m.getArgAsFloat(1);
-            float radius = m.getArgAsFloat(2);
-            float theta = m.getArgAsFloat(3);
-            float width = m.getArgAsFloat(4);
-            float thickness = m.getArgAsFloat(5);
-            
-            memoryPlane.setMemory(index, distance, radius, theta, width, thickness);
+            float radius = m.getArgAsFloat(1);
+            float theta = m.getArgAsFloat(2);
+            float arcDistance = m.getArgAsFloat(3);
+            float thickness = m.getArgAsFloat(4);
+            float noiseSpeed = m.getArgAsFloat(5);
+            float octaveMultiplier = m.getArgAsFloat(6);
+            float leftVisibility = m.getArgAsFloat(7);
+            float rightVisibility = m.getArgAsFloat(8);
+                        
+            memoryPlane.setMemory(index, radius, theta, arcDistance, thickness, leftVisibility, rightVisibility, noiseSpeed, octaveMultiplier);
         }
     }
 }

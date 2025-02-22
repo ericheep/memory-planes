@@ -7,11 +7,14 @@
 
 Tear::Tear() {};
 
-Tear::Tear(int _numAnchors) {
+Tear::Tear(int _numAnchors, int _width, int _height) {
     primaryColor = ofColor::white;
     numAnchors = _numAnchors;
+    width = _width;
+    height = _height;
     velocity = 0.0;
     totalTime = 0.0;
+    scaledRadius = 0.0;
 
     for (int i = 0; i < numAnchors; i++) {
         Anchor anchor = Anchor(numAnchors);
@@ -22,7 +25,7 @@ Tear::Tear(int _numAnchors) {
 void Tear::update() {
     float initialTheta = theta - arcDistance / 2.0;
     float splineDistance = arcDistance / anchors.size();
-    totalTime += ofGetLastFrameTime() * noiseSpeed;
+    float scaledThickness = thickness * width / 5.0;
         
     for (int i = 0; i < anchors.size(); i++) {
         float anchorTheta = initialTheta + splineDistance * (i + 1);
@@ -31,24 +34,24 @@ void Tear::update() {
         
         anchors[i].setTheta(anchorTheta);
         anchors[i].setDeviation(anchorDeviation);
-        anchors[i].setThickness(thickness);
+        anchors[i].setThickness(scaledThickness);
     }
     
     initialPoint.set(1.0, 0.0);
     initialPoint.rotateRad(initialTheta);
-    initialPoint *= radius;
+    initialPoint *= scaledRadius;
     
     initialHeading.set(1.0, 0.0);
     initialHeading.rotateRad(initialTheta + HALF_PI);
     initialHeading *= velocity;
-    
+      
     tearPolyline.clear();
     tearPolyline.addVertex(initialPoint.x, initialPoint.y);
     ofVec2f controlPoint1 = initialPoint + initialHeading;
             
     for (int i = 0; i < anchors.size(); i++) {
         anchors[i].setDirection(1);
-        anchors[i].setNoiseTime(totalTime);
+        anchors[i].setNoiseTime(noiseTime);
         anchors[i].setOctaveMultiplier(octaveMultiplier);
         anchors[i].update();
         
@@ -109,14 +112,11 @@ void Tear::draw() {
 
 void Tear::setRadius(float _radius) {
     radius = _radius;
+    scaledRadius = radius * height / 3.0;
     
     for (int i = 0; i < anchors.size(); i++) {
-        anchors[i].setRadius(radius);
+        anchors[i].setRadius(scaledRadius);
     }
-}
-
-void Tear::setDistance(float _distance) {
-    distance = _distance;
 }
 
 void Tear::setTheta(float _theta) {
@@ -148,10 +148,6 @@ void Tear::setFill(bool _fillState) {
 
 void Tear::setVisibility(float _visibility) {
     visibility = _visibility;
-}
-
-void Tear::setNoiseSpeed(float _noiseSpeed) {
-    noiseSpeed = _noiseSpeed;
 }
 
 void Tear::setOctaveMultiplier(float _octaveMultiplier) {

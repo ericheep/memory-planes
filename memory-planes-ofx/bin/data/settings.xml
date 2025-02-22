@@ -25,9 +25,10 @@
 	<fresnel_mute>0</fresnel_mute>
 	<left_mute>0</left_mute>
 	<right_mute>0</right_mute>
-	<blur>0.971429</blur>
+	<blur>1</blur>
 	<noise>0.592857</noise>
-	<octave_multiplier>10</octave_multiplier>
-	<noise_speed>0.0453571</noise_speed>
+	<octave_multiplier>2.5</octave_multiplier>
+	<noise_speed>0.575714</noise_speed>
 	<scale>1</scale>
+	<shader_noise>0</shader_noise>
 </memory_planes>

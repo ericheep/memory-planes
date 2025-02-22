@@ -13,7 +13,7 @@
 class Memory {
 public:
     Memory();
-    Memory(int width, int sideHeight, int mainHeight, float theta);
+    Memory(int width, int sideHeight, int mainHeight);
     
     void update();
     void updateTear(Tear &tear, float visibility);
@@ -24,13 +24,11 @@ public:
     
     void setColor(ofColor primaryColor);
     
-    void setDistance(float distance);
     void setRadius(float radius);
     void setTheta(float theta);
     void setArcDistance(float arcDistance);
     void setThickness(float thickness);
     void setNoiseTime(float noiseTime);
-    void keepAlive();
     void setFill(bool fillState);
     void setLeftVisibility(float visibility);
     void setRightVisibility(float visibility);
@@ -38,20 +36,18 @@ public:
     void setOctaveMultiplier(float octaveMultiplier);
     
     int index;
-    float lifetime;
-
 private:
     void drawShape(ofPolyline &polygon);
     
     float windowRadius, noiseTime;
     
-    float leftVisibility, rightVisibility;
-    float distance, arcDistance, theta, radius;
+    float arcDistance, theta, radius;
     float length, thickness, noiseSpeed, octaveMultiplier;
+    float leftVisibility, rightVisibility;
 
-    float targetLeftVisibility, targetRightVisibility;
-    float targetDistance, targetArcDistance, targetTheta, targetRadius;
+    float targetArcDistance, targetTheta, targetRadius;
     float targetThickness, targetNoiseSpeed, targetOctaveMultiplier;
+    float targetLeftVisibility, targetRightVisibility;
     
     bool fillState;
     

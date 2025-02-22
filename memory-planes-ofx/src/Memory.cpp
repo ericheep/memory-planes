@@ -7,23 +7,20 @@
 
 Memory::Memory() {}
 
-Memory::Memory(int _width, int _sideHeight, int _mainHeight, float _theta) {
-    distance = 0.0;
-    radius = 0;
-    theta = _theta;
-    arcDistance = 0;
-    thickness = 0;
-    octaveMultiplier = 0;
+Memory::Memory(int _width, int _sideHeight, int _mainHeight) {
+    radius = 0.0;
+    theta = 0.0;
+    arcDistance = 0.0;
+    thickness = 0.0;
+    octaveMultiplier = 0.0;
     noiseSpeed = 0.0;
     
-    targetDistance = 0;
-    targetRadius = 0;
-    targetTheta = _theta;
-    targetArcDistance = 0;
-    targetThickness = 0;
-    targetOctaveMultiplier = 0;
+    targetRadius = 0.0;
+    targetTheta = 0.0;
+    targetArcDistance = 0.0;
+    targetThickness = 0.0;
+    targetOctaveMultiplier = 0.0;
 
-    lifetime = 1.0;
     width = _width;
     sideHeight = _sideHeight;
     mainHeight = _mainHeight;
@@ -33,19 +30,15 @@ Memory::Memory(int _width, int _sideHeight, int _mainHeight, float _theta) {
     leftVisibility = 0.0;
     rightVisibility = 0.0;
     
-    int numAnchors = 300;
+    int numAnchors = 200;
     
-    mainTear = Tear(numAnchors);
-    leftTear = Tear(numAnchors);
-    rightTear = Tear(numAnchors);
+    mainTear = Tear(numAnchors, width, mainHeight);
+    leftTear = Tear(numAnchors, width, sideHeight);
+    rightTear = Tear(numAnchors, width, sideHeight);
 }
 
 void Memory::setColor(ofColor _primaryColor) {
     primaryColor = _primaryColor;
-}
-
-void Memory::setDistance(float _distance) {
-    targetDistance = _distance;
 }
 
 void Memory::setRadius(float _radius) {
@@ -88,15 +81,7 @@ void Memory::setRightVisibility(float _rightVisibility) {
     targetRightVisibility = _rightVisibility;
 }
 
-void Memory::keepAlive() {
-    lifetime = 1.0;
-}
-
 void Memory::update() {
-    float f = ofGetLastFrameTime();
-    lifetime -= f;
-    
-    distance = ofLerp(distance, targetDistance, 0.05);
     radius = ofLerp(radius, targetRadius, 0.05);
     theta = ofLerp(theta, targetTheta, 0.05);
     arcDistance = ofLerp(arcDistance, targetArcDistance, 0.05);
@@ -105,6 +90,7 @@ void Memory::update() {
     octaveMultiplier = ofLerp(octaveMultiplier, targetOctaveMultiplier, 0.05);
     leftVisibility = ofLerp(leftVisibility, targetLeftVisibility, 0.05);
     rightVisibility = ofLerp(rightVisibility, targetRightVisibility, 0.05);
+    noiseTime += ofGetLastFrameTime() * noiseSpeed;
     
     updateTear(mainTear, 1.0);
     updateTear(leftTear, leftVisibility);
@@ -112,14 +98,12 @@ void Memory::update() {
 }
 
 void Memory::updateTear(Tear &tear, float visibility) {
-    tear.setDistance(distance);
     tear.setRadius(radius);
     tear.setTheta(theta);
     tear.setArcDistance(arcDistance * visibility);
     tear.setThickness(thickness * visibility);
     tear.setFill(fillState);
     tear.setNoiseTime(noiseTime);
-    tear.setNoiseSpeed(noiseSpeed);
     tear.setOctaveMultiplier(octaveMultiplier);
         
     tear.update();
