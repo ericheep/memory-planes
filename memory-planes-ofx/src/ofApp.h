@@ -26,12 +26,12 @@ public:
     void setupWarper(ofxQuadWarp &warper, int width, int height);
     
     void update();
-    void updateFresnelFBO();
+    void updateMainFBO();
     void updateLeftFBO();
     void updateRightFBO();
     
     void draw();
-    void drawFresnelWindow(ofEventArgs & args);
+    void drawMainMindow(ofEventArgs & args);
     void drawLeftWindow(ofEventArgs & args);
     void drawRightWindow(ofEventArgs & args);
     

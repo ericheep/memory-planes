@@ -10,8 +10,8 @@ void ofApp::setup(){
     
     if (DEV_MODE) {
         width = 608;
-        height = 328;
-        fresnelHeight = 328;
+        height = 280;
+        fresnelHeight = 280;
     } else {
         width = 1920;
         height = BENQ_HEIGHT;
@@ -76,10 +76,7 @@ void ofApp::setupGui() {
     guiActive = false;
     
     // main gui setup
-    // ofxGuiSetFont("DankMono-Bold.ttf", 10);
-    // ofxGuiSetBorderColor(16);
     gui.setup("memory planes");
-    gui.setPosition(width / 2.0 - 70, height / 2.0 - 70);
     gui.setSize(140, 12);
     gui.setDefaultWidth(120);
     gui.setDefaultHeight(12);
@@ -105,13 +102,13 @@ void ofApp::setupGui() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    updateOsc();
+    // updateOsc();
     memoryPlane.setOctaveMultiplier(defaultOctaveMultiplier);
     memoryPlane.setNoiseSpeed(defaultNoiseSpeed);
     memoryPlane.setRadius(radius);
     memoryPlane.update();
     
-    updateFresnelFBO();
+    updateMainFBO();
     updateLeftFBO();
     updateRightFBO();
     
@@ -126,7 +123,18 @@ void ofApp::drawFps() {
 }
 
 void ofApp::draw() {
+    
     ofBackground(backgroundColor);
+    ofMatrix4x4 fresnelMatrix = fresnelWarper.getMatrix();
+    
+    // warp
+    ofPushMatrix();
+    ofMultMatrix(fresnelMatrix);
+    ofSetColor(ofColor::white);
+    fboFresnelBlur.draw(0, 0);
+    ofPopMatrix();
+    
+    drawWarpPoints(fresnelWarper, fresnelMatrix);
     
     drawWarpPoints(fresnelWarper, fresnelWarper.getMatrix());
     drawWarpPoints(leftWarper, leftWarper.getMatrix());
@@ -144,7 +152,7 @@ void ofApp::draw() {
     gui.draw();
 }
 
-void ofApp::updateFresnelFBO() {
+void ofApp::updateMainFBO() {
     // fresnel fbo
     fboFresnel.begin();
     ofClear(0.0f, 0.0f, 0.0f);
@@ -246,20 +254,6 @@ void ofApp::updateRightFBO() {
     fboRightBlur.end();
 }
 
-void ofApp::drawFresnelWindow(ofEventArgs & args) {
-    ofBackground(ofColor::black);
-    ofMatrix4x4 fresnelMatrix = fresnelWarper.getMatrix();
-    
-    // warp
-    ofPushMatrix();
-    ofMultMatrix(fresnelMatrix);
-    ofSetColor(ofColor::white);
-    fboFresnelBlur.draw(0, 0);
-    ofPopMatrix();
-    
-    drawWarpPoints(fresnelWarper, fresnelMatrix);
-}
-
 void ofApp::drawLeftWindow(ofEventArgs &args) {
     ofBackground(ofColor::black);
     ofMatrix4x4 leftMatrix = leftWarper.getMatrix();
@@ -326,7 +320,6 @@ void ofApp::keyPressed(int key) {
             rightWarper.show();
             break;
         case 'h':
-            guiActive = false;
             fresnelWarper.disableKeyboardShortcuts();
             fresnelWarper.hide();
             leftWarper.disableKeyboardShortcuts();
@@ -335,7 +328,7 @@ void ofApp::keyPressed(int key) {
             rightWarper.hide();
             break;
         case 'g':
-            guiActive = true;
+            guiActive = !guiActive;
             break;
     }
 }

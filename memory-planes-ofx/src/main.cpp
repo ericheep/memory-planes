@@ -7,34 +7,24 @@ int main( ){
     settings.setGLVersion(4,1);
 
     int smallWidth = 608;
-    int smallHeight = 328;
+    int smallHeight = 280;
     int headerHeight = 32;
     int offset = 67;
     int rightSide = 1100;
     
-    // create small window
-    if (DEV_MODE) {
-        settings.setSize(smallWidth, smallHeight);
-    } else {
-        settings.setSize(1920, 1200);
-    }
-    settings.setPosition(glm::vec2(0, 0));
-    shared_ptr<ofAppBaseWindow> previewWindow = ofCreateWindow(settings);
-    
     if (DEV_MODE) {
         // create surface 1 window, development settings
         settings.setSize(smallWidth, smallHeight);
-        settings.setPosition(ofVec2f(rightSide, offset));
+        settings.setPosition(ofVec2f(rightSide, headerHeight));
     } else {
         // create surface 1 window, fullscreen settings
         settings.setSize(1920, PANASONIC_HEIGHT);
-        settings.setPosition(glm::vec2(1920, 0));
+        settings.setPosition(glm::vec2(3840, 0));
         settings.windowMode = OF_FULLSCREEN;
     }
     
-    settings.shareContextWith = previewWindow;
-    shared_ptr<ofAppBaseWindow> fresnelWindow = ofCreateWindow(settings);
-    
+    shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(settings);
+
     if (DEV_MODE) {
         // create surface 1 window, development settings
         settings.setSize(smallWidth, smallHeight);
@@ -46,7 +36,7 @@ int main( ){
         settings.windowMode = OF_FULLSCREEN;
     }
     
-    settings.shareContextWith = previewWindow;
+    settings.shareContextWith = mainWindow;
     shared_ptr<ofAppBaseWindow> leftWindow = ofCreateWindow(settings);
     
     if (DEV_MODE) {
@@ -59,19 +49,14 @@ int main( ){
         settings.setPosition(glm::vec2(5760, 0));
         settings.windowMode = OF_FULLSCREEN;
     }
-    
-    settings.shareContextWith = previewWindow;
+
+    settings.shareContextWith = mainWindow;
     shared_ptr<ofAppBaseWindow> rightWindow = ofCreateWindow(settings);
-    
-    // uncomment next line to share main's OpenGL resources with gui
-    // settings.shareContextWith = mainWindow;
     
     shared_ptr<ofApp> mainApp(new ofApp);
     
-    // ofAddListener(previewWindow->events().draw, mainApp.get(), &ofApp::draw);
-    ofAddListener(fresnelWindow->events().draw, mainApp.get(), &ofApp::drawFresnelWindow);
     ofAddListener(leftWindow->events().draw, mainApp.get(), &ofApp::drawLeftWindow);
     ofAddListener(rightWindow->events().draw, mainApp.get(), &ofApp::drawRightWindow);
-    ofRunApp(previewWindow, mainApp);
+    ofRunApp(mainWindow, mainApp);
     ofRunMainLoop();
 }
