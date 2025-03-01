@@ -13,7 +13,8 @@ Memory::Memory(int _width, int _sideHeight, int _mainHeight) {
     arcDistance = 0.0;
     thickness = 0.0;
     octaveMultiplier = 0.0;
-    noiseSpeed = 0.0;
+    noiseTime = 0.0;
+    noiseSpeed = 1.0;
     
     targetRadius = 0.0;
     targetTheta = 0.0;
@@ -65,10 +66,6 @@ void Memory::setOctaveMultiplier(float _octaveMultiplier) {
     targetOctaveMultiplier = _octaveMultiplier;
 }
 
-void Memory::setNoiseTime(float _noiseTime) {
-    noiseTime = _noiseTime;
-}
-
 void Memory::setFill(bool _fillState) {
     fillState = _fillState;
 }
@@ -90,8 +87,8 @@ void Memory::update() {
     octaveMultiplier = ofLerp(octaveMultiplier, targetOctaveMultiplier, 0.05);
     leftVisibility = ofLerp(leftVisibility, targetLeftVisibility, 0.05);
     rightVisibility = ofLerp(rightVisibility, targetRightVisibility, 0.05);
-    noiseTime += ofGetLastFrameTime() * noiseSpeed;
-    
+    noiseTime += (ofGetLastFrameTime() * noiseSpeed);
+        
     updateTear(mainTear, 1.0);
     updateTear(leftTear, leftVisibility);
     updateTear(rightTear, rightVisibility);
@@ -105,7 +102,6 @@ void Memory::updateTear(Tear &tear, float visibility) {
     tear.setFill(fillState);
     tear.setNoiseTime(noiseTime);
     tear.setOctaveMultiplier(octaveMultiplier);
-        
     tear.update();
 }
 

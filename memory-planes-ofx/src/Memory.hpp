@@ -28,7 +28,6 @@ public:
     void setTheta(float theta);
     void setArcDistance(float arcDistance);
     void setThickness(float thickness);
-    void setNoiseTime(float noiseTime);
     void setFill(bool fillState);
     void setLeftVisibility(float visibility);
     void setRightVisibility(float visibility);

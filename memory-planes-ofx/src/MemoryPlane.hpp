@@ -23,7 +23,7 @@ public:
     void drawMemories();
     void drawMemories(float distanceRate);
     void drawSides();
-
+    
     void setColor(ofColor color);
     void setRadius(float radius);
     void setFresnelRadius(float fresnelRadius);

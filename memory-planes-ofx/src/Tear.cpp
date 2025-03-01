@@ -48,7 +48,7 @@ void Tear::update() {
     tearPolyline.clear();
     tearPolyline.addVertex(initialPoint.x, initialPoint.y);
     ofVec2f controlPoint1 = initialPoint + initialHeading;
-            
+        
     for (int i = 0; i < anchors.size(); i++) {
         anchors[i].setDirection(1);
         anchors[i].setNoiseTime(noiseTime);

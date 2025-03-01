@@ -52,59 +52,58 @@ MemoryPlane::MemoryPlane(int _width, int _sideHeight, int _mainHeight) {
 }
 
 void MemoryPlane::update() {
-    for (int i = 0; i < memories.size(); i++) {
-        memories[i].update();
-    }
-    
-    if (!calibrationMode) return;
-    
-    for (int i = 0; i < calibrationMemories.size(); i++) {
-        calibrationMemories[i].setNoiseSpeed(noiseSpeed);
-        calibrationMemories[i].setOctaveMultiplier(octaveMultiplier);
-        
-        calibrationMemories[i].update();
+    if (!calibrationMode) {
+        for (int i = 0; i < memories.size(); i++) {
+            memories[i].update();
+        }
+    } else {
+        for (int i = 0; i < calibrationMemories.size(); i++) {
+            calibrationMemories[i].setNoiseSpeed(noiseSpeed);
+            calibrationMemories[i].setOctaveMultiplier(octaveMultiplier);
+            calibrationMemories[i].update();
+        }
     }
 }
 
 void MemoryPlane::drawMainWindow() {
     if (fresnelMute) return;
     
-    for (int i = 0; i < memories.size(); i++) {
-        memories[i].drawFresnel();
-    }
-    
-    if (!calibrationMode) return;
-    
-    for (int i = 0; i < calibrationMemories.size(); i++) {
-        calibrationMemories[i].drawFresnel();
+    if (!calibrationMode) {
+        for (int i = 0; i < memories.size(); i++) {
+            memories[i].drawFresnel();
+        }
+    } else {
+        for (int i = 0; i < calibrationMemories.size(); i++) {
+            calibrationMemories[i].drawFresnel();
+        }
     }
 }
 
 void MemoryPlane::drawLeftWindow() {
     if (leftMute) return;
     
-    for (int i = 0; i < memories.size(); i++) {
-        memories[i].drawLeftSide();
-    }
-    
-    if (!calibrationMode) return;
-    
-    for (int i = 0; i < calibrationMemories.size(); i++) {
-        calibrationMemories[i].drawLeftSide();
+    if (!calibrationMode) {
+        for (int i = 0; i < memories.size(); i++) {
+            memories[i].drawLeftSide();
+        }
+    } else {
+        for (int i = 0; i < calibrationMemories.size(); i++) {
+            calibrationMemories[i].drawLeftSide();
+        }
     }
 }
 
 void MemoryPlane::drawRightWindow() {
     if (rightMute) return;
     
-    for (int i = 0; i < memories.size(); i++) {
-        memories[i].drawRightSide();
-    }
-    
-    if (!calibrationMode) return;
-    
-    for (int i = 0; i < calibrationMemories.size(); i++) {
-        calibrationMemories[i].drawRightSide();
+    if (!calibrationMode) {
+        for (int i = 0; i < memories.size(); i++) {
+            memories[i].drawRightSide();
+        }
+    } else {
+        for (int i = 0; i < calibrationMemories.size(); i++) {
+            calibrationMemories[i].drawRightSide();
+        }
     }
 }
 
