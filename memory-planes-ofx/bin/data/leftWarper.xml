@@ -3,13 +3,13 @@
 	<src>
 		<point x="0" y="0" />
 		<point x="608" y="0" />
-		<point x="608" y="328" />
-		<point x="0" y="328" />
+		<point x="608" y="280" />
+		<point x="0" y="280" />
 	</src>
 	<dst>
 		<point x="15" y="15" />
 		<point x="593" y="15" />
-		<point x="593" y="313" />
-		<point x="15" y="313" />
+		<point x="593" y="265" />
+		<point x="15" y="265" />
 	</dst>
 </quadwarp>
