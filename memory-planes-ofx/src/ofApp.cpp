@@ -56,7 +56,7 @@ void ofApp::setup(){
 }
 
 void ofApp::setupWarpers() {
-    setupWarper(fresnelWarper, width, fresnelHeight);
+    setupWarper(fresnelWarper, width, fresnelHeixxght);
     // loadWarp("fresnelWarper.xml", fresnelWarper);
     fresnelWarper.hide();
     fresnelWarper.disableKeyboardShortcuts();

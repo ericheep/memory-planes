@@ -1,0 +1,9 @@
+{
+    "group": {
+        "area_size__m_": "10",
+        "number_filters": "1",
+        "number_osc_senders": "1",
+        "number_sensors": "1",
+        "translation": "0, 0, 0"
+    }
+}

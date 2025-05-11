@@ -40,7 +40,7 @@ MemoryPlane::MemoryPlane(int _width, int _sideHeight, int _mainHeight) {
         memory.setRadius(1.0);
         memory.setTheta(i * PI);
         memory.setArcDistance(PI);
-        memory.setThickness(0.5);
+        memory.setThickness(0.25);
         memory.setFill(true);
         memory.setNoiseSpeed(1.0);
         memory.setOctaveMultiplier(0.5);

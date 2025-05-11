@@ -16,7 +16,7 @@
 #define BENQ_HEIGHT 1080
 #define PANASONIC_HEIGHT 1200
 
-#define DEV_MODE true
+#define DEV_MODE false
 
 class ofApp : public ofBaseApp{
 public:
