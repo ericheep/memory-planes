@@ -8,19 +8,18 @@
 MemoryPlane::MemoryPlane() {
 }
 
-MemoryPlane::MemoryPlane(int _width, int _sideHeight, int _mainHeight) {
+MemoryPlane::MemoryPlane(int _width, int _height) {
     width = _width;
-    sideHeight = _sideHeight;
-    mainHeight = _mainHeight;
+    height = _height;
     calibrationMode = false;
     
-    fresnelMute = false;
+    centerMute = false;
     leftMute = false;
     rightMute = false;
     
     // memories
     for (int i = 0; i < 3; i++) {
-        Memory memory = Memory(width, sideHeight, mainHeight);
+        Memory memory = Memory(width, height);
         memory.setRadius(0.0);
         memory.setTheta(PI * i);
         memory.setArcDistance(0);
@@ -36,7 +35,7 @@ MemoryPlane::MemoryPlane(int _width, int _sideHeight, int _mainHeight) {
     
     // calibration memories
     for (int i = 0; i < 2; i++) {
-        Memory memory = Memory(width, sideHeight, mainHeight);
+        Memory memory = Memory(width, height);
         memory.setRadius(1.0);
         memory.setTheta(i * PI);
         memory.setArcDistance(PI);
@@ -65,16 +64,16 @@ void MemoryPlane::update() {
     }
 }
 
-void MemoryPlane::drawMainWindow() {
-    if (fresnelMute) return;
+void MemoryPlane::drawCenterWindow() {
+    if (centerMute) return;
     
     if (!calibrationMode) {
         for (int i = 0; i < memories.size(); i++) {
-            memories[i].drawFresnel();
+            memories[i].drawCenter();
         }
     } else {
         for (int i = 0; i < calibrationMemories.size(); i++) {
-            calibrationMemories[i].drawFresnel();
+            calibrationMemories[i].drawCenter();
         }
     }
 }
@@ -115,8 +114,8 @@ void MemoryPlane::setCalibrationMode(bool _calibrationMode) {
     calibrationMode = _calibrationMode;
 }
 
-void MemoryPlane::setFresnelMute(bool _fresnelMute) {
-    fresnelMute = _fresnelMute;
+void MemoryPlane::setCenterMute(bool _centerMute) {
+    centerMute = _centerMute;
 }
 
 void MemoryPlane::setLeftMute(bool _leftMute) {

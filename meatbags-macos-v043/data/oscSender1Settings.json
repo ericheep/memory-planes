@@ -3,6 +3,7 @@
         "ip_address": "127.0.0.1",
         "port": "5432",
         "send_blobs": "0",
+        "send_filters": "0",
         "send_logs": "0"
     }
 }

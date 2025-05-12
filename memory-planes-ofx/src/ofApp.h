@@ -13,10 +13,7 @@
 #define SENDING_PORT 6543
 #define RECEIVING_PORT 5432
 
-#define BENQ_HEIGHT 1080
-#define PANASONIC_HEIGHT 1200
-
-#define DEV_MODE false
+#define DEV_MODE true
 
 class ofApp : public ofBaseApp{
 public:
@@ -26,12 +23,12 @@ public:
     void setupWarper(ofxQuadWarp &warper, int width, int height);
     
     void update();
-    void updateMainFBO();
+    void updateCenterFBO();
     void updateLeftFBO();
     void updateRightFBO();
     
     void draw();
-    void drawMainMindow(ofEventArgs & args);
+    void drawCenterMindow(ofEventArgs & args);
     void drawLeftWindow(ofEventArgs & args);
     void drawRightWindow(ofEventArgs & args);
     
@@ -39,7 +36,7 @@ public:
     void drawWarpPoints(ofxQuadWarp warper, ofMatrix4x4 warpMatrix);
 
     void setCalibrationMode(bool &calibrationMode);
-    void setFresnelMute(bool &fresnelMute);
+    void setCenterMute(bool &fresnelMute);
     void setLeftMute(bool &leftMute);
     void setRightMute(bool &rightMute);
     
@@ -48,11 +45,11 @@ public:
     void loadWarp(const string& path, ofxQuadWarp &warper);
     void keyPressed(int key);
     
-    ofxQuadWarp fresnelWarper;
+    ofxQuadWarp centerWarper;
     ofxQuadWarp leftWarper;
     ofxQuadWarp rightWarper;
     
-    Boolean fresnelWarperActive;
+    Boolean centerWarperActive;
     Boolean leftWarperActive;
     Boolean rightWarperActive;
     
@@ -65,7 +62,7 @@ public:
     ofParameter<float> defaultNoiseSpeed;
     
     ofParameter<bool> calibrationMode;
-    ofParameter<bool> fresnelMute;
+    ofParameter<bool> centerMute;
     ofParameter<bool> leftMute;
     ofParameter<bool> rightMute;
 
@@ -75,9 +72,9 @@ private:
     ofShader blur;
     ofShader noise;
           
-    ofFbo fboFresnel;
-    ofFbo fboFresnelBlur;
-    ofFbo fboFresnelNoise;
+    ofFbo fboCenterWindow;
+    ofFbo fboCenterBlur;
+    ofFbo fboCenterNoise;
     
     ofFbo fboLeftWindow;
     ofFbo fboLeftBlur;
@@ -98,7 +95,7 @@ private:
     
     MemoryPlane memoryPlane;
     
-    float width, height, fresnelHeight;
+    float width, height;
     float radius, shaderNoiseTime;
     bool guiActive;
 };

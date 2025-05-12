@@ -7,7 +7,7 @@
 
 Memory::Memory() {}
 
-Memory::Memory(int _width, int _sideHeight, int _mainHeight) {
+Memory::Memory(int _width, int _height) {
     radius = 0.0;
     theta = 0.0;
     arcDistance = 0.0;
@@ -23,9 +23,8 @@ Memory::Memory(int _width, int _sideHeight, int _mainHeight) {
     targetOctaveMultiplier = 0.0;
 
     width = _width;
-    sideHeight = _sideHeight;
-    mainHeight = _mainHeight;
-    windowRadius = _mainHeight / 2.0;
+    height = _height;
+    windowRadius = height / 2.0;
     fillState = true;
     
     leftVisibility = 0.0;
@@ -33,9 +32,9 @@ Memory::Memory(int _width, int _sideHeight, int _mainHeight) {
     
     int numAnchors = 200;
     
-    mainTear = Tear(numAnchors, width, mainHeight);
-    leftTear = Tear(numAnchors, width, sideHeight);
-    rightTear = Tear(numAnchors, width, sideHeight);
+    centerTear = Tear(numAnchors, width, height);
+    leftTear = Tear(numAnchors, width, height);
+    rightTear = Tear(numAnchors, width, height);
 }
 
 void Memory::setColor(ofColor _primaryColor) {
@@ -89,7 +88,7 @@ void Memory::update() {
     rightVisibility = ofLerp(rightVisibility, targetRightVisibility, 0.05);
     noiseTime += (ofGetLastFrameTime() * noiseSpeed);
         
-    updateTear(mainTear, 1.0);
+    updateTear(centerTear, 1.0);
     updateTear(leftTear, leftVisibility);
     updateTear(rightTear, rightVisibility);
 }
@@ -113,6 +112,6 @@ void Memory::drawRightSide() {
     rightTear.draw();
 }
 
-void Memory::drawFresnel() {
-    mainTear.draw();
+void Memory::drawCenter() {
+    centerTear.draw();
 }

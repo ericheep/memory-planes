@@ -13,14 +13,14 @@
 class Memory {
 public:
     Memory();
-    Memory(int width, int sideHeight, int mainHeight);
+    Memory(int width, int height);
     
     void update();
     void updateTear(Tear &tear, float visibility);
 
     void drawLeftSide();
     void drawRightSide();
-    void drawFresnel();
+    void drawCenter();
     
     void setColor(ofColor primaryColor);
     
@@ -50,10 +50,10 @@ private:
     
     bool fillState;
     
-    int width, sideHeight, mainHeight;
+    int width, height;
     ofColor primaryColor;
     
-    Tear mainTear, leftTear, rightTear;
+    Tear centerTear, leftTear, rightTear;
 };
 
 #endif /* Memory_hpp */

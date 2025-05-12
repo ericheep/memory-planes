@@ -11,11 +11,9 @@ void ofApp::setup(){
     if (DEV_MODE) {
         width = 608;
         height = 280;
-        fresnelHeight = 280;
     } else {
         width = 1920;
-        height = BENQ_HEIGHT;
-        fresnelHeight = PANASONIC_HEIGHT;
+        height = 1200;
     }
     
     // gl settings
@@ -30,9 +28,9 @@ void ofApp::setup(){
     blur.load("shaders/blur");
     noise.load("shaders/noise");
     
-    fboFresnel.allocate(width, fresnelHeight, GL_RGB32F_ARB);
-    fboFresnelBlur.allocate(width, fresnelHeight, GL_RGB32F_ARB);
-    fboFresnelNoise.allocate(width, fresnelHeight, GL_RGB32F_ARB);
+    fboCenterWindow.allocate(width, height, GL_RGB32F_ARB);
+    fboCenterBlur.allocate(width, height, GL_RGB32F_ARB);
+    fboCenterNoise.allocate(width, height, GL_RGB32F_ARB);
     
     fboLeftWindow.allocate(width, height, GL_RGB32F_ARB);
     fboLeftBlur.allocate(width, height, GL_RGB32F_ARB);
@@ -47,7 +45,7 @@ void ofApp::setup(){
     primaryColor = ofColor::white;
     
     // plane
-    memoryPlane = MemoryPlane(width, height, fresnelHeight);
+    memoryPlane = MemoryPlane(width, height);
     memoryPlane.setColor(primaryColor);
     
     setupWarpers();
@@ -56,10 +54,10 @@ void ofApp::setup(){
 }
 
 void ofApp::setupWarpers() {
-    setupWarper(fresnelWarper, width, fresnelHeixxght);
+    setupWarper(centerWarper, width, height);
     // loadWarp("fresnelWarper.xml", fresnelWarper);
-    fresnelWarper.hide();
-    fresnelWarper.disableKeyboardShortcuts();
+    centerWarper.hide();
+    centerWarper.disableKeyboardShortcuts();
     
     setupWarper(leftWarper, width, height);
     // loadWarp("leftWarper.xml", leftWarper);
@@ -82,7 +80,7 @@ void ofApp::setupGui() {
     gui.setDefaultHeight(12);
     
     calibrationMode.addListener(this, &ofApp::setCalibrationMode);
-    fresnelMute.addListener(this, &ofApp::setFresnelMute);
+    centerMute.addListener(this, &ofApp::setCenterMute);
     leftMute.addListener(this, &ofApp::setLeftMute);
     rightMute.addListener(this, &ofApp::setRightMute);
     
@@ -93,7 +91,7 @@ void ofApp::setupGui() {
     gui.add(defaultNoiseSpeed.set("noise speed", 1.0, 0.01, 1.0));
     
     gui.add(calibrationMode.set("calibration mode", false));
-    gui.add(fresnelMute.set("fresnel mute", false));
+    gui.add(centerMute.set("fresnel mute", false));
     gui.add(leftMute.set("left mute", false));
     gui.add(rightMute.set("right mute", false));
     
@@ -108,7 +106,7 @@ void ofApp::update() {
     memoryPlane.setRadius(radius);
     memoryPlane.update();
     
-    updateMainFBO();
+    updateCenterFBO();
     updateLeftFBO();
     updateRightFBO();
     
@@ -125,18 +123,16 @@ void ofApp::drawFps() {
 void ofApp::draw() {
     
     ofBackground(backgroundColor);
-    ofMatrix4x4 fresnelMatrix = fresnelWarper.getMatrix();
+    ofMatrix4x4 centerMatrix = centerWarper.getMatrix();
     
     // warp
     ofPushMatrix();
-    ofMultMatrix(fresnelMatrix);
+    ofMultMatrix(centerMatrix);
     ofSetColor(ofColor::white);
-    fboFresnelBlur.draw(0, 0);
+    fboCenterBlur.draw(0, 0);
     ofPopMatrix();
-    
-    drawWarpPoints(fresnelWarper, fresnelMatrix);
-    
-    drawWarpPoints(fresnelWarper, fresnelWarper.getMatrix());
+        
+    drawWarpPoints(centerWarper, centerWarper.getMatrix());
     drawWarpPoints(leftWarper, leftWarper.getMatrix());
     drawWarpPoints(rightWarper, rightWarper.getMatrix());
     
@@ -152,38 +148,38 @@ void ofApp::draw() {
     gui.draw();
 }
 
-void ofApp::updateMainFBO() {
+void ofApp::updateCenterFBO() {
     // fresnel fbo
-    fboFresnel.begin();
+    fboCenterWindow.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     ofPushMatrix();
-    ofTranslate(width / 2.0, fresnelHeight / 2.0, 0);
+    ofTranslate(width / 2.0, height / 2.0, 0);
     ofScale(scale);
-    memoryPlane.drawMainWindow();
+    memoryPlane.drawCenterWindow();
     ofPopMatrix();
-    fboFresnel.end();
+    fboCenterWindow.end();
     
     // noise fbo
-    fboFresnelNoise.begin();
+    fboCenterNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     noise.begin();
     noise.setUniform1f("u_distortion", shaderNoiseAmount);
     noise.setUniform1f("u_time", shaderNoiseTime);
-    fboFresnel.draw(0, 0);
+    fboCenterWindow.draw(0, 0);
     noise.end();
-    fboFresnelNoise.end();
+    fboCenterNoise.end();
     
     // blur fbo
-    fboFresnelBlur.begin();
+    fboCenterBlur.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     blur.begin();
     blur.setUniform1f("u_blurMix", blurAmount);
-    fboFresnelNoise.draw(0, 0);
+    fboCenterNoise.draw(0, 0);
     blur.end();
-    fboFresnelBlur.end();
+    fboCenterBlur.end();
 }
 
 void ofApp::updateLeftFBO() {
@@ -285,43 +281,43 @@ void ofApp::drawRightWindow(ofEventArgs &args) {
 void ofApp::keyPressed(int key) {
     switch(key) {
         case 'l':
-            loadWarp("fresnelWarper.xml", fresnelWarper);
+            loadWarp("centerWarper.xml", centerWarper);
             loadWarp("leftWarper.xml", leftWarper);
             loadWarp("rightWarper.xml", rightWarper);
             break;
         case 's':
-            saveWarp("fresnelWarper.xml", fresnelWarper);
+            saveWarp("centerWarper.xml", centerWarper);
             saveWarp("leftWarper.xml", leftWarper);
             saveWarp("rightWarper.xml", rightWarper);
             gui.saveToFile("settings.xml");
             break;
         case 'a':
-            fresnelWarper.enableKeyboardShortcuts();
-            fresnelWarper.show();
+            centerWarper.enableKeyboardShortcuts();
+            centerWarper.show();
             leftWarper.disableKeyboardShortcuts();
             leftWarper.hide();
             rightWarper.disableKeyboardShortcuts();
             rightWarper.hide();
             break;
         case 'b':
-            fresnelWarper.disableKeyboardShortcuts();
-            fresnelWarper.hide();
+            centerWarper.disableKeyboardShortcuts();
+            centerWarper.hide();
             leftWarper.enableKeyboardShortcuts();
             leftWarper.show();
             rightWarper.disableKeyboardShortcuts();
             rightWarper.hide();
             break;
         case 'c':
-            fresnelWarper.disableKeyboardShortcuts();
-            fresnelWarper.hide();
+            centerWarper.disableKeyboardShortcuts();
+            centerWarper.hide();
             leftWarper.disableKeyboardShortcuts();
             leftWarper.hide();
             rightWarper.enableKeyboardShortcuts();
             rightWarper.show();
             break;
         case 'h':
-            fresnelWarper.disableKeyboardShortcuts();
-            fresnelWarper.hide();
+            centerWarper.disableKeyboardShortcuts();
+            centerWarper.hide();
             leftWarper.disableKeyboardShortcuts();
             leftWarper.hide();
             rightWarper.disableKeyboardShortcuts();
@@ -334,7 +330,7 @@ void ofApp::keyPressed(int key) {
 }
 
 void ofApp::exit() {
-    saveWarp("fresnelWarper.xml", fresnelWarper);
+    saveWarp("centerWarper.xml", centerWarper);
     saveWarp("leftWarper.xml", leftWarper);
     saveWarp("rightWarper.xml", rightWarper);
 }
@@ -432,8 +428,8 @@ void ofApp::setCalibrationMode(bool &calibrationMode) {
     memoryPlane.setCalibrationMode(calibrationMode);
 }
 
-void ofApp::setFresnelMute(bool &fresnelMute) {
-    memoryPlane.setFresnelMute(fresnelMute);
+void ofApp::setCenterMute(bool &centerMute) {
+    memoryPlane.setCenterMute(centerMute);
 }
 
 void ofApp::setLeftMute(bool &leftMute) {

@@ -13,11 +13,11 @@
 class MemoryPlane {
 public:
     MemoryPlane();
-    MemoryPlane(int width, int height, int panasonicHeight);
+    MemoryPlane(int width, int height);
     
     void update();
     
-    void drawMainWindow();
+    void drawCenterWindow();
     void drawLeftWindow();
     void drawRightWindow();
     void drawMemories();
@@ -28,7 +28,8 @@ public:
     void setRadius(float radius);
     void setFresnelRadius(float fresnelRadius);
     void setCalibrationMode(bool calibrationMode);
-    void setFresnelMute(bool fresnelMute);
+    
+    void setCenterMute(bool centerMute);
     void setLeftMute(bool leftMute);
     void setRightMute(bool rightMute);
     void setNoiseSpeed(float noiseSpeed);
@@ -38,7 +39,7 @@ public:
     
 private:
     bool calibrationMode;
-    int width, sideHeight, mainHeight;
+    int width, height;
     
     float fresnelRadius, radius;
     float noiseTime, noiseSpeed, octaveMultiplier;
@@ -47,7 +48,7 @@ private:
     vector <Memory> calibrationMemories;
     ofColor primaryColor;
     
-    bool fresnelMute, leftMute, rightMute;
+    bool centerMute, leftMute, rightMute;
 };
 
 #endif /* MemoryPlane_hpp */
