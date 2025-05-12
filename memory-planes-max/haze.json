@@ -1,0 +1,20 @@
+{
+	"fixtures" : [ 		{
+			"name" : "",
+			"type" : "Generic RGB",
+			"modeName" : "3-channel",
+			"channel" : 1,
+			"universe" : 1,
+			"tags" : [ 				{
+					"name" : "haze",
+					"index" : 60
+				}
+ ],
+			"ranges" : [  ],
+			"testOn" : 0,
+			"children" : [  ],
+			"cells" : [  ]
+		}
+ ],
+	"version" : 1
+}
