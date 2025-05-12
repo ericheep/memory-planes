@@ -13,7 +13,6 @@ int main( ){
         settings.setSize(smallWidth, smallHeight);
         settings.windowMode = OF_WINDOW;
     } else {
-        settings.setSize(1920, 1200);
         settings.windowMode = OF_FULLSCREEN;
     }
     

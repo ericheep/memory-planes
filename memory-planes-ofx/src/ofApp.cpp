@@ -12,8 +12,8 @@ void ofApp::setup(){
         width = 608;
         height = 280;
     } else {
-        width = 1920;
-        height = 1200;
+        width = ofGetWidth();
+        height = ofGetHeight();
     }
     
     // gl settings
