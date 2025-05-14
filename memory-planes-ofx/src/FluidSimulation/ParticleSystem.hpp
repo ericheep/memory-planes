@@ -26,6 +26,8 @@ public:
     int circleResolution, rectangleResolution, shapeResolution, drawModeInt;;
     
     ofMesh mesh;
+    ofMesh connectionMesh;
+    
     vector<ofVec3f> meshVertices;
     vector<ofIndexType> meshIndices;
     vector<pair<ofVec2f, ofVec2f>> connections;
@@ -99,6 +101,7 @@ public:
     
     void draw();
     void updateMesh(int particleIndex);
+    void updateConnectionMesh(int particleIndex);
     void updateTriangle(int particleIndex);
     void updateLine(int particleIndex);
     void updatePoint(int particleIndex);

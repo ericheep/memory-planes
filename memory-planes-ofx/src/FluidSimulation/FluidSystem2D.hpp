@@ -21,6 +21,7 @@ public:
     void resolveCollisions(int particleIndex);
     ofVec2f pushParticlesAwayFromPoint(ofVec2f pointA, ofVec2f pointB, ofVec2f velocity);
     ofVec2f pullParticlesToPoint(ofVec2f pointA, ofVec2f pointB);
+    ofVec2f pushParticlesAwayFromLine(ofVec2f pointA, ofPolyline line, ofVec2f velocity);
     
     // math
     float calculatePressureFromDensity(float density);

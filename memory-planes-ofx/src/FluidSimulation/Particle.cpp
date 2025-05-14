@@ -40,6 +40,11 @@ Particle::Particle(ofVec3f _position, float _radius, int _index) {
     
     connectionThickness = 3;
     neighbors.clear();
+    
+    flushMesh.setMode(OF_PRIMITIVE_TRIANGLES);
+    flushMesh.addVertex(ofVec3f(-9999, -9999));
+    flushMesh.addVertex(ofVec3f(-9998, -9999));
+    flushMesh.addVertex(ofVec3f(-9999, -9998));
 }
 
 void Particle::setMode(int _mode) {
@@ -210,7 +215,7 @@ void Particle::updateNeighbor(int index, ofVec2f position) {
     neighbor.index = index;
     neighbor.position = position;
     neighbor.isInRange = true;
-
+    
     neighbors.push_back(neighbor);
 }
 
@@ -223,50 +228,37 @@ void Particle::updateNeighbors() {
     neighbors.erase(std::remove_if(neighbors.begin(), neighbors.end(), [](Neighbor neighbor) {
         return !neighbor.isAlive;
     }), neighbors.end());
-    
+
     connectionMesh.clear();
-    
+
     for (int i = 0; i < neighbors.size(); i++) {
         float normal = theta + HALF_PI;
         float xNormal = cos(normal);
         float yNormal = sin(normal);
         float localThickness = size * neighbors[i].progress;
         
-        
-        ofVec3f leftTop = ofVec2f(position.x + xNormal * localThickness,
+        ofVec3f leftTop = ofVec3f(position.x + xNormal * localThickness,
                                   position.y + yNormal * localThickness);
         
-        ofVec3f leftBottom = ofVec2f(position.x - xNormal * localThickness,
+        ofVec3f leftBottom = ofVec3f(position.x - xNormal * localThickness,
                                      position.y - yNormal * localThickness);
         
+        ofVec3f progressPoint  = position + (neighbors[i].position - position) * neighbors[i].progress;
         
-        ofVec2f progressPoint  = position + (neighbors[i].position - position) * neighbors[i].progress;
+        ofVec3f top = ofVec3f(progressPoint.x, progressPoint.y);
         
-        ofVec3f rightTop = ofVec2f(progressPoint.x + xNormal * localThickness,
-                                   progressPoint.y + yNormal * localThickness);
+        int base = connectionMesh.getNumVertices();
         
-        ofVec3f rightBottom = ofVec2f(progressPoint.x - xNormal * localThickness,
-                                      progressPoint.y - yNormal * localThickness);
+        ofVec3f verts[3] = { leftTop, leftBottom, top };
         
+        for (auto& v : verts) {
+            connectionMesh.addVertex(v);
+            connectionMesh.addColor(particleColor);
+        }
         
-        connectionMesh.addVertex(leftTop);
-        connectionMesh.addColor(particleColor);
-        
-        connectionMesh.addVertex(leftBottom);
-        connectionMesh.addColor(particleColor);
-        
-        connectionMesh.addVertex(rightTop);
-        connectionMesh.addColor(particleColor);
-        
-        connectionMesh.addVertex(rightBottom);
-        connectionMesh.addColor(particleColor);
-        
-        connectionMesh.addIndex(0 + i * 4);
-        connectionMesh.addIndex(1 + i * 4);
-        connectionMesh.addIndex(2 + i * 4);
-        connectionMesh.addIndex(2 + i * 4);
-        connectionMesh.addIndex(3 + i * 4);
-        connectionMesh.addIndex(0 + i * 4);
+        connectionMesh.addIndex(base + 0);
+        connectionMesh.addIndex(base + 1);
+        connectionMesh.addIndex(base + 2);
     }
 }
 
@@ -315,5 +307,9 @@ void Particle::draw() {
 }
 
 void Particle::drawConnections() {
-    connectionMesh.draw();
+    if (connectionMesh.getNumVertices() == neighbors.size() * 3) {
+        connectionMesh.draw();
+    }
+    
+    flushMesh.draw();
 }

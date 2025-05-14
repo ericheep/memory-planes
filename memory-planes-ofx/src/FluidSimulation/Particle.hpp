@@ -40,6 +40,7 @@ public:
     // drawn mesh
     ofMesh mesh;
     ofMesh connectionMesh;
+    ofMesh flushMesh;
     
     enum shapeModes { CIRCLE, RECTANGLE, VECTOR, LINE } shapeMode;
 

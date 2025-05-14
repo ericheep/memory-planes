@@ -63,6 +63,7 @@ void FluidSystem2D::update() {
         for (int i = r.begin(); i < r.end(); ++i) {
             particles[i].update();
             particles[i].updateNeighbors();
+
             updateMesh(i);
         }
     });
@@ -109,6 +110,23 @@ ofVec2f FluidSystem2D::pushParticlesAwayFromPoint(ofVec2f pointA, ofVec2f pointB
     if (squareDistance < inputRadius * inputRadius) {
         float distance = sqrt(squareDistance);
         ofVec2f direction = (pointB - pointA) / distance;
+        float scalarProximity = 1.0 - distance / inputRadius;
+        
+        interactiveForce =  direction * mouseForce * scalarProximity * scalarProximity;
+    }
+    return interactiveForce;
+}
+
+ofVec2f FluidSystem2D::pushParticlesAwayFromLine(ofVec2f pointA, ofPolyline line, ofVec2f velocity) {
+    ofVec2f interactiveForce = ofVec2f::zero();
+    
+    float inputRadius = 10;
+    ofVec2f pointOnLine = line.getClosestPoint(ofVec3f(pointA.x, pointA.y));
+    float squareDistance = pointA.squareDistance(pointOnLine);
+    
+    if (squareDistance < inputRadius * inputRadius) {
+        float distance = sqrt(squareDistance);
+        ofVec2f direction = (pointOnLine - pointA) / distance;
         float scalarProximity = 1.0 - distance / inputRadius;
         
         interactiveForce =  direction * mouseForce * scalarProximity * scalarProximity;
