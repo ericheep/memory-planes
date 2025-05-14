@@ -9,11 +9,12 @@
 #include "ofxGui.h"
 
 #include "MemoryPlane.hpp"
+#include "StarField.hpp"
 
 #define SENDING_PORT 6543
 #define RECEIVING_PORT 5432
 
-#define DEV_MODE false
+#define DEV_MODE true
 
 class ofApp : public ofBaseApp{
 public:
@@ -23,14 +24,12 @@ public:
     void setupWarper(ofxQuadWarp &warper, int width, int height);
     
     void update();
-    void updateCenterFBO();
-    void updateLeftFBO();
-    void updateRightFBO();
+    void updateInnerFBO();
+    void updateOuterFBO();
     
     void draw();
-    void drawCenterMindow(ofEventArgs & args);
-    void drawLeftWindow(ofEventArgs & args);
-    void drawRightWindow(ofEventArgs & args);
+    void drawInnerWindow(ofEventArgs & args);
+    void drawOuterWindow(ofEventArgs & args);
     
     void drawFps();
     void drawWarpPoints(ofxQuadWarp warper, ofMatrix4x4 warpMatrix);
@@ -45,15 +44,15 @@ public:
     void loadWarp(const string& path, ofxQuadWarp &warper);
     void keyPressed(int key);
     
-    ofxQuadWarp centerWarper;
-    ofxQuadWarp leftWarper;
-    ofxQuadWarp rightWarper;
+    ofxQuadWarp innerWarper;
+    ofxQuadWarp outerWarper;
     
-    Boolean centerWarperActive;
-    Boolean leftWarperActive;
-    Boolean rightWarperActive;
+    Boolean innerWarperActive;
+    Boolean outerWarperActive;
     
     ofxPanel gui;
+    ofParameterGroup simulationSettings;
+    ofParameterGroup boundarySettings;
     
     ofParameter<float> scale;
     ofParameter<float> blurAmount;
@@ -62,9 +61,6 @@ public:
     ofParameter<float> defaultNoiseSpeed;
     
     ofParameter<bool> calibrationMode;
-    ofParameter<bool> centerMute;
-    ofParameter<bool> leftMute;
-    ofParameter<bool> rightMute;
 
 private:
     void updateOsc();
@@ -72,17 +68,13 @@ private:
     ofShader blur;
     ofShader noise;
           
-    ofFbo fboCenterWindow;
-    ofFbo fboCenterBlur;
-    ofFbo fboCenterNoise;
+    ofFbo fboInnerWindow;
+    ofFbo fboInnerBlur;
+    ofFbo fboInnerNoise;
     
-    ofFbo fboLeftWindow;
-    ofFbo fboLeftBlur;
-    ofFbo fboLeftNoise;
-    
-    ofFbo fboRightWindow;
-    ofFbo fboRightBlur;
-    ofFbo fboRightNoise;
+    ofFbo fboOuterWindow;
+    ofFbo fboOuterBlur;
+    ofFbo fboOuterNoise;
     
     ofCamera cam;
     ofxOscReceiver oscReceiver;
@@ -94,8 +86,9 @@ private:
     ofPoint points[10];
     
     MemoryPlane memoryPlane;
+    StarField starField;
     
-    float width, height;
+    float width, height, innerWidth, innerHeight;
     float radius, shaderNoiseTime;
     bool guiActive;
 };

@@ -17,9 +17,8 @@ public:
     
     void update();
     
-    void drawCenterWindow();
-    void drawLeftWindow();
-    void drawRightWindow();
+    void draw();
+
     void drawMemories();
     void drawMemories(float distanceRate);
     void drawSides();

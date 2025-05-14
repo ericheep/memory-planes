@@ -104,14 +104,6 @@ void Memory::updateTear(Tear &tear, float visibility) {
     tear.update();
 }
 
-void Memory::drawLeftSide() {
-    leftTear.draw();
-}
-
-void Memory::drawRightSide() {
-    rightTear.draw();
-}
-
 void Memory::drawCenter() {
     centerTear.draw();
 }

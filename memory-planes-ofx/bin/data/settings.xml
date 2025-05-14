@@ -28,7 +28,23 @@
 	<blur>1</blur>
 	<noise>0.592857</noise>
 	<octave_multiplier>2.5</octave_multiplier>
-	<noise_speed>0.575714</noise_speed>
+	<noise_speed>0.328214</noise_speed>
 	<scale>1</scale>
-	<shader_noise>0</shader_noise>
+	<shader_noise>0.178571</shader_noise>
+	<number>100</number>
+	<influence_radius>13.2714</influence_radius>
+	<time_scalar>3</time_scalar>
+	<gravity_multiplier>0</gravity_multiplier>
+	<connection_radius>40</connection_radius>
+	<draw_mode>0</draw_mode>
+	<velocity_curve>1</velocity_curve>
+	<min_velocity>9.28571</min_velocity>
+	<max_velocity>53.5714</max_velocity>
+	<min_size>2.85714</min_size>
+	<max_size>5</max_size>
+	<sim_settings>
+		<density>0.759191</density>
+		<pressure>100</pressure>
+		<near_pressure>100</near_pressure>
+	</sim_settings>
 </memory_planes>

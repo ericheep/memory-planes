@@ -6,8 +6,8 @@ int main( ){
     ofGLFWWindowSettings settings;
     settings.setGLVersion(4,1);
 
-    int smallWidth = 608;
-    int smallHeight = 280;
+    int smallWidth = 800;
+    int smallHeight = 600;
     
     if (DEV_MODE) {
         settings.setSize(smallWidth, smallHeight);

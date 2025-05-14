@@ -9,11 +9,17 @@ void ofApp::setup(){
     ofSetBackgroundAuto(false);
     
     if (DEV_MODE) {
-        width = 608;
-        height = 280;
+        width = 800;
+        height = 600;
+        
+        innerWidth = 400;
+        innerHeight = 400;
     } else {
         width = ofGetWidth();
         height = ofGetHeight();
+        
+        innerWidth = height * 0.6;
+        innerHeight = height * 0.6;
     }
     
     // gl settings
@@ -28,25 +34,24 @@ void ofApp::setup(){
     blur.load("shaders/blur");
     noise.load("shaders/noise");
     
-    fboCenterWindow.allocate(width, height, GL_RGB32F_ARB);
-    fboCenterBlur.allocate(width, height, GL_RGB32F_ARB);
-    fboCenterNoise.allocate(width, height, GL_RGB32F_ARB);
+    fboInnerWindow.allocate(innerWidth, innerHeight, GL_RGB32F_ARB);
+    fboInnerBlur.allocate(innerWidth, innerHeight, GL_RGB32F_ARB);
+    fboInnerNoise.allocate(innerWidth, innerHeight, GL_RGB32F_ARB);
     
-    fboLeftWindow.allocate(width, height, GL_RGB32F_ARB);
-    fboLeftBlur.allocate(width, height, GL_RGB32F_ARB);
-    fboLeftNoise.allocate(width, height, GL_RGB32F_ARB);
-    
-    fboRightWindow.allocate(width, height, GL_RGB32F_ARB);
-    fboRightBlur.allocate(width, height, GL_RGB32F_ARB);
-    fboRightNoise.allocate(width, height, GL_RGB32F_ARB);
+    fboOuterWindow.allocate(width, height, GL_RGB32F_ARB);
+    fboOuterBlur.allocate(width, height, GL_RGB32F_ARB);
+    fboOuterNoise.allocate(width, height, GL_RGB32F_ARB);
     
     // initialize colors
     backgroundColor = ofColor::black;
     primaryColor = ofColor::white;
     
     // plane
-    memoryPlane = MemoryPlane(width, height);
+    memoryPlane = MemoryPlane(innerWidth, innerHeight);
     memoryPlane.setColor(primaryColor);
+    
+    starField.setInnerSize(innerWidth, innerHeight);
+    starField.setSize(width, height);
     
     setupWarpers();
     setupGui();
@@ -54,20 +59,15 @@ void ofApp::setup(){
 }
 
 void ofApp::setupWarpers() {
-    setupWarper(centerWarper, width, height);
-    // loadWarp("fresnelWarper.xml", fresnelWarper);
-    centerWarper.hide();
-    centerWarper.disableKeyboardShortcuts();
+    setupWarper(innerWarper, innerWidth, innerHeight);
+    // loadWarp("innerWarper.xml", innerWarper);
+    innerWarper.hide();
+    innerWarper.disableKeyboardShortcuts();
     
-    setupWarper(leftWarper, width, height);
-    // loadWarp("leftWarper.xml", leftWarper);
-    leftWarper.hide();
-    leftWarper.disableKeyboardShortcuts();
-    
-    setupWarper(rightWarper, width, height);
-    // loadWarp("rightWarper.xml", rightWarper);
-    rightWarper.hide();
-    rightWarper.disableKeyboardShortcuts();
+    setupWarper(outerWarper, width, height);
+    // loadWarp("outerWarper.xml", outerWarper);
+    outerWarper.hide();
+    outerWarper.disableKeyboardShortcuts();
 }
 
 void ofApp::setupGui() {
@@ -80,21 +80,34 @@ void ofApp::setupGui() {
     gui.setDefaultHeight(12);
     
     calibrationMode.addListener(this, &ofApp::setCalibrationMode);
-    centerMute.addListener(this, &ofApp::setCenterMute);
-    leftMute.addListener(this, &ofApp::setLeftMute);
-    rightMute.addListener(this, &ofApp::setRightMute);
     
     gui.add(scale.set("scale", 1.0, 0.0, 3.0));
     gui.add(blurAmount.set("blur", 1.0, 0.0, 1.0));
     gui.add(shaderNoiseAmount.set("shader noise", 1.0, 0.0, 1.0));
     gui.add(defaultOctaveMultiplier.set("octave multiplier", 1.0, 0.0, 10.0));
     gui.add(defaultNoiseSpeed.set("noise speed", 1.0, 0.01, 1.0));
-    
     gui.add(calibrationMode.set("calibration mode", false));
-    gui.add(centerMute.set("fresnel mute", false));
-    gui.add(leftMute.set("left mute", false));
-    gui.add(rightMute.set("right mute", false));
     
+    // general gui settings
+    gui.add(starField.numberParticles.set("number", 100, 50, 2000));
+    gui.add(starField.influenceRadius.set("influence radius", 10.0, 0.5, 75.0));
+    gui.add(starField.timeScalar.set("time scalar", 1.0, 0.25, 4.0));
+    gui.add(starField.gravityMultiplier.set("gravity multiplier", 0.0, 0.0, 5.0));
+    
+    // graphic gui settings
+    gui.add(starField.connectionRadius.set("connection radius", 0, 0, 200.0));
+    gui.add(starField.drawMode.set("draw mode", 0, 0, 5));
+    gui.add(starField.velocityCurve.set("velocity curve", 1.0, 0.0, 3.0));
+    gui.add(starField.minVelocity.set("min velocity", 0.0, 0.0, 100.0));
+    gui.add(starField.maxVelocity.set("max velocity", 50.0, 0.0, 250.0));
+    gui.add(starField.minSize.set("min size", 1.0, 0.0, 50.0));
+    gui.add(starField.maxSize.set("max size", 25.0, 0.0, 100.0));
+
+    simulationSettings.setName("sim settings");
+    simulationSettings.add(starField.targetDensity.set("density", 1.0, 0.125, 3.0));
+    simulationSettings.add(starField.pressureMultiplier.set("pressure", 100, 0, 1000.0));
+    simulationSettings.add(starField.nearPressureMultiplier.set("near pressure", 100, 0.0, 1000.0));
+    gui.add(simulationSettings);
     gui.loadFromFile("settings.xml");
 }
 
@@ -106,9 +119,11 @@ void ofApp::update() {
     memoryPlane.setRadius(radius);
     memoryPlane.update();
     
-    updateCenterFBO();
-    updateLeftFBO();
-    updateRightFBO();
+    starField.setWarp(innerWarper, outerWarper);
+    starField.update();
+    
+    updateInnerFBO();
+    updateOuterFBO();
     
     shaderNoiseTime = ofGetElapsedTimef() * 0.6;
 }
@@ -121,20 +136,24 @@ void ofApp::drawFps() {
 }
 
 void ofApp::draw() {
-    
     ofBackground(backgroundColor);
-    ofMatrix4x4 centerMatrix = centerWarper.getMatrix();
-    
-    // warp
+    ofMatrix4x4 innerMatrix = innerWarper.getMatrix();
+    ofMatrix4x4 outerMatrix = outerWarper.getMatrix();
+
     ofPushMatrix();
-    ofMultMatrix(centerMatrix);
+    ofMultMatrix(outerMatrix);
     ofSetColor(ofColor::white);
-    fboCenterBlur.draw(0, 0);
+    fboOuterBlur.draw(0, 0);
     ofPopMatrix();
         
-    drawWarpPoints(centerWarper, centerWarper.getMatrix());
-    drawWarpPoints(leftWarper, leftWarper.getMatrix());
-    drawWarpPoints(rightWarper, rightWarper.getMatrix());
+    ofPushMatrix();
+    ofMultMatrix(innerMatrix);
+    ofSetColor(ofColor::white);
+    fboInnerBlur.draw(0, 0);
+    ofPopMatrix();
+        
+    drawWarpPoints(innerWarper, innerWarper.getMatrix());
+    drawWarpPoints(outerWarper, outerWarper.getMatrix());
     
     drawFps();
     
@@ -148,180 +167,100 @@ void ofApp::draw() {
     gui.draw();
 }
 
-void ofApp::updateCenterFBO() {
-    // fresnel fbo
-    fboCenterWindow.begin();
+void ofApp::updateInnerFBO() {
+    // inner fbo
+    fboInnerWindow.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     ofPushMatrix();
-    ofTranslate(width / 2.0, height / 2.0, 0);
+    ofTranslate(innerWidth / 2.0, innerHeight / 2.0, 0);
     ofScale(scale);
-    memoryPlane.drawCenterWindow();
+    memoryPlane.draw();
     ofPopMatrix();
-    fboCenterWindow.end();
+    fboInnerWindow.end();
     
     // noise fbo
-    fboCenterNoise.begin();
+    fboInnerNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     noise.begin();
     noise.setUniform1f("u_distortion", shaderNoiseAmount);
     noise.setUniform1f("u_time", shaderNoiseTime);
-    fboCenterWindow.draw(0, 0);
+    fboInnerWindow.draw(0, 0);
     noise.end();
-    fboCenterNoise.end();
+    fboInnerNoise.end();
     
     // blur fbo
-    fboCenterBlur.begin();
+    fboInnerBlur.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     blur.begin();
     blur.setUniform1f("u_blurMix", blurAmount);
-    fboCenterNoise.draw(0, 0);
+    fboInnerNoise.draw(0, 0);
     blur.end();
-    fboCenterBlur.end();
+    fboInnerBlur.end();
 }
 
-void ofApp::updateLeftFBO() {
-    // fresnel fbo
-    fboLeftWindow.begin();
+void ofApp::updateOuterFBO() {
+    // inner fbo
+    fboOuterWindow.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     ofPushMatrix();
-    ofTranslate(width / 2.0, height / 2.0, 0);
-    ofScale(scale);
-    memoryPlane.drawLeftWindow();
+    starField.draw();
     ofPopMatrix();
-    fboLeftWindow.end();
+    fboOuterWindow.end();
     
     // noise fbo
-    fboLeftNoise.begin();
+    fboOuterNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     noise.begin();
     noise.setUniform1f("u_distortion", shaderNoiseAmount);
     noise.setUniform1f("u_time", shaderNoiseTime);
-    fboLeftWindow.draw(0, 0);
+    fboOuterWindow.draw(0, 0);
     noise.end();
-    fboLeftNoise.end();
+    fboOuterNoise.end();
     
     // blur fbo
-    fboLeftBlur.begin();
+    fboOuterBlur.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
     blur.begin();
     blur.setUniform1f("u_blurMix", blurAmount);
-    fboLeftNoise.draw(0, 0);
+    fboOuterNoise.draw(0, 0);
     blur.end();
-    fboLeftBlur.end();
-}
-
-void ofApp::updateRightFBO() {
-    // fresnel fbo
-    fboRightWindow.begin();
-    ofClear(0.0f, 0.0f, 0.0f);
-    ofSetColor(255, 255, 255);
-    ofPushMatrix();
-    ofTranslate(width / 2.0, height / 2.0, 0);
-    ofScale(scale);
-    memoryPlane.drawRightWindow();
-    ofPopMatrix();
-    fboRightWindow.end();
-    
-    // noise fbo
-    fboRightNoise.begin();
-    ofClear(0.0f, 0.0f, 0.0f);
-    ofSetColor(255, 255, 255);
-    noise.begin();
-    noise.setUniform1f("u_distortion", shaderNoiseAmount);
-    noise.setUniform1f("u_time", shaderNoiseTime);
-    fboRightWindow.draw(0, 0);
-    noise.end();
-    fboRightNoise.end();
-    
-    // blur fbo
-    fboRightBlur.begin();
-    ofClear(0.0f, 0.0f, 0.0f);
-    ofSetColor(255, 255, 255);
-    blur.begin();
-    blur.setUniform1f("u_blurMix", blurAmount);
-    fboRightNoise.draw(0, 0);
-    blur.end();
-    fboRightBlur.end();
-}
-
-void ofApp::drawLeftWindow(ofEventArgs &args) {
-    ofBackground(ofColor::black);
-    ofMatrix4x4 leftMatrix = leftWarper.getMatrix();
-    
-    // warp
-    ofPushMatrix();
-    ofMultMatrix(leftMatrix);
-    ofSetColor(ofColor::white);
-    fboLeftBlur.draw(0, 0);
-    ofPopMatrix();
-    
-    drawWarpPoints(leftWarper, leftMatrix);
-}
-
-void ofApp::drawRightWindow(ofEventArgs &args) {
-    ofBackground(ofColor::black);
-     ofMatrix4x4 rightMatrix = rightWarper.getMatrix();
-     
-     // warp
-     ofPushMatrix();
-     ofMultMatrix(rightMatrix);
-     ofSetColor(ofColor::white);
-     fboRightBlur.draw(0, 0);
-     ofPopMatrix();
-     
-     drawWarpPoints(rightWarper, rightMatrix);
+    fboOuterBlur.end();
 }
 
 void ofApp::keyPressed(int key) {
     switch(key) {
         case 'l':
-            loadWarp("centerWarper.xml", centerWarper);
-            loadWarp("leftWarper.xml", leftWarper);
-            loadWarp("rightWarper.xml", rightWarper);
+            loadWarp("innerWarper.xml", innerWarper);
+            loadWarp("outerWarper.xml", outerWarper);
             break;
         case 's':
-            saveWarp("centerWarper.xml", centerWarper);
-            saveWarp("leftWarper.xml", leftWarper);
-            saveWarp("rightWarper.xml", rightWarper);
+            saveWarp("innerWarper.xml", innerWarper);
+            saveWarp("outerWarper.xml", outerWarper);
             gui.saveToFile("settings.xml");
             break;
-        case 'a':
-            centerWarper.enableKeyboardShortcuts();
-            centerWarper.show();
-            leftWarper.disableKeyboardShortcuts();
-            leftWarper.hide();
-            rightWarper.disableKeyboardShortcuts();
-            rightWarper.hide();
+        case 'i':
+            innerWarper.enableKeyboardShortcuts();
+            innerWarper.show();
+            outerWarper.disableKeyboardShortcuts();
+            outerWarper.hide();
             break;
-        case 'b':
-            centerWarper.disableKeyboardShortcuts();
-            centerWarper.hide();
-            leftWarper.enableKeyboardShortcuts();
-            leftWarper.show();
-            rightWarper.disableKeyboardShortcuts();
-            rightWarper.hide();
-            break;
-        case 'c':
-            centerWarper.disableKeyboardShortcuts();
-            centerWarper.hide();
-            leftWarper.disableKeyboardShortcuts();
-            leftWarper.hide();
-            rightWarper.enableKeyboardShortcuts();
-            rightWarper.show();
+        case 'o':
+            innerWarper.disableKeyboardShortcuts();
+            innerWarper.hide();
+            outerWarper.enableKeyboardShortcuts();
+            outerWarper.show();
             break;
         case 'h':
-            centerWarper.disableKeyboardShortcuts();
-            centerWarper.hide();
-            leftWarper.disableKeyboardShortcuts();
-            leftWarper.hide();
-            rightWarper.disableKeyboardShortcuts();
-            rightWarper.hide();
+            innerWarper.disableKeyboardShortcuts();
+            innerWarper.hide();
+            outerWarper.disableKeyboardShortcuts();
+            outerWarper.hide();
             break;
         case 'g':
             guiActive = !guiActive;
@@ -330,23 +269,23 @@ void ofApp::keyPressed(int key) {
 }
 
 void ofApp::exit() {
-    saveWarp("centerWarper.xml", centerWarper);
-    saveWarp("leftWarper.xml", leftWarper);
-    saveWarp("rightWarper.xml", rightWarper);
+    saveWarp("innerWarper.xml", innerWarper);
+    saveWarp("outerWarper.xml", outerWarper);
 }
 
 void ofApp::setupWarper(ofxQuadWarp &warper, int width, int height) {
+    float halfWidth = width * 0.5;
+    float halfHeight = height * 0.5;
+    
+    ofPoint center = ofPoint(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
+    
     // top left, top right, bottom left, bottom right
-    float w = width;
-    float h = height;
-    float offset = 15;
+    ofPoint p1 = center + ofPoint(-halfWidth, -halfHeight);
+    ofPoint p2 = center + ofPoint(halfWidth, -halfHeight);
+    ofPoint p3 = center + ofPoint(-halfWidth, halfHeight);
+    ofPoint p4 = center + ofPoint(halfWidth, halfHeight);
     
-    ofPoint p1 = ofPoint(offset, offset);
-    ofPoint p2 = ofPoint(w - offset, offset);
-    ofPoint p3 = ofPoint(offset, h - offset);
-    ofPoint p4 = ofPoint(w - offset, h - offset);
-    
-    warper.setSourceRect(ofRectangle(0, 0, w, h));
+    warper.setSourceRect(ofRectangle(0, 0, width, height));
     warper.setTopLeftCornerPosition(p1);
     warper.setTopRightCornerPosition(p2);
     warper.setBottomLeftCornerPosition(p3);
@@ -428,18 +367,6 @@ void ofApp::setCalibrationMode(bool &calibrationMode) {
     memoryPlane.setCalibrationMode(calibrationMode);
 }
 
-void ofApp::setCenterMute(bool &centerMute) {
-    memoryPlane.setCenterMute(centerMute);
-}
-
-void ofApp::setLeftMute(bool &leftMute) {
-    memoryPlane.setLeftMute(leftMute);
-}
-
-void ofApp::setRightMute(bool &rightMute) {
-    memoryPlane.setRightMute(rightMute);
-}
-
 void ofApp::updateOsc() {
     while(oscReceiver.hasWaitingMessages()) {
         ofxOscMessage m;
@@ -460,3 +387,4 @@ void ofApp::updateOsc() {
         }
     }
 }
+

@@ -64,9 +64,7 @@ void MemoryPlane::update() {
     }
 }
 
-void MemoryPlane::drawCenterWindow() {
-    if (centerMute) return;
-    
+void MemoryPlane::draw() {    
     if (!calibrationMode) {
         for (int i = 0; i < memories.size(); i++) {
             memories[i].drawCenter();
@@ -74,34 +72,6 @@ void MemoryPlane::drawCenterWindow() {
     } else {
         for (int i = 0; i < calibrationMemories.size(); i++) {
             calibrationMemories[i].drawCenter();
-        }
-    }
-}
-
-void MemoryPlane::drawLeftWindow() {
-    if (leftMute) return;
-    
-    if (!calibrationMode) {
-        for (int i = 0; i < memories.size(); i++) {
-            memories[i].drawLeftSide();
-        }
-    } else {
-        for (int i = 0; i < calibrationMemories.size(); i++) {
-            calibrationMemories[i].drawLeftSide();
-        }
-    }
-}
-
-void MemoryPlane::drawRightWindow() {
-    if (rightMute) return;
-    
-    if (!calibrationMode) {
-        for (int i = 0; i < memories.size(); i++) {
-            memories[i].drawRightSide();
-        }
-    } else {
-        for (int i = 0; i < calibrationMemories.size(); i++) {
-            calibrationMemories[i].drawRightSide();
         }
     }
 }

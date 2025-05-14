@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<quadwarp>
+	<src>
+		<point x="0" y="0" />
+		<point x="400" y="0" />
+		<point x="400" y="400" />
+		<point x="0" y="400" />
+	</src>
+	<dst>
+		<point x="200" y="100" />
+		<point x="600" y="100" />
+		<point x="600" y="500" />
+		<point x="200" y="500" />
+	</dst>
+</quadwarp>
