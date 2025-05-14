@@ -58,12 +58,12 @@ void FluidSystem2D::update() {
         
         nextFrameActive = false;
     }
-
+    
     tbb::parallel_for( tbb::blocked_range<int>(0, particles.size()), [&](tbb::blocked_range<int> r) {
         for (int i = r.begin(); i < r.end(); ++i) {
             particles[i].update();
             particles[i].updateNeighbors();
-
+            
             updateMesh(i);
         }
     });
@@ -72,7 +72,7 @@ void FluidSystem2D::update() {
 ofVec2f FluidSystem2D::calculateInteractiveForce(int particleIndex) {
     ofVec2f particlePosition = particles[particleIndex].position;
     ofVec2f particleVelocity = particles[particleIndex].velocity;
-
+    
     ofVec2f interactiveForce= ofVec2f::zero();
     
     if (mouseButton == 0) {
@@ -361,6 +361,20 @@ pair<int, int> FluidSystem2D::positionToCellCoordinate(ofVec2f position, float r
     return pair<int, int> (int(position.x / radius), int(position.y / radius));
 }
 
+glm::vec2 FluidSystem2D::getClosestPointOnLine(const glm::vec2& a, const glm::vec2& b, const glm::vec2& p) {
+    glm::vec2 ab = b - a;
+    float abSquared = glm::dot(ab, ab);
+    
+    if (abSquared == 0.0f) {
+        return a;
+    }
+    
+    float t = glm::dot(p - a, ab) / abSquared;
+    t = glm::clamp(t, 0.0f, 1.0f);
+    
+    return a + t * ab;
+}
+
 void FluidSystem2D::resolveCollisions(int particleIndex) {
     particles[particleIndex].position;
     
@@ -386,12 +400,37 @@ void FluidSystem2D::resolveCollisions(int particleIndex) {
     }
     
     if (innerPolyline.inside(particles[particleIndex].position)) {
-        ofPoint closest = innerPolyline.getClosestPoint(particles[particleIndex].position);
-        particles[particleIndex].position = closest;
+        ofPoint closestPoint = innerPolyline.getClosestPoint(particles[particleIndex].position);
+        particles[particleIndex].position = closestPoint;
         
-        ofVec2f perpendicular = particles[particleIndex].velocity;
-        float length = perpendicular.length();
-        particles[particleIndex].velocity = perpendicular.perpendicular() * length;
+        glm::vec2 position;
+        position.x = closestPoint.x;
+        position.y = closestPoint.y;
+        
+        float minDistance = std::numeric_limits<float>::max();
+        int segmentIndex = 0;
+        
+        auto & vertices = innerPolyline.getVertices();
+
+        for (int i = 0; i < vertices.size(); ++i) {
+            glm::vec2 a = vertices[i];
+            glm::vec2 b = vertices[i + 1];
+            glm::vec2 closest = getClosestPointOnLine(a, b, position);
+            
+            float distance = glm::distance(position, closest);
+            if (distance < minDistance) {
+                minDistance = distance;
+                segmentIndex = i;
+            }
+        }
+        
+        if (segmentIndex == 0 || segmentIndex == 2) {
+            particles[particleIndex].velocity.y *= -1.0 * collisionDamping;
+        }
+        
+        if (segmentIndex == 1 || segmentIndex == 3) {
+            particles[particleIndex].velocity.x *= -1.0 * collisionDamping;
+        }
     }
 }
 

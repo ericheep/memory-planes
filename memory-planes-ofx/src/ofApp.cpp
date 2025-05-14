@@ -89,7 +89,7 @@ void ofApp::setupGui() {
     gui.add(calibrationMode.set("calibration mode", false));
     
     // general gui settings
-    gui.add(starField.numberParticles.set("number", 100, 50, 2000));
+    gui.add(starField.numberParticles.set("number", 100, 50, 5000));
     gui.add(starField.influenceRadius.set("influence radius", 10.0, 0.5, 75.0));
     gui.add(starField.timeScalar.set("time scalar", 1.0, 0.25, 4.0));
     gui.add(starField.gravityMultiplier.set("gravity multiplier", 0.0, 0.0, 5.0));

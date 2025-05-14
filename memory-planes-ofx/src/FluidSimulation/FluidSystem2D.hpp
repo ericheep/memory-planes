@@ -49,6 +49,8 @@ public:
     vector<int> foreachPointWithinConnectionRadius(int particleIndex);
     void updateConnectionsSpatialLookup();
     
+    glm::vec2 getClosestPointOnLine(const glm::vec2& a, const glm::vec2& b, const glm::vec2& p);
+    
     // reset functions
     void resetRandom();
     void resetGrid(float scale);

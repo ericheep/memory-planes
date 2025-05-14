@@ -12,7 +12,7 @@ ParticleSystem::ParticleSystem() {
     nearPressureMultiplier = 1.0;
     targetDensity = 1.0;
     viscosityStrength = 0.5;
-    collisionDamping = 0.25;
+    collisionDamping = 0.8;
     connectionRadius = 50;
     
     //meters per second
