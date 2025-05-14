@@ -113,7 +113,7 @@ void ofApp::setupGui() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    // updateOsc();
+    updateOsc();
     memoryPlane.setOctaveMultiplier(defaultOctaveMultiplier);
     memoryPlane.setNoiseSpeed(defaultNoiseSpeed);
     memoryPlane.setRadius(radius);
@@ -384,6 +384,12 @@ void ofApp::updateOsc() {
             float rightVisibility = m.getArgAsFloat(8);
                         
             memoryPlane.setMemory(index, radius, theta, arcDistance, thickness, leftVisibility, rightVisibility, noiseSpeed, octaveMultiplier);
+        }
+        
+        if (m.getAddress() == "/mouseTest") {
+            float x = m.getArgAsFloat(0);
+            float width = m.getArgAsFloat(1);
+            starField.setPresence(x, width);
         }
     }
 }

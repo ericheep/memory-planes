@@ -81,6 +81,12 @@ ofVec2f FluidSystem2D::calculateInteractiveForce(int particleIndex) {
     if (mouseButton == 2) {
         interactiveForce = pullParticlesToPoint(mousePosition, particlePosition);
     }
+
+    presenceActive = true;
+    if (presenceActive) {
+        interactiveForce = pushParticlesAwayFromLine(presenceBoundary, particlePosition, presenceVelocity);
+
+    }
     
     return interactiveForce;
 }
@@ -117,29 +123,27 @@ ofVec2f FluidSystem2D::pushParticlesAwayFromPoint(ofVec2f pointA, ofVec2f pointB
     return interactiveForce;
 }
 
-ofVec2f FluidSystem2D::pushParticlesAwayFromLine(ofVec2f pointA, ofPolyline line, ofVec2f velocity) {
+ofVec2f FluidSystem2D::pushParticlesAwayFromLine(ofPolyline boundary, ofVec2f pointA, ofVec2f velocity) {
     ofVec2f interactiveForce = ofVec2f::zero();
     
-    float inputRadius = 10;
-    ofVec2f pointOnLine = line.getClosestPoint(ofVec3f(pointA.x, pointA.y));
-    float squareDistance = pointA.squareDistance(pointOnLine);
+    ofVec2f boundaryPoint = boundary.getClosestPoint(ofVec3f(pointA.x, pointA.y));
+    float distance = pointA.distance(boundaryPoint) + presenceWidth * 0.5;
     
-    if (squareDistance < inputRadius * inputRadius) {
-        float distance = sqrt(squareDistance);
-        ofVec2f direction = (pointOnLine - pointA) / distance;
-        float scalarProximity = 1.0 - distance / inputRadius;
+    if (distance < presenceWidth) {
+        ofVec2f direction = (pointA - boundaryPoint) / distance;
+        float scalarProximity = 1.0 - distance / (presenceWidth * 0.5);
         
-        interactiveForce =  direction * mouseForce * scalarProximity * scalarProximity;
+        interactiveForce =  direction * 25 * scalarProximity * scalarProximity;
     }
+
     return interactiveForce;
 }
 
 ofVec2f FluidSystem2D::calculateExternalForce(int particleIndex) {
     ofVec2f interactiveForce = ofVec2f::zero();
     
-    if (mouseInputActive) {
-        interactiveForce = calculateInteractiveForce(particleIndex);
-    }
+    interactiveForce = calculateInteractiveForce(particleIndex);
+    
     
     return interactiveForce + gravityForce * gravityConstant * gravityMultiplier * deltaTime;
 }
@@ -401,7 +405,6 @@ void FluidSystem2D::resolveCollisions(int particleIndex) {
     
     if (innerPolyline.inside(particles[particleIndex].position)) {
         ofPoint closestPoint = innerPolyline.getClosestPoint(particles[particleIndex].position);
-        particles[particleIndex].position = closestPoint;
         
         glm::vec2 position;
         position.x = closestPoint.x;
@@ -414,7 +417,7 @@ void FluidSystem2D::resolveCollisions(int particleIndex) {
 
         for (int i = 0; i < vertices.size(); ++i) {
             glm::vec2 a = vertices[i];
-            glm::vec2 b = vertices[i + 1];
+            glm::vec2 b = vertices[(i + 1) % 4];
             glm::vec2 closest = getClosestPointOnLine(a, b, position);
             
             float distance = glm::distance(position, closest);
@@ -426,10 +429,12 @@ void FluidSystem2D::resolveCollisions(int particleIndex) {
         
         if (segmentIndex == 0 || segmentIndex == 2) {
             particles[particleIndex].velocity.y *= -1.0 * collisionDamping;
+            particles[particleIndex].position.y = closestPoint.y;
         }
         
         if (segmentIndex == 1 || segmentIndex == 3) {
             particles[particleIndex].velocity.x *= -1.0 * collisionDamping;
+            particles[particleIndex].position.x = closestPoint.x;
         }
     }
 }

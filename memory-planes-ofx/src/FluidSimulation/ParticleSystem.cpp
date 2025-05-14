@@ -12,13 +12,13 @@ ParticleSystem::ParticleSystem() {
     nearPressureMultiplier = 1.0;
     targetDensity = 1.0;
     viscosityStrength = 0.5;
-    collisionDamping = 0.8;
+    collisionDamping = 0.95;
     connectionRadius = 50;
     
     //meters per second
     gravityConstant = 9.8;
     gravityMultiplier = 1.0;
-    gravityForce = ofVec2f(1.0, 0.0);
+    gravityForce = ofVec2f(0.0, -1.0);
 
     pauseActive = false;
     mouseForce = 1.0;
@@ -148,6 +148,9 @@ void ParticleSystem::draw() {
     for (int i = 0; i < particles.size(); i++) {
         particles[i].drawConnections();
     }
+    
+    presenceBoundary.draw();
+
 }
 
 // create particles
@@ -213,6 +216,22 @@ void ParticleSystem::mouseInput(int x, int y, int button, Boolean active) {
 
 void ParticleSystem::mouseInput(int x, int y) {
     mousePosition = ofVec2f(x, y);
+}
+
+void ParticleSystem::setPresence(float _x, float _width) {
+    float x1 = _x - _width * 0.5;
+    float x2 = _x + _width * 0.5;
+    float y1 = 0;
+    float y2 = systemHeight;
+
+    presenceBoundary.clear();
+    presenceBoundary.addVertex(ofVec3f(x1, y1));
+    presenceBoundary.addVertex(ofVec3f(x2, y1));
+    presenceBoundary.addVertex(ofVec3f(x2, y2));
+    presenceBoundary.addVertex(ofVec3f(x1, y2));
+    presenceBoundary.close();
+        
+    presenceWidth = _width;
 }
 
 // setters

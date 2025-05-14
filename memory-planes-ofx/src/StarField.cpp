@@ -45,13 +45,16 @@ void StarField::setInnerSize(float _innerWidth, float _innerHeight) {
     innerHeight = _innerHeight;
 }
 
+void StarField::setPresence(float _x, float _width) {
+    particleSystem.setPresence(_x, _width);
+}
+
 void StarField::setSize(float _width, float _height) {
     width = _width;
     height = _height;
     particleSystem.setWidth(width);
     particleSystem.setHeight(height);
     particleSystem.setBoundsSize(ofVec3f(width, height, 0));
-
 }
 
 void StarField::setWarp(ofxQuadWarp & innerWarper, ofxQuadWarp & outerWarper) {

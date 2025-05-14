@@ -25,23 +25,23 @@
 	<fresnel_mute>0</fresnel_mute>
 	<left_mute>0</left_mute>
 	<right_mute>0</right_mute>
-	<blur>0.792857</blur>
+	<blur>0</blur>
 	<noise>0.592857</noise>
-	<octave_multiplier>2.5</octave_multiplier>
-	<noise_speed>0.328214</noise_speed>
+	<octave_multiplier>3.5</octave_multiplier>
+	<noise_speed>0.575714</noise_speed>
 	<scale>1</scale>
 	<shader_noise>0.15</shader_noise>
-	<number>200</number>
-	<influence_radius>10</influence_radius>
-	<time_scalar>2.5</time_scalar>
+	<number>1146</number>
+	<influence_radius>4.225</influence_radius>
+	<time_scalar>1.58929</time_scalar>
 	<gravity_multiplier>0</gravity_multiplier>
-	<connection_radius>28.5714</connection_radius>
-	<draw_mode>0</draw_mode>
+	<connection_radius>0</connection_radius>
+	<draw_mode>1</draw_mode>
 	<velocity_curve>1</velocity_curve>
-	<min_velocity>7.85714</min_velocity>
-	<max_velocity>53.5714</max_velocity>
-	<min_size>1</min_size>
-	<max_size>5.71429</max_size>
+	<min_velocity>2.5</min_velocity>
+	<max_velocity>7.14286</max_velocity>
+	<min_size>3.92857</min_size>
+	<max_size>32.8571</max_size>
 	<sim_settings>
 		<density>0.759191</density>
 		<pressure>100</pressure>

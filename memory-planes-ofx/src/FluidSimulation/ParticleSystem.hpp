@@ -45,7 +45,10 @@ public:
     ofVec3f bounds;
     Kernels kernels;
     ofPolyline innerPolyline;
-    Boolean mouseInputActive, pauseActive, nextFrameActive, exportFrameActive;
+    Boolean mouseInputActive, pauseActive, nextFrameActive, exportFrameActive, presenceActive;
+    float presenceWidth;
+    ofPolyline presenceBoundary;
+    ofVec2f presenceVelocity;
     
     float circleBoundaryRadius;
     Boolean circleBoundaryActive;
@@ -57,6 +60,7 @@ public:
     vector<int> connectionsStartIndices;
     
     // setters
+    void setPresence(float x, float width);
     void setDeltaTime(float deltaTime);
     void setRadius(float radius);
     void setGravityMultiplier(float gravityMultiplier);
