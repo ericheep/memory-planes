@@ -127,13 +127,13 @@ ofVec2f FluidSystem2D::pushParticlesAwayFromLine(ofPolyline boundary, ofVec2f po
     ofVec2f interactiveForce = ofVec2f::zero();
     
     ofVec2f boundaryPoint = boundary.getClosestPoint(ofVec3f(pointA.x, pointA.y));
-    float distance = pointA.distance(boundaryPoint) + presenceWidth * 0.5;
+    float distance = pointA.distance(boundaryPoint);
     
     if (distance < presenceWidth) {
         ofVec2f direction = (pointA - boundaryPoint) / distance;
-        float scalarProximity = 1.0 - distance / (presenceWidth * 0.5);
+        float scalarProximity = 1.0 - (distance / presenceWidth);
         
-        interactiveForce =  direction * 25 * scalarProximity * scalarProximity;
+        interactiveForce =  direction * 20 * scalarProximity * scalarProximity;
     }
 
     return interactiveForce;

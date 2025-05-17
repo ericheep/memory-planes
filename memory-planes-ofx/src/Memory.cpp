@@ -25,16 +25,11 @@ Memory::Memory(int _width, int _height) {
     width = _width;
     height = _height;
     windowRadius = height / 2.0;
-    fillState = true;
+    isFilled = true;
     
-    leftVisibility = 0.0;
-    rightVisibility = 0.0;
+    int numAnchors = 100;
     
-    int numAnchors = 200;
-    
-    centerTear = Tear(numAnchors, width, height);
-    leftTear = Tear(numAnchors, width, height);
-    rightTear = Tear(numAnchors, width, height);
+    tear = Tear(numAnchors, width, height);
 }
 
 void Memory::setColor(ofColor _primaryColor) {
@@ -65,16 +60,19 @@ void Memory::setOctaveMultiplier(float _octaveMultiplier) {
     targetOctaveMultiplier = _octaveMultiplier;
 }
 
-void Memory::setFill(bool _fillState) {
-    fillState = _fillState;
+void Memory::setFill(bool _isFilled) {
+    isFilled = _isFilled;
 }
 
-void Memory::setLeftVisibility(float _leftVisibility) {
-    targetLeftVisibility = _leftVisibility;
+void Memory::setFollow(float _minFollow, float _maxFollow) {
+    tear.setFollow(_minFollow, _maxFollow);
 }
 
-void Memory::setRightVisibility(float _rightVisibility) {
-    targetRightVisibility = _rightVisibility;
+void Memory::flip(float _theta) {
+    theta = _theta;
+    targetTheta = _theta;
+    
+    tear.flip();
 }
 
 void Memory::update() {
@@ -84,13 +82,9 @@ void Memory::update() {
     thickness = ofLerp(thickness, targetThickness, 0.05);
     noiseSpeed = ofLerp(noiseSpeed, targetNoiseSpeed, 0.05);
     octaveMultiplier = ofLerp(octaveMultiplier, targetOctaveMultiplier, 0.05);
-    leftVisibility = ofLerp(leftVisibility, targetLeftVisibility, 0.05);
-    rightVisibility = ofLerp(rightVisibility, targetRightVisibility, 0.05);
     noiseTime += (ofGetLastFrameTime() * noiseSpeed);
         
-    updateTear(centerTear, 1.0);
-    updateTear(leftTear, leftVisibility);
-    updateTear(rightTear, rightVisibility);
+    updateTear(tear, 1.0);
 }
 
 void Memory::updateTear(Tear &tear, float visibility) {
@@ -98,12 +92,12 @@ void Memory::updateTear(Tear &tear, float visibility) {
     tear.setTheta(theta);
     tear.setArcDistance(arcDistance * visibility);
     tear.setThickness(thickness * visibility);
-    tear.setFill(fillState);
+    tear.setFill(isFilled);
     tear.setNoiseTime(noiseTime);
     tear.setOctaveMultiplier(octaveMultiplier);
     tear.update();
 }
 
-void Memory::drawCenter() {
-    centerTear.draw();
+void Memory::draw() {
+    tear.draw();
 }

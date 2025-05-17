@@ -20,13 +20,23 @@ Tear::Tear(int _numAnchors, int _width, int _height) {
         Anchor anchor = Anchor(numAnchors);
         anchors.push_back(anchor);
     }
+    
+    for (int i = 0; i < numAnchors * 3 * 2 + 2; i++) {
+        targetValues.push_back(ofRandom(0.03, 0.15));
+        targetPoints.push_back(ofVec2f::zero());
+        currentPoints.push_back(ofVec2f::zero());
+    }
+    
+    isFilled = true;
+    isFlipped = false;
 }
 
 void Tear::update() {
     float initialTheta = theta - arcDistance / 2.0;
     float splineDistance = arcDistance / anchors.size();
     float scaledThickness = thickness * width / 5.0;
-        
+    int pointIndex = 0;
+    
     for (int i = 0; i < anchors.size(); i++) {
         float anchorTheta = initialTheta + splineDistance * (i + 1);
         float anchorDeviation = sin(ofMap(i, -1, numAnchors - 1, -HALF_PI, TWO_PI - HALF_PI));
@@ -44,11 +54,12 @@ void Tear::update() {
     initialHeading.set(1.0, 0.0);
     initialHeading.rotateRad(initialTheta + HALF_PI);
     initialHeading *= velocity;
-      
-    tearPolyline.clear();
-    tearPolyline.addVertex(initialPoint.x, initialPoint.y);
+    
+    targetPoints[pointIndex].set(initialPoint.x, initialPoint.y);
+    pointIndex++;
+    
     ofVec2f controlPoint1 = initialPoint + initialHeading;
-        
+    
     for (int i = 0; i < anchors.size(); i++) {
         anchors[i].setDirection(1);
         anchors[i].setNoiseTime(noiseTime);
@@ -57,9 +68,13 @@ void Tear::update() {
         
         ofVec2f nextPoint = anchors[i].getPoint();
         ofVec2f nextHeading = anchors[i].getHeading();
-                        
+        
         ofVec2f controlPoint2 = nextPoint - nextHeading;
-        tearPolyline.bezierTo(controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, nextPoint.x, nextPoint.y);
+        
+        targetPoints[pointIndex].set(controlPoint1.x, controlPoint1.y);
+        targetPoints[pointIndex + 1].set(controlPoint2.x, controlPoint2.y);
+        targetPoints[pointIndex + 2].set(nextPoint.x, nextPoint.y);
+        pointIndex += 3;
         
         controlPoint1 = nextPoint + nextHeading;
     }
@@ -72,21 +87,59 @@ void Tear::update() {
     for (int i = anchors.size() - 1; i >= 0; i--) {
         anchors[i].setDirection(-1);
         anchors[i].update();
-
+        
         ofVec2f nextPoint = anchors[i].getPoint();
         ofVec2f nextHeading = anchors[i].getHeading();
-    
+        
         ofVec2f controlPoint2 = nextPoint - nextHeading;
         
-        tearPolyline.bezierTo(controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, nextPoint.x, nextPoint.y);
-    
+        targetPoints[pointIndex].set(controlPoint1.x, controlPoint1.y);
+        targetPoints[pointIndex + 1].set(controlPoint2.x, controlPoint2.y);
+        targetPoints[pointIndex + 2].set(nextPoint.x, nextPoint.y);
+        pointIndex += 3;
+        
         controlPoint1 = nextPoint + nextHeading;
     }
     
     ofVec2f controlPoint2 = initialPoint - initialHeading * 1.0;
-    tearPolyline.bezierTo(controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, initialPoint.x, initialPoint.y);
-    tearPolyline.close();
     
+    targetPoints[pointIndex].set(controlPoint1.x, controlPoint1.y);
+    targetPoints[pointIndex + 1].set(controlPoint2.x, controlPoint2.y);
+    targetPoints[pointIndex + 2].set(initialPoint.x, initialPoint.y);
+    
+    interpolatePoints();
+}
+
+void Tear::interpolatePoints() {
+    int pointIndex = 0;
+    
+    for (int i = 0; i < currentPoints.size(); i++) {
+        int index = i;
+        if (isFlipped) index = (targetPoints.size() / 2 + i) % targetPoints.size();
+
+        currentPoints[i].interpolate(targetPoints[index], targetValues[i]);
+    }
+    
+    tearPolyline.clear();
+    tearPolyline.addVertex(currentPoints[pointIndex].x, currentPoints[pointIndex].y);
+    pointIndex++;
+    
+    for (int i = 0; i < anchors.size(); i++) {
+        tearPolyline.bezierTo(                              currentPoints[pointIndex].x, currentPoints[pointIndex].y, currentPoints[pointIndex + 1].x, currentPoints[pointIndex + 1].y, currentPoints[pointIndex + 2].x, currentPoints[pointIndex + 2].y
+        );
+        
+        pointIndex += 3;
+    }
+    
+    for (int i = anchors.size() - 1; i >= 0; i--) {
+        tearPolyline.bezierTo(                              currentPoints[pointIndex].x, currentPoints[pointIndex].y, currentPoints[pointIndex + 1].x, currentPoints[pointIndex + 1].y, currentPoints[pointIndex + 2].x, currentPoints[pointIndex + 2].y
+        );
+        
+        pointIndex += 3;
+    }
+    
+    tearPolyline.addVertex(currentPoints[pointIndex].x, currentPoints[pointIndex].y);
+    tearPolyline.close();
     tearPolyline.simplify();
 }
 
@@ -103,7 +156,7 @@ void Tear::drawShape(ofPolyline polygon) {
 }
 
 void Tear::draw() {
-    if (fillState) {
+    if (isFilled) {
         drawShape(tearPolyline);
     } else {
         tearPolyline.draw();
@@ -117,6 +170,10 @@ void Tear::setRadius(float _radius) {
     for (int i = 0; i < anchors.size(); i++) {
         anchors[i].setRadius(scaledRadius);
     }
+}
+
+void Tear::flip() {
+    isFlipped = !isFlipped;
 }
 
 void Tear::setTheta(float _theta) {
@@ -142,8 +199,8 @@ void Tear::setNoiseTime(float _noiseTime) {
     noiseTime = _noiseTime;
 }
 
-void Tear::setFill(bool _fillState) {
-    fillState = _fillState;
+void Tear::setFill(bool _isFilled) {
+    isFilled = _isFilled;
 }
 
 void Tear::setVisibility(float _visibility) {
@@ -152,4 +209,10 @@ void Tear::setVisibility(float _visibility) {
 
 void Tear::setOctaveMultiplier(float _octaveMultiplier) {
     octaveMultiplier = _octaveMultiplier;
+}
+
+void Tear::setFollow(float _minFollow, float _maxFollow) {
+    for (int i = 0; i < numAnchors * 3 * 2 + 2; i++) {
+        targetValues.push_back(ofRandom(_minFollow, _maxFollow));
+    }
 }

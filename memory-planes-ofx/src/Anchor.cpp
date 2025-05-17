@@ -53,7 +53,6 @@ void Anchor::update() {
     currentHeading = originHeading;
     currentHeading.rotate(nH);
     currentHeading *= velocity * direction;
-     
 }
 
 void Anchor::setNoiseTime(float _noiseTime) {

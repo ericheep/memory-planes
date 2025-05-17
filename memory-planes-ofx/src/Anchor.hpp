@@ -26,7 +26,6 @@ public:
     ofVec2f getPoint();
     ofVec2f getHeading();
     
-private:
     ofVec2f originPoint, originHeading;
     ofVec2f currentPoint, currentHeading;
     

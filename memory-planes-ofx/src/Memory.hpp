@@ -17,10 +17,7 @@ public:
     
     void update();
     void updateTear(Tear &tear, float visibility);
-
-    void drawLeftSide();
-    void drawRightSide();
-    void drawCenter();
+    void draw();
     
     void setColor(ofColor primaryColor);
     
@@ -29,10 +26,12 @@ public:
     void setArcDistance(float arcDistance);
     void setThickness(float thickness);
     void setFill(bool fillState);
-    void setLeftVisibility(float visibility);
-    void setRightVisibility(float visibility);
     void setNoiseSpeed(float speed);
     void setOctaveMultiplier(float octaveMultiplier);
+    void setFollow(float minFollow, float maxFollow);
+    
+    // actions
+    void flip(float theta);
     
     int index;
 private:
@@ -42,18 +41,16 @@ private:
     
     float arcDistance, theta, radius;
     float length, thickness, noiseSpeed, octaveMultiplier;
-    float leftVisibility, rightVisibility;
-
+    
     float targetArcDistance, targetTheta, targetRadius;
     float targetThickness, targetNoiseSpeed, targetOctaveMultiplier;
-    float targetLeftVisibility, targetRightVisibility;
     
-    bool fillState;
+    bool isFilled;
     
     int width, height;
     ofColor primaryColor;
     
-    Tear centerTear, leftTear, rightTear;
+    Tear tear;
 };
 
 #endif /* Memory_hpp */

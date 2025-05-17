@@ -94,6 +94,10 @@
 		"06B6E2BA-6348-434E-BE3B-3B83F4D7C3E6" /* simd_utils.impl.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = simd_utils.impl.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/hal/simd_utils.impl.hpp; sourceTree = SOURCE_ROOT; };
 		06C9E6D52DD3E1390093306F /* Neighbor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Neighbor.hpp; sourceTree = "<group>"; };
 		06C9E6D62DD3E1390093306F /* Neighbor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Neighbor.cpp; sourceTree = "<group>"; };
+		06C9E6D82DD5B9670093306F /* blur.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blur.frag; sourceTree = "<group>"; };
+		06C9E6D92DD5B9670093306F /* blur.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blur.vert; sourceTree = "<group>"; };
+		06C9E6DA2DD5B9670093306F /* noise.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = noise.frag; sourceTree = "<group>"; };
+		06C9E6DB2DD5B9670093306F /* noise.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
 		"06D71AE1-983F-4455-909D-52D7BD041C5F" /* video.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = video.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/video.hpp; sourceTree = SOURCE_ROOT; };
 		"07359B6E-CFEA-41E7-9849-F145CFE1F8CB" /* ofxCvGrayscaleImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxCvGrayscaleImage.cpp; path = ../../../../addons/ofxOpenCv/src/ofxCvGrayscaleImage.cpp; sourceTree = SOURCE_ROOT; };
 		"07C189F0-DD1F-4DC5-BD8E-0165953DAB12" /* vec_distance.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vec_distance.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/cuda/vec_distance.hpp; sourceTree = SOURCE_ROOT; };
@@ -887,6 +891,18 @@
 				"E2A6FEB2-BD78-4697-8215-50E38761545D" /* timer.h */,
 			);
 			name = flann;
+			sourceTree = SOURCE_ROOT;
+		};
+		06C9E6DC2DD5B9670093306F /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				06C9E6D82DD5B9670093306F /* blur.frag */,
+				06C9E6D92DD5B9670093306F /* blur.vert */,
+				06C9E6DA2DD5B9670093306F /* noise.frag */,
+				06C9E6DB2DD5B9670093306F /* noise.vert */,
+			);
+			name = shaders;
+			path = bin/data/shaders;
 			sourceTree = SOURCE_ROOT;
 		};
 		"0BA93E4C-580C-4465-96D7-687F33C30821" /* ml */ = {
@@ -1884,6 +1900,7 @@
 				06C9E6D52DD3E1390093306F /* Neighbor.hpp */,
 				"32173845-6502-4CDD-9D17-D6A0BED360C8" /* ParticleSystem.cpp */,
 				"A08B0BF1-8684-48C9-BEB1-0F3D3BC3495D" /* ParticleSystem.hpp */,
+				06C9E6DC2DD5B9670093306F /* shaders */,
 			);
 			name = FluidSimulation;
 			path = src/FluidSimulation;

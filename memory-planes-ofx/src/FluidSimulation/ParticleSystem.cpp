@@ -150,7 +150,6 @@ void ParticleSystem::draw() {
     }
     
     presenceBoundary.draw();
-
 }
 
 // create particles
@@ -219,16 +218,14 @@ void ParticleSystem::mouseInput(int x, int y) {
 }
 
 void ParticleSystem::setPresence(float _x, float _width) {
-    float x1 = _x - _width * 0.5;
-    float x2 = _x + _width * 0.5;
+    float x1 = _x;
+    float x2 = _x;
     float y1 = 0;
     float y2 = systemHeight;
 
     presenceBoundary.clear();
     presenceBoundary.addVertex(ofVec3f(x1, y1));
-    presenceBoundary.addVertex(ofVec3f(x2, y1));
     presenceBoundary.addVertex(ofVec3f(x2, y2));
-    presenceBoundary.addVertex(ofVec3f(x1, y2));
     presenceBoundary.close();
         
     presenceWidth = _width;

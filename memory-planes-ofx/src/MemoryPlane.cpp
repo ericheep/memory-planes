@@ -13,10 +13,6 @@ MemoryPlane::MemoryPlane(int _width, int _height) {
     height = _height;
     calibrationMode = false;
     
-    centerMute = false;
-    leftMute = false;
-    rightMute = false;
-    
     // memories
     for (int i = 0; i < 3; i++) {
         Memory memory = Memory(width, height);
@@ -27,8 +23,6 @@ MemoryPlane::MemoryPlane(int _width, int _height) {
         memory.setFill(true);
         memory.setNoiseSpeed(1.0);
         memory.setOctaveMultiplier(1.0);
-        memory.setLeftVisibility(1.0);
-        memory.setRightVisibility(1.0);
         
         memories.push_back(memory);
     }
@@ -43,8 +37,6 @@ MemoryPlane::MemoryPlane(int _width, int _height) {
         memory.setFill(true);
         memory.setNoiseSpeed(1.0);
         memory.setOctaveMultiplier(0.5);
-        memory.setLeftVisibility(1.0);
-        memory.setRightVisibility(1.0);
         
         calibrationMemories.push_back(memory);
     }
@@ -57,8 +49,6 @@ void MemoryPlane::update() {
         }
     } else {
         for (int i = 0; i < calibrationMemories.size(); i++) {
-            calibrationMemories[i].setNoiseSpeed(noiseSpeed);
-            calibrationMemories[i].setOctaveMultiplier(octaveMultiplier);
             calibrationMemories[i].update();
         }
     }
@@ -67,49 +57,27 @@ void MemoryPlane::update() {
 void MemoryPlane::draw() {    
     if (!calibrationMode) {
         for (int i = 0; i < memories.size(); i++) {
-            memories[i].drawCenter();
+            memories[i].draw();
         }
     } else {
         for (int i = 0; i < calibrationMemories.size(); i++) {
-            calibrationMemories[i].drawCenter();
+            calibrationMemories[i].draw();
         }
     }
-}
-
-void MemoryPlane::setColor(ofColor _primaryColor) {
-    primaryColor = _primaryColor;
 }
 
 void MemoryPlane::setCalibrationMode(bool _calibrationMode) {
     calibrationMode = _calibrationMode;
 }
 
-void MemoryPlane::setCenterMute(bool _centerMute) {
-    centerMute = _centerMute;
+void MemoryPlane::flip(int index, float _theta) {
+    index -= 1;
+    if (index >= 0 && index < memories.size()) {
+        memories[index].flip(_theta);
+    }
 }
 
-void MemoryPlane::setLeftMute(bool _leftMute) {
-    leftMute = _leftMute;
-}
-
-void MemoryPlane::setRightMute(bool _rightMute) {
-    rightMute = _rightMute;
-}
-
-void MemoryPlane::setNoiseSpeed(float _noiseSpeed) {
-    noiseSpeed = _noiseSpeed;
-}
-
-void MemoryPlane::setOctaveMultiplier(float _octaveMultiplier) {
-    octaveMultiplier = _octaveMultiplier;
-}
-
-void MemoryPlane::setRadius(float _radius) {
-    radius = _radius;
-}
-
-void MemoryPlane::setMemory(int index, float radius, float theta, float arcDistance, float thickness, float leftVisibility, float rightVisibility, float noiseSpeed, float octaveMultiplier) {
-    
+void MemoryPlane::setMemory(int index, float radius, float theta, float arcDistance, float thickness, float noiseSpeed, float octaveMultiplier) {
     index -= 1;
     
     if (index >= 0 && index < memories.size()) {
@@ -119,7 +87,5 @@ void MemoryPlane::setMemory(int index, float radius, float theta, float arcDista
         memories[index].setThickness(thickness);
         memories[index].setNoiseSpeed(noiseSpeed);
         memories[index].setOctaveMultiplier(octaveMultiplier);
-        memories[index].setLeftVisibility(leftVisibility);
-        memories[index].setRightVisibility(rightVisibility);
     }
 }

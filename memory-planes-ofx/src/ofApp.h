@@ -56,7 +56,8 @@ public:
     
     ofParameter<float> scale;
     ofParameter<float> blurAmount;
-    ofParameter<float> shaderNoiseAmount;
+    ofParameter<float> innerNoiseAmount;
+    ofParameter<float> outerNoiseAmount;
     ofParameter<float> defaultOctaveMultiplier;
     ofParameter<float> defaultNoiseSpeed;
     
@@ -66,15 +67,20 @@ private:
     void updateOsc();
    
     ofShader blur;
-    ofShader noise;
-          
+    ofShader innerNoise;
+    ofShader innerRadialNoise;
+    ofShader outerNoise;
+    ofShader outerRadialNoise;
+    
     ofFbo fboInnerWindow;
     ofFbo fboInnerBlur;
     ofFbo fboInnerNoise;
+    ofFbo fboInnerRadialNoise;
     
     ofFbo fboOuterWindow;
     ofFbo fboOuterBlur;
     ofFbo fboOuterNoise;
+    ofFbo fboOuterRadialNoise;
     
     ofCamera cam;
     ofxOscReceiver oscReceiver;
@@ -89,6 +95,6 @@ private:
     StarField starField;
     
     float width, height, innerWidth, innerHeight;
-    float radius, shaderNoiseTime;
+    float radius, innerNoiseTime, outerNoiseTime;
     bool guiActive;
 };

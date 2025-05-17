@@ -32,7 +32,8 @@ void ofApp::setup(){
     
     // load shaders
     blur.load("shaders/blur");
-    noise.load("shaders/noise");
+    innerRadialNoise.load("shaders/radialNoise");
+    outerRadialNoise.load("shaders/radialNoise");
     
     fboInnerWindow.allocate(innerWidth, innerHeight, GL_RGB32F_ARB);
     fboInnerBlur.allocate(innerWidth, innerHeight, GL_RGB32F_ARB);
@@ -48,14 +49,14 @@ void ofApp::setup(){
     
     // plane
     memoryPlane = MemoryPlane(innerWidth, innerHeight);
-    memoryPlane.setColor(primaryColor);
     
     starField.setInnerSize(innerWidth, innerHeight);
     starField.setSize(width, height);
     
     setupWarpers();
     setupGui();
-    shaderNoiseTime = 0.0f;
+    innerNoiseTime = 0.0f;
+    outerNoiseTime = 0.0f;
 }
 
 void ofApp::setupWarpers() {
@@ -83,9 +84,8 @@ void ofApp::setupGui() {
     
     gui.add(scale.set("scale", 1.0, 0.0, 3.0));
     gui.add(blurAmount.set("blur", 1.0, 0.0, 1.0));
-    gui.add(shaderNoiseAmount.set("shader noise", 1.0, 0.0, 1.0));
-    gui.add(defaultOctaveMultiplier.set("octave multiplier", 1.0, 0.0, 10.0));
-    gui.add(defaultNoiseSpeed.set("noise speed", 1.0, 0.01, 1.0));
+    gui.add(innerNoiseAmount.set("inner noise", 1.0, 0.0, 1.0));
+    gui.add(outerNoiseAmount.set("outer noise", 1.0, 0.0, 1.0));
     gui.add(calibrationMode.set("calibration mode", false));
     
     // general gui settings
@@ -114,9 +114,6 @@ void ofApp::setupGui() {
 //--------------------------------------------------------------
 void ofApp::update() {
     updateOsc();
-    memoryPlane.setOctaveMultiplier(defaultOctaveMultiplier);
-    memoryPlane.setNoiseSpeed(defaultNoiseSpeed);
-    memoryPlane.setRadius(radius);
     memoryPlane.update();
     
     starField.setWarp(innerWarper, outerWarper);
@@ -125,7 +122,8 @@ void ofApp::update() {
     updateInnerFBO();
     updateOuterFBO();
     
-    shaderNoiseTime = ofGetElapsedTimef() * 0.6;
+    innerNoiseTime += innerNoiseAmount * 0.06;
+    outerNoiseTime += outerNoiseAmount * 0.06;
 }
 
 //--------------------------------------------------------------
@@ -183,11 +181,12 @@ void ofApp::updateInnerFBO() {
     fboInnerNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
-    noise.begin();
-    noise.setUniform1f("u_distortion", shaderNoiseAmount);
-    noise.setUniform1f("u_time", shaderNoiseTime);
+    innerRadialNoise.begin();
+    innerRadialNoise.setUniform1f("u_distortion", innerNoiseAmount);
+    innerRadialNoise.setUniform1f("u_time", innerNoiseTime);
+    innerRadialNoise.setUniform2f("u_resolution", innerWidth, innerHeight);
     fboInnerWindow.draw(0, 0);
-    noise.end();
+    innerNoise.end();
     fboInnerNoise.end();
     
     // blur fbo
@@ -215,11 +214,12 @@ void ofApp::updateOuterFBO() {
     fboOuterNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
-    noise.begin();
-    noise.setUniform1f("u_distortion", shaderNoiseAmount);
-    noise.setUniform1f("u_time", shaderNoiseTime);
+    outerRadialNoise.begin();
+    outerRadialNoise.setUniform1f("u_distortion", outerNoiseAmount);
+    outerRadialNoise.setUniform1f("u_time", outerNoiseTime);
+    outerRadialNoise.setUniform2f("u_resolution", width, height);
     fboOuterWindow.draw(0, 0);
-    noise.end();
+    outerNoise.end();
     fboOuterNoise.end();
     
     // blur fbo
@@ -380,16 +380,20 @@ void ofApp::updateOsc() {
             float thickness = m.getArgAsFloat(4);
             float noiseSpeed = m.getArgAsFloat(5);
             float octaveMultiplier = m.getArgAsFloat(6);
-            float leftVisibility = m.getArgAsFloat(7);
-            float rightVisibility = m.getArgAsFloat(8);
                         
-            memoryPlane.setMemory(index, radius, theta, arcDistance, thickness, leftVisibility, rightVisibility, noiseSpeed, octaveMultiplier);
+            memoryPlane.setMemory(index, radius, theta, arcDistance, thickness, noiseSpeed, octaveMultiplier);
         }
         
         if (m.getAddress() == "/mouseTest") {
             float x = m.getArgAsFloat(0);
             float width = m.getArgAsFloat(1);
             starField.setPresence(x, width);
+        }
+        
+        if (m.getAddress() == "/flip") {
+            int index = m.getArgAsInt(0);
+            float theta = m.getArgAsFloat(1);
+            memoryPlane.flip(index, theta);
         }
     }
 }
