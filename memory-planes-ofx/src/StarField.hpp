@@ -36,6 +36,7 @@ public:
     ofParameter<float> targetDensity;
     ofParameter<float> pressureMultiplier;
     ofParameter<float> nearPressureMultiplier;
+    ofParameter<float> gravityTheta;
     
     ofParameter<int> boundsWidth, boundsHeight;
     ofParameter<int> borderOffset;
@@ -53,6 +54,7 @@ public:
     void setTargetDensity(float & targetDensity);
     void setPressureMultiplier(float & pressureMultiplier);
     void setNearPressureMultiplier(float & nearPressureMultiplier);
+    void setGravityTheta(float & gravityTheta);
     void setCoolColor(ofColor & coolColor);
     void setHotColor(ofColor & hotColor);
     

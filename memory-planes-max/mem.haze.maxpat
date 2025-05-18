@@ -10,17 +10,54 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 236.0, 190.0, 835.0, 510.0 ],
+		"rect" : [ 2390.0, 362.0, 782.0, 522.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-22",
+					"id" : "obj-30",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 27.0, 29.0, 87.0, 22.0 ],
-					"text" : "loadmess 0.25"
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 21.0, 107.0, 29.5, 22.0 ],
+					"text" : "f 0."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-29",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "bang", "bang", "" ],
+					"patching_rect" : [ 21.0, 66.0, 89.5, 22.0 ],
+					"text" : "sel 0 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 56.25, 107.0, 39.0, 22.0 ],
+					"text" : "f 0.25"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "",
+					"id" : "obj-16",
+					"index" : 1,
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 21.0, 20.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -31,7 +68,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 287.0, 29.0, 80.0, 22.0 ],
+					"patching_rect" : [ 281.0, 107.0, 80.0, 22.0 ],
 					"text" : "loadmess 0.5"
 				}
 
@@ -43,7 +80,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 607.0, 144.0, 80.0, 22.0 ],
+					"patching_rect" : [ 613.0, 227.0, 80.0, 22.0 ],
 					"text" : "prepend read"
 				}
 
@@ -55,7 +92,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 607.0, 108.0, 103.0, 22.0 ],
+					"patching_rect" : [ 613.0, 191.0, 103.0, 22.0 ],
 					"text" : "relativetoabsolute"
 				}
 
@@ -67,7 +104,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 607.0, 180.0, 29.5, 22.0 ],
+					"patching_rect" : [ 613.0, 263.0, 29.5, 22.0 ],
 					"text" : "t b l"
 				}
 
@@ -79,7 +116,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 464.0, 180.0, 29.5, 22.0 ],
+					"patching_rect" : [ 459.25, 263.0, 29.5, 22.0 ],
 					"text" : "t b l"
 				}
 
@@ -91,7 +128,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 464.0, 108.0, 103.0, 22.0 ],
+					"patching_rect" : [ 459.25, 191.0, 103.0, 22.0 ],
 					"text" : "relativetoabsolute"
 				}
 
@@ -103,7 +140,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 464.0, 144.0, 80.0, 22.0 ],
+					"patching_rect" : [ 459.25, 227.0, 80.0, 22.0 ],
 					"text" : "prepend read"
 				}
 
@@ -115,8 +152,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 464.0, 72.0, 115.0, 22.0 ],
-					"text" : "loadmess haze.json"
+					"patching_rect" : [ 459.25, 155.0, 148.0, 22.0 ],
+					"text" : "loadmess beam/haze.json"
 				}
 
 			}
@@ -127,8 +164,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 607.0, 72.0, 119.0, 22.0 ],
-					"text" : "loadmess beam.json"
+					"patching_rect" : [ 613.0, 155.0, 152.0, 22.0 ],
+					"text" : "loadmess beam/beam.json"
 				}
 
 			}
@@ -151,7 +188,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 607.0, 215.0, 50.5, 22.0 ],
+					"patching_rect" : [ 613.0, 298.0, 50.5, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"legacy" : 1,
@@ -191,7 +228,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 464.0, 215.0, 50.5, 22.0 ],
+					"patching_rect" : [ 459.25, 298.0, 50.5, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"legacy" : 1,
@@ -210,7 +247,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 607.0, 251.0, 88.0, 22.0 ],
+					"patching_rect" : [ 613.0, 334.0, 88.0, 22.0 ],
 					"text" : "prepend set_io"
 				}
 
@@ -222,7 +259,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 464.0, 251.0, 108.0, 22.0 ],
+					"patching_rect" : [ 459.25, 334.0, 108.0, 22.0 ],
 					"text" : "prepend set_patch"
 				}
 
@@ -234,7 +271,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 464.0, 301.0, 65.0, 22.0 ],
+					"patching_rect" : [ 459.25, 384.0, 65.0, 22.0 ],
 					"text" : "beam.core"
 				}
 
@@ -714,11 +751,11 @@
 
 							}
  ],
-						"originid" : "pat-1190",
+						"originid" : "pat-358",
 						"bgcolor" : [ 0.074509803921569, 0.07843137254902, 0.074509803921569, 1.0 ]
 					}
 ,
-					"patching_rect" : [ 27.0, 256.0, 140.0, 94.0 ],
+					"patching_rect" : [ 21.0, 366.0, 140.0, 94.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 45.0, 45.0, 659.0, 507.0 ],
 					"viewvisibility" : 1
@@ -732,7 +769,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 83.0, 73.0, 53.0, 33.0 ],
+					"patching_rect" : [ 77.0, 183.0, 53.0, 33.0 ],
 					"text" : "pump\n0.0 - 1.0"
 				}
 
@@ -744,7 +781,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 218.0, 73.0, 53.0, 33.0 ],
+					"patching_rect" : [ 212.0, 183.0, 53.0, 33.0 ],
 					"text" : "speed \n0.0 - 1.0"
 				}
 
@@ -756,7 +793,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 351.0, 73.0, 79.0, 60.0 ],
+					"patching_rect" : [ 345.0, 183.0, 79.0, 60.0 ],
 					"text" : "blades \n0.0 = down\n0.5 = forward\n1.0 = up"
 				}
 
@@ -772,7 +809,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 287.0, 72.0, 50.0, 22.0 ]
+					"patching_rect" : [ 281.0, 182.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -783,7 +820,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 287.0, 110.0, 48.0, 22.0 ],
+					"patching_rect" : [ 281.0, 220.0, 48.0, 22.0 ],
 					"text" : "blue $1"
 				}
 
@@ -799,7 +836,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 154.0, 72.0, 50.0, 22.0 ]
+					"patching_rect" : [ 148.0, 182.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -810,7 +847,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 154.0, 110.0, 56.0, 22.0 ],
+					"patching_rect" : [ 148.0, 220.0, 56.0, 22.0 ],
 					"text" : "green $1"
 				}
 
@@ -826,7 +863,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 27.0, 72.0, 50.0, 22.0 ]
+					"patching_rect" : [ 21.0, 182.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -837,7 +874,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 27.0, 110.0, 43.0, 22.0 ],
+					"patching_rect" : [ 21.0, 220.0, 43.0, 22.0 ],
 					"text" : "red $1"
 				}
 
@@ -849,7 +886,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "beam_signal" ],
-					"patching_rect" : [ 27.0, 180.0, 88.0, 22.0 ],
+					"patching_rect" : [ 21.0, 290.0, 88.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"tag" : "haze"
 					}
@@ -864,7 +901,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 215.0, 75.0, 22.0 ],
+					"patching_rect" : [ 21.0, 325.0, 75.0, 22.0 ],
 					"text" : "beam.output"
 				}
 
@@ -886,8 +923,9 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 686.0, 87.0, 801.0, 959.0 ],
+						"rect" : [ 677.0, 100.0, 801.0, 848.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -932,10 +970,10 @@
 							}
  ],
 						"lines" : [  ],
-						"originid" : "pat-1192"
+						"originid" : "pat-360"
 					}
 ,
-					"patching_rect" : [ 465.25, 29.0, 48.0, 22.0 ],
+					"patching_rect" : [ 459.25, 107.0, 48.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"globalpatchername" : ""
 					}
@@ -975,6 +1013,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-29", 0 ],
+					"source" : [ "obj-16", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-26", 0 ],
 					"source" : [ "obj-2", 1 ]
 				}
@@ -998,7 +1043,7 @@
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
 					"order" : 1,
-					"source" : [ "obj-22", 0 ]
+					"source" : [ "obj-21", 0 ]
 				}
 
 			}
@@ -1006,7 +1051,7 @@
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"order" : 0,
-					"source" : [ "obj-22", 0 ]
+					"source" : [ "obj-21", 0 ]
 				}
 
 			}
@@ -1047,9 +1092,39 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-21", 0 ],
+					"source" : [ "obj-29", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-30", 0 ],
+					"source" : [ "obj-29", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"midpoints" : [ 36.5, 135.0, 36.5, 135.0 ],
+					"midpoints" : [ 30.5, 245.0, 30.5, 245.0 ],
 					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"order" : 1,
+					"source" : [ "obj-30", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"order" : 0,
+					"source" : [ "obj-30", 0 ]
 				}
 
 			}
@@ -1098,7 +1173,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"midpoints" : [ 163.5, 165.0, 36.5, 165.0 ],
+					"midpoints" : [ 157.5, 275.0, 30.5, 275.0 ],
 					"source" : [ "obj-7", 0 ]
 				}
 
@@ -1113,155 +1188,13 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"midpoints" : [ 296.5, 165.0, 36.5, 165.0 ],
+					"midpoints" : [ 290.5, 275.0, 30.5, 275.0 ],
 					"source" : [ "obj-9", 0 ]
 				}
 
 			}
  ],
-		"originid" : "pat-1183",
-		"parameters" : 		{
-			"obj-18::obj-56" : [ "tab", "tab", 0 ],
-			"parameterbanks" : 			{
-				"0" : 				{
-					"index" : 0,
-					"name" : "",
-					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
-				}
-
-			}
-,
-			"inherited_shortname" : 1
-		}
-,
-		"dependency_cache" : [ 			{
-				"name" : "beam.ioeditor.IOInspector.ArtNetOutput.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.IOInspector.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.IOListItem.ArtNetOutput.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.IOListItem.OutputsTitle.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.IOListTable.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.Main.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.editor.js",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.ioeditor.view.js",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.monitor.draw.js",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_monitor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_monitor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.patcheditor.FixtureInspector.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.patcheditor.FixtureListItem.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.patcheditor.FixtureListTable.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.patcheditor.Main.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.patcheditor.editor.js",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.patcheditor.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "beam.patcheditor.view.js",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "relativetoabsolute.maxpat",
-				"bootpath" : "~/Desktop/memory-planes/memory-planes-max",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+		"originid" : "pat-351"
 	}
 
 }

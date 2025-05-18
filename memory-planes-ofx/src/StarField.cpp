@@ -19,6 +19,7 @@ StarField::StarField() {
     targetDensity.addListener(this, &StarField::setTargetDensity);
     pressureMultiplier.addListener(this, &StarField::setPressureMultiplier);
     nearPressureMultiplier.addListener(this, &StarField::setNearPressureMultiplier);
+    gravityTheta.addListener(this, &StarField::setGravityTheta);
     
     // simulation settings
     particleSystem.setCenter(width * 0.5, height * 0.5);
@@ -147,4 +148,8 @@ void StarField::setMaxSize(float & maxSize) {
 
 void StarField::setConnectionRadius(float & connectionRadius) {
     particleSystem.setConnectionRadius(connectionRadius);
+}
+
+void StarField::setGravityTheta(float & gravityTheta) {
+    particleSystem.setGravityTheta(gravityTheta);
 }

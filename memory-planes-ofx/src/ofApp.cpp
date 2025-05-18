@@ -27,11 +27,12 @@ void ofApp::setup(){
     glEnable(GL_LINE_SMOOTH);
     
     // osc settings
-    oscSender.setup("localhost", SENDING_PORT);
     oscReceiver.setup(RECEIVING_PORT);
     
     // load shaders
     blur.load("shaders/blur");
+    innerNoise.load("shaders/noise");
+    outerNoise.load("shaders/noise");
     innerRadialNoise.load("shaders/radialNoise");
     outerRadialNoise.load("shaders/radialNoise");
     
@@ -84,8 +85,10 @@ void ofApp::setupGui() {
     
     gui.add(scale.set("scale", 1.0, 0.0, 3.0));
     gui.add(blurAmount.set("blur", 1.0, 0.0, 1.0));
-    gui.add(innerNoiseAmount.set("inner noise", 1.0, 0.0, 1.0));
-    gui.add(outerNoiseAmount.set("outer noise", 1.0, 0.0, 1.0));
+    gui.add(innerNoiseAmount.set("inner noise", 0.0, 0.0, 1.0));
+    gui.add(outerNoiseAmount.set("outer noise", 0.0, 0.0, 1.0));
+    gui.add(innerRadialNoiseAmount.set("inner radial noise", 0.0, 0.0, 1.0));
+    gui.add(outerRadialNoiseAmount.set("outer radial noise", 0.0, 0.0, 1.0));
     gui.add(calibrationMode.set("calibration mode", false));
     
     // general gui settings
@@ -181,11 +184,16 @@ void ofApp::updateInnerFBO() {
     fboInnerNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
+    innerNoise.begin();
+    innerNoise.setUniform1f("u_distortion", innerNoiseAmount);
+    innerNoise.setUniform1f("u_time", innerNoiseTime);
+    innerNoise.setUniform2f("u_resolution", innerWidth, innerHeight);
     innerRadialNoise.begin();
-    innerRadialNoise.setUniform1f("u_distortion", innerNoiseAmount);
+    innerRadialNoise.setUniform1f("u_distortion", innerRadialNoiseAmount);
     innerRadialNoise.setUniform1f("u_time", innerNoiseTime);
     innerRadialNoise.setUniform2f("u_resolution", innerWidth, innerHeight);
     fboInnerWindow.draw(0, 0);
+    innerRadialNoise.end();
     innerNoise.end();
     fboInnerNoise.end();
     
@@ -214,11 +222,16 @@ void ofApp::updateOuterFBO() {
     fboOuterNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255);
+    outerNoise.begin();
+    outerNoise.setUniform1f("u_distortion", outerNoiseAmount);
+    outerNoise.setUniform1f("u_time", outerNoiseTime);
+    outerNoise.setUniform2f("u_resolution", width, height);
     outerRadialNoise.begin();
-    outerRadialNoise.setUniform1f("u_distortion", outerNoiseAmount);
+    outerRadialNoise.setUniform1f("u_distortion", outerRadialNoiseAmount);
     outerRadialNoise.setUniform1f("u_time", outerNoiseTime);
     outerRadialNoise.setUniform2f("u_resolution", width, height);
     fboOuterWindow.draw(0, 0);
+    outerRadialNoise.end();
     outerNoise.end();
     fboOuterNoise.end();
     
@@ -372,7 +385,7 @@ void ofApp::updateOsc() {
         ofxOscMessage m;
         oscReceiver.getNextMessage(m);
         
-        if (m.getAddress() == "/m") {
+        if (m.getAddress() == "/memory") {
             int index = m.getArgAsInt(0);
             float radius = m.getArgAsFloat(1);
             float theta = m.getArgAsFloat(2);
@@ -384,7 +397,39 @@ void ofApp::updateOsc() {
             memoryPlane.setMemory(index, radius, theta, arcDistance, thickness, noiseSpeed, octaveMultiplier);
         }
         
-        if (m.getAddress() == "/mouseTest") {
+        if (m.getAddress() == "/numberParticles") {
+            starField.numberParticles = m.getArgAsInt(0);
+        }
+        
+        if (m.getAddress() == "/timeScalar") {
+            starField.timeScalar = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/influenceRadius") {
+            starField.influenceRadius = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/gravityMultiplier") {
+            starField.gravityMultiplier = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/minSize") {
+            starField.minSize = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/maxSize") {
+            starField.maxSize = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/connectionRadius") {
+            starField.maxSize = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/gravityTheta") {
+            starField.gravityTheta = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/presence") {
             float x = m.getArgAsFloat(0);
             float width = m.getArgAsFloat(1);
             starField.setPresence(x, width);

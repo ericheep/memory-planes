@@ -313,6 +313,13 @@ void ParticleSystem::setMouseRadius(int _mouseRadius) {
     mouseRadius = _mouseRadius;
 }
 
+void ParticleSystem::setGravityTheta(float _gravityTheta) {
+    float x = cos(_gravityTheta);
+    float y = sin(_gravityTheta);
+    
+    gravityForce = ofVec2f(x, y);
+}
+
 void ParticleSystem::setCoolColor(ofColor coolColor) {
     for (int i = 0; i < particles.size(); i++) {
         particles[i].coolColor = coolColor;

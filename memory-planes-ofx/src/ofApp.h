@@ -11,8 +11,7 @@
 #include "MemoryPlane.hpp"
 #include "StarField.hpp"
 
-#define SENDING_PORT 6543
-#define RECEIVING_PORT 5432
+#define RECEIVING_PORT 6543
 
 #define DEV_MODE true
 
@@ -58,6 +57,8 @@ public:
     ofParameter<float> blurAmount;
     ofParameter<float> innerNoiseAmount;
     ofParameter<float> outerNoiseAmount;
+    ofParameter<float> innerRadialNoiseAmount;
+    ofParameter<float> outerRadialNoiseAmount;
     ofParameter<float> defaultOctaveMultiplier;
     ofParameter<float> defaultNoiseSpeed;
     
@@ -84,7 +85,6 @@ private:
     
     ofCamera cam;
     ofxOscReceiver oscReceiver;
-    ofxOscSender oscSender;
     
     ofColor primaryColor;
     ofColor backgroundColor;

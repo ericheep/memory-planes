@@ -90,6 +90,7 @@ public:
     void setWidth(int systemWidth);
     void setHeight(int systemHeight);
     void setConnectionRadius(float connectionRadius);
+    void setGravityTheta(float gravityTheta);
     void setInnerBoundarySpace(ofPolyline polyline);
     
     // creation functions

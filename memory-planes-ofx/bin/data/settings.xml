@@ -48,5 +48,7 @@
 		<near_pressure>100</near_pressure>
 	</sim_settings>
 	<inner_noise>0</inner_noise>
-	<outer_noise>0</outer_noise>
+	<outer_noise>1</outer_noise>
+	<inner_radial_noise>0</inner_radial_noise>
+	<outer_radial_noise>0</outer_radial_noise>
 </memory_planes>
