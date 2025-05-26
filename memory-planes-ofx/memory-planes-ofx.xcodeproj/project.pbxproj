@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0685894F2DE3A60D00A15784 /* Glow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0685894E2DE3A60D00A15784 /* Glow.cpp */; };
+		068589522DE3A7D100A15784 /* Emanations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 068589512DE3A7D100A15784 /* Emanations.cpp */; };
+		0685895E2DE4C2FF00A15784 /* Attractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0685895D2DE4C2FF00A15784 /* Attractor.cpp */; };
+		068589612DE4D47500A15784 /* AttractionSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 068589602DE4D47500A15784 /* AttractionSystem.cpp */; };
 		06C9E6D72DD3E1390093306F /* Neighbor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06C9E6D62DD3E1390093306F /* Neighbor.cpp */; };
 		"0A1DE329-A57C-4FA7-A82B-3DEA9E5CC6B3" /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "1D5598E5-95ED-4317-A492-57651831B042" /* ofxOscParameterSync.cpp */; };
 		"0B843575-E6CF-4912-B823-D4E569E0ECAB" /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "A99789BC-930F-49E4-B3CF-F447AEDECF79" /* ofxPanel.cpp */; };
@@ -91,6 +95,14 @@
 		"043E2842-23CB-4864-9AC7-304A0C832D9C" /* msa_macros.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = msa_macros.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/hal/msa_macros.h; sourceTree = SOURCE_ROOT; };
 		"0508E38A-EFA4-44A2-B9B0-7CF04EFDCD7C" /* color.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = color.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/cuda/color.hpp; sourceTree = SOURCE_ROOT; };
 		"059B91C6-13F5-4831-8E4A-1A19D50098AE" /* exception_ptr.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = exception_ptr.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/detail/exception_ptr.hpp; sourceTree = SOURCE_ROOT; };
+		0685894D2DE3A60D00A15784 /* Glow.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Glow.hpp; sourceTree = "<group>"; };
+		0685894E2DE3A60D00A15784 /* Glow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glow.cpp; sourceTree = "<group>"; };
+		068589502DE3A7D100A15784 /* Emanations.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Emanations.hpp; sourceTree = "<group>"; };
+		068589512DE3A7D100A15784 /* Emanations.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Emanations.cpp; sourceTree = "<group>"; };
+		0685895C2DE4C2FF00A15784 /* Attractor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Attractor.hpp; sourceTree = "<group>"; };
+		0685895D2DE4C2FF00A15784 /* Attractor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Attractor.cpp; sourceTree = "<group>"; };
+		0685895F2DE4D47500A15784 /* AttractionSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AttractionSystem.hpp; sourceTree = "<group>"; };
+		068589602DE4D47500A15784 /* AttractionSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AttractionSystem.cpp; sourceTree = "<group>"; };
 		"06B6E2BA-6348-434E-BE3B-3B83F4D7C3E6" /* simd_utils.impl.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = simd_utils.impl.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/hal/simd_utils.impl.hpp; sourceTree = SOURCE_ROOT; };
 		06C9E6D52DD3E1390093306F /* Neighbor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Neighbor.hpp; sourceTree = "<group>"; };
 		06C9E6D62DD3E1390093306F /* Neighbor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Neighbor.cpp; sourceTree = "<group>"; };
@@ -182,7 +194,7 @@
 		"270F4002-F83D-40E2-914C-5256371A24CC" /* features2d.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = features2d.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/features2d.hpp; sourceTree = SOURCE_ROOT; };
 		"275F9732-0AF7-4E78-B1FA-E8B96FF2E93E" /* intrin_neon.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = intrin_neon.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/hal/intrin_neon.hpp; sourceTree = SOURCE_ROOT; };
 		"2762AC72-CBDD-4127-9008-0C2529CC200A" /* opencv.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = opencv.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/opencv.hpp; sourceTree = SOURCE_ROOT; };
-		"27C3937A-2A91-49C8-B004-05A581432221" /* Particle.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Particle.hpp; path = src/FluidSimulation/Particle.hpp; sourceTree = SOURCE_ROOT; };
+		"27C3937A-2A91-49C8-B004-05A581432221" /* Particle.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Particle.hpp; path = src/Particles/Particle.hpp; sourceTree = SOURCE_ROOT; };
 		"283EC793-5C5E-4592-85BC-77EAECEFA263" /* lsh_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = lsh_index.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/flann/lsh_index.h; sourceTree = SOURCE_ROOT; };
 		"289E7478-96FB-404E-88E0-EE977CBD9CDF" /* utility.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = utility.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/cuda/utility.hpp; sourceTree = SOURCE_ROOT; };
 		"28B1997F-F172-4978-BEEE-63034D156BB6" /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBaseGui.h; path = ../../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
@@ -192,7 +204,7 @@
 		"2A5D6A87-9620-427D-8886-A7308833B35D" /* OscPrintReceivedElements.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscPrintReceivedElements.h; path = ../../../../addons/ofxOsc/libs/oscpack/src/osc/OscPrintReceivedElements.h; sourceTree = SOURCE_ROOT; };
 		"2A73B546-9A8B-4DC9-A8FF-CD688F453826" /* linear_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = linear_index.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/linear_index.h; sourceTree = SOURCE_ROOT; };
 		"2A859238-C4E9-4711-8AAD-FD5EE9E9C914" /* segmentation.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = segmentation.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/imgproc/segmentation.hpp; sourceTree = SOURCE_ROOT; };
-		"2AEFA1DF-2522-4AB3-B42D-69B11480EE31" /* Particle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Particle.cpp; path = src/FluidSimulation/Particle.cpp; sourceTree = SOURCE_ROOT; };
+		"2AEFA1DF-2522-4AB3-B42D-69B11480EE31" /* Particle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Particle.cpp; path = src/Particles/Particle.cpp; sourceTree = SOURCE_ROOT; };
 		"2AF99CB4-4FA1-4159-8E9E-E3D7864B2CE0" /* ofxSlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxSlider.cpp; path = ../../../../addons/ofxGui/src/ofxSlider.cpp; sourceTree = SOURCE_ROOT; };
 		"2BBA23F8-34A3-4543-96C0-6C64D159CFDF" /* ofxColorPicker.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxColorPicker.h; path = ../../../../addons/ofxGui/src/ofxColorPicker.h; sourceTree = SOURCE_ROOT; };
 		"2C5646BB-A846-4572-9CB0-166A985F0859" /* opencl_gl_wrappers.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = opencl_gl_wrappers.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_gl_wrappers.hpp; sourceTree = SOURCE_ROOT; };
@@ -210,7 +222,7 @@
 		"308604BC-EDF2-4EC9-A66A-4D52AC526D0E" /* OscTypes.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscTypes.cpp; path = ../../../../addons/ofxOsc/libs/oscpack/src/osc/OscTypes.cpp; sourceTree = SOURCE_ROOT; };
 		"30E21D54-F347-4E58-A1C4-691911C5BC01" /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscOutboundPacketStream.cpp; path = ../../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.cpp; sourceTree = SOURCE_ROOT; };
 		"313DB168-8E18-4B38-AB9E-B44161256FD1" /* gcgraph.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = gcgraph.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/imgproc/detail/gcgraph.hpp; sourceTree = SOURCE_ROOT; };
-		"32173845-6502-4CDD-9D17-D6A0BED360C8" /* ParticleSystem.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ParticleSystem.cpp; path = src/FluidSimulation/ParticleSystem.cpp; sourceTree = SOURCE_ROOT; };
+		"32173845-6502-4CDD-9D17-D6A0BED360C8" /* ParticleSystem.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ParticleSystem.cpp; path = src/Particles/ParticleSystem.cpp; sourceTree = SOURCE_ROOT; };
 		"32242B27-C87F-4AA6-8223-DDC7E80C8D23" /* constants_c.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = constants_c.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/imgcodecs/legacy/constants_c.h; sourceTree = SOURCE_ROOT; };
 		"32389300-390E-4077-B17E-D79BD7FA801D" /* fast_math.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = fast_math.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/fast_math.hpp; sourceTree = SOURCE_ROOT; };
 		"3291FEC5-7526-48E7-B683-F126F63946A6" /* opencl_clblas.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = opencl_clblas.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/opencl/runtime/opencl_clblas.hpp; sourceTree = SOURCE_ROOT; };
@@ -529,7 +541,7 @@
 		"A035F2A1-E9B8-49F8-860B-395024F2A5F7" /* lsh_table.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = lsh_table.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/lsh_table.h; sourceTree = SOURCE_ROOT; };
 		"A08209F0-4019-44A8-BA95-CBE535805603" /* Anchor.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Anchor.hpp; path = src/Anchor.hpp; sourceTree = SOURCE_ROOT; };
 		"A08821F7-51D3-48B2-966A-87BA549A243E" /* any.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = any.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gapi/util/any.hpp; sourceTree = SOURCE_ROOT; };
-		"A08B0BF1-8684-48C9-BEB1-0F3D3BC3495D" /* ParticleSystem.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ParticleSystem.hpp; path = src/FluidSimulation/ParticleSystem.hpp; sourceTree = SOURCE_ROOT; };
+		"A08B0BF1-8684-48C9-BEB1-0F3D3BC3495D" /* ParticleSystem.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ParticleSystem.hpp; path = src/Particles/ParticleSystem.hpp; sourceTree = SOURCE_ROOT; };
 		"A0AE220B-35E2-4B1F-9C79-4588594CB044" /* vec_distance.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vec_distance.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/cuda/vec_distance.hpp; sourceTree = SOURCE_ROOT; };
 		"A1009BA1-0B5A-40E8-BC4C-A9985652C1E2" /* ofxGuiUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxGuiUtils.h; path = ../../../../addons/ofxGui/src/ofxGuiUtils.h; sourceTree = SOURCE_ROOT; };
 		"A1959CC4-0684-42DB-B96B-62D58DDA00EB" /* result_set.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = result_set.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/flann/result_set.h; sourceTree = SOURCE_ROOT; };
@@ -892,6 +904,30 @@
 			);
 			name = flann;
 			sourceTree = SOURCE_ROOT;
+		};
+		0685895A2DE4C2BA00A15784 /* AttractionSimulation */ = {
+			isa = PBXGroup;
+			children = (
+				0685895C2DE4C2FF00A15784 /* Attractor.hpp */,
+				0685895D2DE4C2FF00A15784 /* Attractor.cpp */,
+				0685895F2DE4D47500A15784 /* AttractionSystem.hpp */,
+				068589602DE4D47500A15784 /* AttractionSystem.cpp */,
+			);
+			path = AttractionSimulation;
+			sourceTree = "<group>";
+		};
+		0685895B2DE4C2D700A15784 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				"2AEFA1DF-2522-4AB3-B42D-69B11480EE31" /* Particle.cpp */,
+				"27C3937A-2A91-49C8-B004-05A581432221" /* Particle.hpp */,
+				06C9E6D62DD3E1390093306F /* Neighbor.cpp */,
+				06C9E6D52DD3E1390093306F /* Neighbor.hpp */,
+				"32173845-6502-4CDD-9D17-D6A0BED360C8" /* ParticleSystem.cpp */,
+				"A08B0BF1-8684-48C9-BEB1-0F3D3BC3495D" /* ParticleSystem.hpp */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
 		};
 		06C9E6DC2DD5B9670093306F /* shaders */ = {
 			isa = PBXGroup;
@@ -1894,13 +1930,6 @@
 				"0997E515-29EC-4F77-9900-6F67FEAF2E06" /* FluidSystem2D.hpp */,
 				"D1F5A168-F62B-486C-A97E-FF3615E6054D" /* Kernels.cpp */,
 				"8818BCA1-65D7-4238-8394-92E4F8794F94" /* Kernels.hpp */,
-				"2AEFA1DF-2522-4AB3-B42D-69B11480EE31" /* Particle.cpp */,
-				"27C3937A-2A91-49C8-B004-05A581432221" /* Particle.hpp */,
-				06C9E6D62DD3E1390093306F /* Neighbor.cpp */,
-				06C9E6D52DD3E1390093306F /* Neighbor.hpp */,
-				"32173845-6502-4CDD-9D17-D6A0BED360C8" /* ParticleSystem.cpp */,
-				"A08B0BF1-8684-48C9-BEB1-0F3D3BC3495D" /* ParticleSystem.hpp */,
-				06C9E6DC2DD5B9670093306F /* shaders */,
 			);
 			name = FluidSimulation;
 			path = src/FluidSimulation;
@@ -2342,9 +2371,16 @@
 				"36AD401A-27C2-42A2-8AB8-200098847218" /* MemoryPlane.hpp */,
 				"A63527E8-BBDF-4D50-9839-694CC6F2B823" /* StarField.cpp */,
 				"36CF5E05-A99C-41CF-93ED-24ED71EAA7EB" /* StarField.hpp */,
+				068589512DE3A7D100A15784 /* Emanations.cpp */,
+				068589502DE3A7D100A15784 /* Emanations.hpp */,
+				0685894E2DE3A60D00A15784 /* Glow.cpp */,
+				0685894D2DE3A60D00A15784 /* Glow.hpp */,
 				"455BF9B5-D51F-456A-9529-D847F71E06B1" /* Tear.cpp */,
 				"EF8161A7-BB45-4CB4-BA4D-69CF6F8BBC44" /* Tear.hpp */,
+				0685895B2DE4C2D700A15784 /* Particles */,
+				0685895A2DE4C2BA00A15784 /* AttractionSimulation */,
 				"9C0FB66E-EBCC-4D5F-A26E-AE154ED9180A" /* FluidSimulation */,
+				06C9E6DC2DD5B9670093306F /* shaders */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -2545,6 +2581,7 @@
 			files = (
 				06C9E6D72DD3E1390093306F /* Neighbor.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				0685894F2DE3A60D00A15784 /* Glow.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				"72F86D28-1AF2-4315-87DA-75080E363C88" /* Anchor.cpp in Sources */,
 				"2AFE3E7E-91BC-438A-8FC1-852E74F6BE6C" /* FluidSystem2D.cpp in Sources */,
@@ -2578,11 +2615,14 @@
 				"86E1650D-1D60-4780-980C-185386497CF4" /* OscOutboundPacketStream.cpp in Sources */,
 				"1000BB8C-4F08-41BB-926E-95D0EFD2A4DB" /* OscPrintReceivedElements.cpp in Sources */,
 				"F85C3D70-932A-4CF4-9274-B80CFAE20374" /* OscReceivedElements.cpp in Sources */,
+				068589522DE3A7D100A15784 /* Emanations.cpp in Sources */,
 				"93470F6D-49EE-412B-9679-96D1A9DF6934" /* OscTypes.cpp in Sources */,
+				068589612DE4D47500A15784 /* AttractionSystem.cpp in Sources */,
 				"9030F973-BDA2-41FB-8D9D-9FFCF1151C03" /* ofxOscBundle.cpp in Sources */,
 				"D5882395-81EA-4F47-A3DD-0196FFFD7087" /* ofxOscMessage.cpp in Sources */,
 				"0A1DE329-A57C-4FA7-A82B-3DEA9E5CC6B3" /* ofxOscParameterSync.cpp in Sources */,
 				"1DB8F329-5F90-4040-BB1D-DA109303C23D" /* ofxOscReceiver.cpp in Sources */,
+				0685895E2DE4C2FF00A15784 /* Attractor.cpp in Sources */,
 				"BB1FA0A7-A143-4788-8A20-8DCCAC1BA06D" /* ofxOscSender.cpp in Sources */,
 				"E71661AE-67E1-45FA-AB3C-636F652DF406" /* ofxQuadWarp.cpp in Sources */,
 				"797F69BC-52D1-40A9-8965-4C548F2799A6" /* ofxSvg.cpp in Sources */,

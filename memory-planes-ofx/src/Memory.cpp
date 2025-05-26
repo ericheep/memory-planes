@@ -66,6 +66,7 @@ void Memory::setFill(bool _isFilled) {
 
 void Memory::setFollow(float _minFollow, float _maxFollow) {
     tear.setFollow(_minFollow, _maxFollow);
+    follow = (_minFollow + _maxFollow) / 2.0;    
 }
 
 void Memory::flip(float _theta) {
@@ -76,12 +77,12 @@ void Memory::flip(float _theta) {
 }
 
 void Memory::update() {
-    radius = ofLerp(radius, targetRadius, 0.05);
-    theta = ofLerp(theta, targetTheta, 0.05);
-    arcDistance = ofLerp(arcDistance, targetArcDistance, 0.05);
-    thickness = ofLerp(thickness, targetThickness, 0.05);
-    noiseSpeed = ofLerp(noiseSpeed, targetNoiseSpeed, 0.05);
-    octaveMultiplier = ofLerp(octaveMultiplier, targetOctaveMultiplier, 0.05);
+    radius = ofLerp(radius, targetRadius, follow);
+    theta = ofLerp(theta, targetTheta, follow);
+    arcDistance = ofLerp(arcDistance, targetArcDistance, follow);
+    thickness = ofLerp(thickness, targetThickness, follow);
+    noiseSpeed = ofLerp(noiseSpeed, targetNoiseSpeed, follow);
+    octaveMultiplier = ofLerp(octaveMultiplier, targetOctaveMultiplier, follow);
     noiseTime += (ofGetLastFrameTime() * noiseSpeed);
         
     updateTear(tear, 1.0);

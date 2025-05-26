@@ -18,17 +18,14 @@ public:
     void update();
     void draw();
 
-    void setCalibrationMode(bool calibrationMode);
     void flip(int index, float theta);
     
-    void setMemory(int index, float radius, float theta, float length, float thickness, float noiseSpeed, float octaveMultiplier);
+    void setMemory(int index, float radius, float theta, float arcDistance, float thickness, float minFollow, float maxFollow, float noiseSpeed, float octaveMultiplier);
     
 private:
-    bool calibrationMode;
     int width, height;
 
     vector <Memory> memories;
-    vector <Memory> calibrationMemories;
     ofColor primaryColor;
 };
 

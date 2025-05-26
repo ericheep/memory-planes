@@ -116,8 +116,12 @@ void Tear::interpolatePoints() {
     for (int i = 0; i < currentPoints.size(); i++) {
         int index = i;
         if (isFlipped) index = (targetPoints.size() / 2 + i) % targetPoints.size();
-
-        currentPoints[i].interpolate(targetPoints[index], targetValues[i]);
+        
+        if (targetValues[i] < 1.0) {
+            currentPoints[i].interpolate(targetPoints[index], targetValues[i]);
+        } else {
+            currentPoints[i] = targetPoints[index];
+        }
     }
     
     tearPolyline.clear();
@@ -213,6 +217,6 @@ void Tear::setOctaveMultiplier(float _octaveMultiplier) {
 
 void Tear::setFollow(float _minFollow, float _maxFollow) {
     for (int i = 0; i < numAnchors * 3 * 2 + 2; i++) {
-        targetValues.push_back(ofRandom(_minFollow, _maxFollow));
+        targetValues[i] = ofRandom(_minFollow, _maxFollow);
     }
 }

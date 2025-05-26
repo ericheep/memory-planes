@@ -20,10 +20,10 @@ public:
     void setSize(float width, float height);
     void setInnerSize(float innerWidth, float innerHeight);
     
-    void setPresence(float x, float width);
+    void setPresence(int index, float x, float width);
     
     ofPolyline innerBounds;
-    FluidSystem2D particleSystem;
+    FluidSystem2D fluidSystem;
     
     float width, height;
     float innerWidth, innerHeight;

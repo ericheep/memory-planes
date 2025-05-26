@@ -7,6 +7,7 @@ uniform sampler2DRect tex0;
 uniform float u_distortion = 1.0;
 uniform float u_time;
 uniform vec2 u_resolution;
+uniform float u_alpha = 1.0;
 
 in vec2 texCoordVarying;
 out vec4 outputColor;
@@ -114,5 +115,5 @@ void main() {
     vec2 nUvRect = nUv * u_resolution;
     vec3 rgb = texture(tex0, nUvRect).rgb;
     
-    outputColor = vec4(rgb, 1.0);
+    outputColor = vec4(rgb, u_alpha);
 }

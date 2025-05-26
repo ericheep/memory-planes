@@ -751,7 +751,7 @@
 
 							}
  ],
-						"originid" : "pat-358",
+						"originid" : "pat-1152",
 						"bgcolor" : [ 0.074509803921569, 0.07843137254902, 0.074509803921569, 1.0 ]
 					}
 ,
@@ -925,7 +925,6 @@
 						"classnamespace" : "box",
 						"rect" : [ 677.0, 100.0, 801.0, 848.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -970,7 +969,7 @@
 							}
  ],
 						"lines" : [  ],
-						"originid" : "pat-360"
+						"originid" : "pat-1154"
 					}
 ,
 					"patching_rect" : [ 459.25, 107.0, 48.0, 22.0 ],
@@ -1194,7 +1193,7 @@
 
 			}
  ],
-		"originid" : "pat-351"
+		"originid" : "pat-1145"
 	}
 
 }

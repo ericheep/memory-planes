@@ -10,6 +10,7 @@
 
 #include "MemoryPlane.hpp"
 #include "StarField.hpp"
+#include "Emanations.hpp"
 
 #define RECEIVING_PORT 6543
 
@@ -25,6 +26,7 @@ public:
     void update();
     void updateInnerFBO();
     void updateOuterFBO();
+    void updateOverallFBO();
     
     void draw();
     void drawInnerWindow(ofEventArgs & args);
@@ -54,7 +56,9 @@ public:
     ofParameterGroup boundarySettings;
     
     ofParameter<float> scale;
-    ofParameter<float> blurAmount;
+    ofParameter<float> innerBlurAmount;
+    ofParameter<float> outerBlurAmount;
+    ofParameter<float> overallBlurAmount;
     ofParameter<float> innerNoiseAmount;
     ofParameter<float> outerNoiseAmount;
     ofParameter<float> innerRadialNoiseAmount;
@@ -67,11 +71,17 @@ public:
 private:
     void updateOsc();
    
-    ofShader blur;
+    ofShader innerBlur;
     ofShader innerNoise;
     ofShader innerRadialNoise;
+    
+    ofShader outerBlur;
     ofShader outerNoise;
     ofShader outerRadialNoise;
+    
+    ofShader overallBlur;
+    ofShader overallNoise;
+    ofShader overallRadialNoise;
     
     ofFbo fboInnerWindow;
     ofFbo fboInnerBlur;
@@ -83,7 +93,12 @@ private:
     ofFbo fboOuterNoise;
     ofFbo fboOuterRadialNoise;
     
-    ofCamera cam;
+    ofFbo fboOverallWindow;
+    ofFbo fboOverallBlur;
+    ofFbo fboOverallNoise;
+    ofFbo fboOverallRadialNoise;
+    
+    // ofEasyCam cam;
     ofxOscReceiver oscReceiver;
     
     ofColor primaryColor;
@@ -93,8 +108,10 @@ private:
     
     MemoryPlane memoryPlane;
     StarField starField;
+    Emanations emanations;
     
     float width, height, innerWidth, innerHeight;
     float radius, innerNoiseTime, outerNoiseTime;
+    float overallBlurRadius;
     bool guiActive;
 };

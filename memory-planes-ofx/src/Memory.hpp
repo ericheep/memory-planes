@@ -37,7 +37,7 @@ public:
 private:
     void drawShape(ofPolyline &polygon);
     
-    float windowRadius, noiseTime;
+    float windowRadius, noiseTime, follow;
     
     float arcDistance, theta, radius;
     float length, thickness, noiseSpeed, octaveMultiplier;

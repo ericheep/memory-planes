@@ -22,23 +22,27 @@ StarField::StarField() {
     gravityTheta.addListener(this, &StarField::setGravityTheta);
     
     // simulation settings
-    particleSystem.setCenter(width * 0.5, height * 0.5);
-    particleSystem.setCollisionDamping(0.05);
-    particleSystem.setViscosityStrength(0.25);
-    particleSystem.setMode(0);
-    particleSystem.setNumberParticles(numberParticles);
-    particleSystem.setHotColor(ofColor::white);
-    particleSystem.setCoolColor(ofColor::red);
-    particleSystem.resetCircle(1.0);
+    fluidSystem.setCenter(width * 0.5, height * 0.5);
+    fluidSystem.setCollisionDamping(0.5);
+    fluidSystem.setViscosityStrength(0.25);
+    fluidSystem.setMode(0);
+    fluidSystem.setNumberParticles(numberParticles);
+    fluidSystem.setHotColor(ofColor::white);
+    fluidSystem.setCoolColor(ofColor::red);
 }
 
 void StarField::update() {
-    particleSystem.update();
+    fluidSystem.updateFluidSystem();
+    fluidSystem.updateParticleSystem();
 }
 
 void StarField::draw() {
-    particleSystem.draw();
+    fluidSystem.draw();
     innerBounds.draw();
+    
+    //for (int i = 0; i < presenceBoundaries.size(); i++) {
+        // presenceBoundaries[i].draw();
+    //}
 }
 
 void StarField::setInnerSize(float _innerWidth, float _innerHeight) {
@@ -46,16 +50,16 @@ void StarField::setInnerSize(float _innerWidth, float _innerHeight) {
     innerHeight = _innerHeight;
 }
 
-void StarField::setPresence(float _x, float _width) {
-    particleSystem.setPresence(_x, _width);
+void StarField::setPresence(int index, float _x, float _width) {
+    fluidSystem.setPresence(index, _x, _width);
 }
 
 void StarField::setSize(float _width, float _height) {
     width = _width;
     height = _height;
-    particleSystem.setWidth(width);
-    particleSystem.setHeight(height);
-    particleSystem.setBoundsSize(ofVec3f(width, height, 0));
+    fluidSystem.setWidth(width);
+    fluidSystem.setHeight(height);
+    fluidSystem.setBoundsSize(ofVec3f(width, height, 0));
 }
 
 void StarField::setWarp(ofxQuadWarp & innerWarper, ofxQuadWarp & outerWarper) {
@@ -80,7 +84,7 @@ void StarField::setWarp(ofxQuadWarp & innerWarper, ofxQuadWarp & outerWarper) {
     }
 
     innerBounds.close();
-    particleSystem.setInnerBoundarySpace(innerBounds);
+    fluidSystem.setInnerBoundarySpace(innerBounds);
 }
 
 void StarField::setDrawMode(int & drawMode) {
@@ -90,66 +94,66 @@ void StarField::setDrawMode(int & drawMode) {
     // 3 = lines
     // 4 = points
     
-    particleSystem.setMode(drawMode);
+    fluidSystem.setMode(drawMode);
 }
 
 void StarField::setNumberParticles(int & numberParticles) {
-    particleSystem.setNumberParticles(numberParticles);
-    particleSystem.setVelocityCurve(velocityCurve);
-    particleSystem.setMinSize(minSize);
-    particleSystem.setMaxSize(maxSize);
-    particleSystem.setMinVelocity(minVelocity);
-    particleSystem.setMaxVelocity(maxVelocity);
+    fluidSystem.setNumberParticles(numberParticles);
+    fluidSystem.setVelocityCurve(velocityCurve);
+    fluidSystem.setMinSize(minSize);
+    fluidSystem.setMaxSize(maxSize);
+    fluidSystem.setMinVelocity(minVelocity);
+    fluidSystem.setMaxVelocity(maxVelocity);
 }
 
 void StarField::setTimeScalar(float & timeScalar) {
-    particleSystem.setDeltaTime(1.0 / 60.0 / timeScalar);
+    fluidSystem.setDeltaTime(1.0 / 60.0 / timeScalar);
 }
 
 void StarField::setInfluenceRadius(float & influenceRadius) {
-    particleSystem.setRadius(influenceRadius);
+    fluidSystem.setInfluenceRadius(influenceRadius);
 }
 
 void StarField::setGravityMultiplier(float & gravityMultiplier) {
-    particleSystem.setGravityMultiplier(gravityMultiplier);
+    fluidSystem.setGravityMultiplier(gravityMultiplier);
 }
 
 void StarField::setTargetDensity(float & targetDensity) {
-    particleSystem.setTargetDensity(targetDensity);
+    fluidSystem.setTargetDensity(targetDensity);
 }
 
 void StarField::setPressureMultiplier(float & pressureMultiplier) {
-    particleSystem.setPressureMultiplier(pressureMultiplier);
+    fluidSystem.setPressureMultiplier(pressureMultiplier);
 }
 
 void StarField::setNearPressureMultiplier(float & nearPressureMultiplier) {
-    particleSystem.setNearPressureMultiplier(nearPressureMultiplier);
+    fluidSystem.setNearPressureMultiplier(nearPressureMultiplier);
 }
 
 void StarField::setVelocityCurve(float & velocityCurve) {
-    particleSystem.setVelocityCurve(velocityCurve);
+    fluidSystem.setVelocityCurve(velocityCurve);
 }
 
 void StarField::setMinVelocity(float & minVelocity) {
-    particleSystem.setMinVelocity(minVelocity);
+    fluidSystem.setMinVelocity(minVelocity);
 }
 
 void StarField::setMaxVelocity(float & maxVelocity) {
-    particleSystem.setMaxVelocity(maxVelocity);
+    fluidSystem.setMaxVelocity(maxVelocity);
 }
 
 void StarField::setMinSize(float & minSize) {
-    particleSystem.setMinSize(minSize);
+    fluidSystem.setMinSize(minSize);
 }
 
 void StarField::setMaxSize(float & maxSize) {
-    particleSystem.setMaxSize(maxSize);
+    fluidSystem.setMaxSize(maxSize);
 }
 
 void StarField::setConnectionRadius(float & connectionRadius) {
-    particleSystem.setConnectionRadius(connectionRadius);
+    fluidSystem.setConnectionRadius(connectionRadius);
 }
 
 void StarField::setGravityTheta(float & gravityTheta) {
-    particleSystem.setGravityTheta(gravityTheta);
+    fluidSystem.setGravityTheta(gravityTheta);
 }

@@ -4,15 +4,110 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 4,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1986.0, 231.0, 1038.0, 684.0 ],
+		"rect" : [ 2077.0, 221.0, 1038.0, 684.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-22",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 698.0, 315.0, 160.0, 22.0 ],
+					"text" : "pack i f f"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "int", "float", "float" ],
+					"patching_rect" : [ 698.0, 244.0, 160.0, 22.0 ],
+					"text" : "unpack i f f"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 698.0, 209.0, 66.0, 22.0 ],
+					"text" : "route node"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 6,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 839.0, 279.0, 94.0, 22.0 ],
+					"text" : "scale 0. 1. -1. 1."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "newobj",
+					"numinlets" : 6,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 731.0, 279.0, 94.0, 22.0 ],
+					"text" : "scale 0. 1. -1. 1."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 576.0, 535.0, 115.0, 22.0 ],
+					"text" : "prepend /emanation"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "toggle",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 500.0, 109.0, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 500.0, 153.0, 84.0, 22.0 ],
+					"text" : "mem.carousel"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
@@ -65,8 +160,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 463.0, 420.0, 24.0, 24.0 ],
-					"svg" : ""
+					"patching_rect" : [ 463.0, 420.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -127,11 +221,11 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 641.0, 338.0, 161.0, 160.0 ],
+					"patching_rect" : [ 627.0, 37.0, 161.0, 160.0 ],
 					"pointcolor" : [ 0.964705882352941, 0.784313725490196, 0.956862745098039, 1.0 ],
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"xplace" : [ 0.499049429657795 ],
-					"yplace" : [ 1.0 ]
+					"xplace" : [ 0.372670807453416 ],
+					"yplace" : [ 0.6875 ]
 				}
 
 			}
@@ -147,7 +241,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 4,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -184,7 +278,6 @@
 											"parameter_longname" : "live.text[16]",
 											"parameter_mmax" : 1,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : "live.text[16]",
 											"parameter_type" : 2
 										}
@@ -262,7 +355,6 @@
 											"parameter_longname" : "live.dial[43]",
 											"parameter_mmax" : 200.0,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : "scaling",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 5
@@ -307,7 +399,6 @@
 											"parameter_longname" : "live.dial[10]",
 											"parameter_mmax" : 200.0,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : "scaling",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 5
@@ -348,7 +439,6 @@
 											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 1,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : "live.tab",
 											"parameter_type" : 2,
 											"parameter_unitstyle" : 9
@@ -395,7 +485,6 @@
 											"parameter_longname" : "live.dial[3]",
 											"parameter_mmax" : 1000.0,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : " ",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 2
@@ -442,7 +531,6 @@
 											"parameter_longname" : "live.dial[2]",
 											"parameter_mmax" : 1000.0,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : " ",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 2
@@ -483,7 +571,6 @@
 											"parameter_longname" : "live.menu[1]",
 											"parameter_mmax" : 8,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : "live.menu",
 											"parameter_type" : 2
 										}
@@ -542,7 +629,6 @@
 											"parameter_longname" : "live.toggle[7]",
 											"parameter_mmax" : 1,
 											"parameter_modmode" : 0,
-											"parameter_osc_name" : "<default>",
 											"parameter_shortname" : "live.toggle",
 											"parameter_type" : 2
 										}
@@ -749,15 +835,10 @@
 								}
 
 							}
- ],
-						"originid" : "pat-492"
+ ]
 					}
 ,
 					"patching_rect" : [ 305.0, 432.0, 89.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"globalpatchername" : ""
-					}
-,
 					"text" : "p spat5Options"
 				}
 
@@ -790,7 +871,6 @@
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,
-							"parameter_osc_name" : "<default>",
 							"parameter_shortname" : "mc.live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4
@@ -852,6 +932,27 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-11", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-22", 1 ],
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-15", 0 ]
 				}
@@ -859,8 +960,57 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-22", 2 ],
+					"source" : [ "obj-16", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
 					"source" : [ "obj-19", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-2", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-21", 0 ],
+					"source" : [ "obj-20", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"source" : [ "obj-21", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-16", 0 ],
+					"source" : [ "obj-21", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-22", 0 ],
+					"source" : [ "obj-21", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-22", 0 ]
 				}
 
 			}
@@ -900,7 +1050,6 @@
 
 			}
  ],
-		"originid" : "pat-437",
 		"parameters" : 		{
 			"obj-47" : [ "mc.live.gain~", "mc.live.gain~", 0 ],
 			"obj-4::obj-18::obj-56" : [ "tab", "tab", 0 ],
@@ -995,13 +1144,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "beam.patcheditor.FixtureListItem.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"patcherrelativepath" : "../../../../../Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "beam.patcheditor.FixtureListTable.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
 				"patcherrelativepath" : "../../../../../Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
@@ -1037,6 +1179,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "mem.carousel.maxpat",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "mem.haze.maxpat",
 				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
 				"patcherrelativepath" : ".",
@@ -1045,6 +1194,13 @@
 			}
 , 			{
 				"name" : "mem.lidar.maxpat",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "mem.pony.maxpat",
 				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
