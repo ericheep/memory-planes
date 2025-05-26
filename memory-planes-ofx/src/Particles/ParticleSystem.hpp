@@ -11,6 +11,7 @@
 #include "Kernels.hpp"
 #include "ofMain.h"
 #include "tbb/parallel_for.h"
+#include "tbb/parallel_sort.h"
 
 class ParticleSystem {
 public:
@@ -18,61 +19,37 @@ public:
     
     vector<Particle> particles;
 
-    float radius, gravityConstant, deltaTime, collisionDamping, predictionFactor, interactiveGravity;
-    float targetDensity, nearPressureMultiplier, pressureMultiplier, gravityMultiplier, timeScalar, viscosityStrength, connectionRadius;
-    int mouseButton, mouseRadius;
-
     enum drawModes { CIRCLES, RECTANGLES, VECTORS, LINES, POINTS } drawMode;
-    int circleResolution, rectangleResolution, shapeResolution, drawModeInt;;
+    int circleResolution, rectangleResolution, shapeResolution, drawModeInt;
     
     ofMesh mesh;
     ofMesh connectionMesh;
     
     vector<ofVec3f> meshVertices;
     vector<ofIndexType> meshIndices;
-    vector<pair<ofVec2f, ofVec2f>> connections;
-    vector<pair<ofColor, ofColor>> connectionColors;
     
     vector <ofColor> colors;
     ofMesh shapeMesh;
     
     float centerX, centerY;
     ofVec2f gravityForce;
-    float mouseForce;
     ofVec2f center;
-    ofVec2f xBounds, yBounds, zBounds, mousePosition;
+    ofVec2f xBounds, yBounds;
     ofVec3f boundsSize;
     ofVec3f bounds;
-    Kernels kernels;
-    ofPolyline innerPolyline;
-    Boolean mouseInputActive, pauseActive, nextFrameActive, exportFrameActive, presenceActive;
-    float presenceWidth;
-    ofPolyline presenceBoundary;
-    ofVec2f presenceVelocity;
+    float connectionRadius;
     
-    float circleBoundaryRadius;
-    Boolean circleBoundaryActive;
-
-    vector<pair<int, unsigned int>> spatialLookup;
-    vector<int> startIndices;
+    ofPolyline innerPolyline;
+    
+    vector<pair<int, unsigned int>> influenceSpatialLookup;
+    vector<int> influenceStartIndices;
     
     vector<pair<int, unsigned int>> connectionsSpatialLookup;
     vector<int> connectionsStartIndices;
     
-    // setters
-    void setPresence(float x, float width);
-    void setDeltaTime(float deltaTime);
-    void setRadius(float radius);
-    void setGravityMultiplier(float gravityMultiplier);
-    void setGravityRotation(ofVec2f gravityRotation);
-    void setTargetDensity(float targetDensity);
-    void setPressureMultiplier(float pressureMultiplier);
-    void setNearPressureMultiplier(float nearPressureMultiplier);
-    void setViscosityStrength(float viscosityStrength);
-    void setCollisionDamping(float collisionDamping);
     void setBoundsSize(ofVec3f bounds);
-    void setMouseRadius(int mouseRadius);
-    void setMouseForce(float mouseForce);
+
+    // aesthetics
     void setMinVelocity(float minVelocity);
     void setMaxVelocity(float maxVelocity);
     void setMinSize(float minSize);
@@ -82,29 +59,31 @@ public:
     void setVelocityHue(float hue);
     void setHotColor(ofColor hotColor);
     void setCoolColor(ofColor coolColor);
+    
     void setNumberParticles(int number);
-    void setLineCurve(float lineCurve);
     void setCenter(float centerX, float centerY);
     void setMode(int drawMode);
-    void setCircleBoundary(Boolean circleBoundaryActive);
-    void setWidth(int systemWidth);
-    void setHeight(int systemHeight);
+    void setWidth(int width);
+    void setHeight(int height);
     void setConnectionRadius(float connectionRadius);
-    void setGravityTheta(float gravityTheta);
     void setInnerBoundarySpace(ofPolyline polyline);
     
+    // spatial lookup functions
+    unsigned int hashCell(int cellX, int cellY);
+    unsigned int getKeyFromHash(unsigned int hash, int size);
+    pair<int, int> positionToCellCoordinate(ofVec2f position, float radius);
+    void updateSpatialLookup(float radius, vector<int> &startIndices, vector<pair<int, unsigned int>> &spatialLookup);
+    vector<int> foreachPointWithinRadius(int particleIndex, float radius, vector<int> &startIndices, vector<pair<int, unsigned int>> &spatialLookup);
+
     // creation functions
     void addParticle();
     void addParticle(ofVec3f position);
-    void addParticle(ofVec3f position, float radius);
     ofVec2f getRandom2DDirection();
     ofVec3f getRandom3DDirection();
     
-    // interactions
-    void mouseInput(int x, int y);
-    void mouseInput(int x, int y, int button, Boolean active);
-    
+    void updateParticleSystem();
     void draw();
+    
     void updateMesh(int particleIndex);
     void updateConnectionMesh(int particleIndex);
     void updateTriangle(int particleIndex);
@@ -115,11 +94,11 @@ public:
     void initializeLinesMesh(int numParticles);
     void initializePointsMesh(int numParticles);
 
-    void pause(Boolean pauseButton);
-    void nextFrame();
     void saveSvg();
     
-    int systemWidth, systemHeight;
+    int width, height;
+    
+    vector<ofVec2f> cellOffsets;
 private:
 };
 

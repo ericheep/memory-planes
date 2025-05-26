@@ -65,7 +65,7 @@ float Kernels::densityKernel(float distance, float radius) {
 }
 
 float Kernels::nearDensityKernel(float distance, float radius) {
-    return spikyKernelPow3(distance, radius);
+    return smoothingKernelPoly6(distance, radius);
 }
 
 float Kernels::viscosityKernel(float distance, float radius) {

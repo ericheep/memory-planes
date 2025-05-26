@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ParticleSystem.hpp"
+#include "Kernels.hpp"
 #include "tbb/parallel_for.h"
 #include "tbb/parallel_sort.h"
 
@@ -16,7 +17,7 @@ class FluidSystem2D : public ParticleSystem {
 public:
     FluidSystem2D();
     
-    void update();
+    void updateFluidSystem();
 
     void resolveCollisions(int particleIndex);
     ofVec2f pushParticlesAwayFromPoint(ofVec2f pointA, ofVec2f pointB, ofVec2f velocity);
@@ -29,33 +30,41 @@ public:
     float calculateSharedPressure(float densityA, float densityB);
     float calculateSharedNearPressure(float nearDensityA, float nearDensityB);
     
-    pair<float, float> calculateDensity(int particleIndex);
+    pair<float, float> calculateDensity(int particleIndex, float radius);
     pair<float, float> convertDensityToPressure(float density, float nearDensity);
-    ofVec2f calculateViscosityForce(int particleIndex);
-    ofVec2f calculatePressureForce(int particleIndex);
+    ofVec2f calculateViscosityForce(int particleIndex, float radius);
+    ofVec2f calculatePressureForce(int particleIndex, float radius);
     ofVec2f calculateExternalForce(int particleIndex);
     ofVec2f calculateInteractiveForce(int particleIndex);
 
-    // spatial lookup functions
-    unsigned int hashCell(int cellX, int cellY);
-    unsigned int getKeyFromHash(unsigned int hash);
-    pair<int, int> positionToCellCoordinate(ofVec2f position, float radius);
-    
-    // influence radius spatial lookup
-    vector<int> foreachPointWithinInfluenceRadius(int particleIndex);
-    void updateInfluenceRadiusSpatialLookup();
-    
-    // connections radius spatial lookup
-    vector<int> foreachPointWithinConnectionRadius(int particleIndex);
-    void updateConnectionsSpatialLookup();
-    
     glm::vec2 getClosestPointOnLine(const glm::vec2& a, const glm::vec2& b, const glm::vec2& p);
     
     // reset functions
     void resetRandom();
     void resetGrid(float scale);
     void resetCircle(float scale);
-
+    
+    // setters
+    void setPresence(int index, float x, float width);
+    void setDeltaTime(float deltaTime);
+    void setInfluenceRadius(float influenceRadius);
+    void setGravityMultiplier(float gravityMultiplier);
+    void setGravityRotation(ofVec2f gravityRotation);
+    void setTargetDensity(float targetDensity);
+    void setPressureMultiplier(float pressureMultiplier);
+    void setNearPressureMultiplier(float nearPressureMultiplier);
+    void setViscosityStrength(float viscosityStrength);
+    void setCollisionDamping(float collisionDamping);
+    void setGravityTheta(float gravityTheta);
+    
+    Kernels kernels;
+    float influenceRadius, gravityConstant, deltaTime, collisionDamping, predictionFactor;
+    float targetDensity, nearPressureMultiplier, pressureMultiplier, gravityMultiplier, timeScalar, viscosityStrength;
+    
+    bool presenceActive;
+    vector<float> presenceWidths;
+    vector<ofPolyline> presenceBoundaries;
+    ofVec2f presenceVelocity;
 private:
     vector<ofVec2f> cellOffsets;
 };

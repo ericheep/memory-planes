@@ -12,10 +12,10 @@
 
 class Particle {
 public:
-    Particle(ofVec3f position, float radius, int index);
+    Particle(ofVec3f position, int index);
 
     // member variables for fluid calculations
-    float radius, density, nearDensity;
+    float density, nearDensity;
     
     // gui parameters
     float lineThickness, lineLength;

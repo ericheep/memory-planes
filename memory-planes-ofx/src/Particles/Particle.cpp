@@ -5,10 +5,9 @@
 
 #include "Particle.hpp"
 
-Particle::Particle(ofVec3f _position, float _radius, int _index) {
+Particle::Particle(ofVec3f _position, int _index) {
     position = _position;
     predictedPosition = _position;
-    radius = _radius;
     lineThickness = 1;
     magnitude = 0;
     
@@ -199,6 +198,8 @@ void Particle::update() {
             updateLineMesh();
             break;
     }
+    
+    updateNeighbors();
 }
 
 void Particle::updateNeighbor(int index, ofVec2f position) {
@@ -296,10 +297,6 @@ void Particle::setLineOffsets() {
     xOffset = cos(lerpedTheta) * size;
     yOffset = sin(lerpedTheta) * size;
     zOffset = 0;
-}
-
-void Particle::setRadius(float _radius) {
-    radius = _radius;
 }
 
 void Particle::draw() {

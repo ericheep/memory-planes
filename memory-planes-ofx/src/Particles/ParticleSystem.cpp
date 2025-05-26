@@ -6,37 +6,43 @@
 #include "ParticleSystem.hpp"
 
 ParticleSystem::ParticleSystem() {
-    radius = 1.0;
-    predictionFactor = 1.0f / 120.0f;
-    pressureMultiplier = 1.0;
-    nearPressureMultiplier = 1.0;
-    targetDensity = 1.0;
-    viscosityStrength = 0.5;
-    collisionDamping = 0.95;
-    connectionRadius = 50;
-    
-    //meters per second
-    gravityConstant = 9.8;
-    gravityMultiplier = 1.0;
-    gravityForce = ofVec2f(0.0, -1.0);
-
-    pauseActive = false;
-    mouseForce = 1.0;
-    circleBoundaryRadius = 455;
-    
     rectangleResolution = 4;
     circleResolution = 22;
     
-    systemWidth = ofGetWidth();
-    systemHeight = ofGetHeight();
+    width = ofGetWidth();
+    height = ofGetHeight();
+    
+    for (int i = -1; i < 2; i++) {
+        for (int j = -1; j < 2; j++) {
+            cellOffsets.push_back(ofVec2f(i, j));
+        }
+    }
 }
 
-void ParticleSystem::setWidth(int _systemWidth) {
-    systemWidth = _systemWidth;
+void ParticleSystem::updateParticleSystem() {
+    updateSpatialLookup(connectionRadius, connectionsStartIndices, connectionsSpatialLookup);
+    
+    tbb::parallel_for( tbb::blocked_range<int>(0, particles.size()), [&](tbb::blocked_range<int> r) {
+        for (int i = r.begin(); i < r.end(); ++i) {
+            particles[i].indicesWithinConnectionRadius = foreachPointWithinRadius(i, connectionRadius, connectionsStartIndices, connectionsSpatialLookup);
+            
+            for (int j = 0; j < particles[i].indicesWithinConnectionRadius.size(); j++) {
+                int otherParticleIndex = particles[i].indicesWithinConnectionRadius[j];
+                particles[i].updateNeighbor(otherParticleIndex, particles[otherParticleIndex].position);
+            }
+            
+            particles[i].update();
+            updateMesh(i);
+        }
+    });
 }
 
-void ParticleSystem::setHeight(int _systemHeight) {
-    systemHeight = _systemHeight;
+void ParticleSystem::setWidth(int _width) {
+    width = _width;
+}
+
+void ParticleSystem::setHeight(int _height) {
+    height = _height;
 }
 
 void ParticleSystem::initializeTrianglesMesh(int numParticles, int shapeResolution) {
@@ -148,38 +154,23 @@ void ParticleSystem::draw() {
     for (int i = 0; i < particles.size(); i++) {
         particles[i].drawConnections();
     }
-    
-    presenceBoundary.draw();
 }
 
 // create particles
 void ParticleSystem::addParticle() {
     ofVec2f position;
     
-    if (circleBoundaryActive) {
-        ofVec2f center = ofVec2f(systemWidth / 2.0, systemHeight / 2.0);
-        
-        float theta = ofRandom(0, TWO_PI);
-        float magnitude = ofRandom(0, circleBoundaryRadius);
-        
-        float x = cos(theta) * magnitude;
-        float y = sin(theta) * magnitude;
-        
-        position = ofVec2f(x, y) + center;
-    } else {
-        float x = ofRandom(bounds.x, bounds.x + boundsSize.x);
-        float y = ofRandom(bounds.y, bounds.y + boundsSize.y);
-        
-        position = ofVec2f(x, y);
-    }
+    float x = ofRandom(bounds.x, bounds.x + boundsSize.x);
+    float y = ofRandom(bounds.y, bounds.y + boundsSize.y);
+    
+    position = ofVec2f(x, y);
     
     int index = particles.size();
-    particles.push_back(Particle(position, 1.0, index));
+    particles.push_back(Particle(position, index));
 }
 
 ofVec2f ParticleSystem::getRandom2DDirection() {
-    ofVec2f randomDirection = ofVec2f(1.0, 0.0).rotateRad(ofRandom(0, TWO_PI));
-    return randomDirection;
+    return ofVec2f(1.0, 0.0).rotateRad(ofRandom(0, TWO_PI));
 }
 
 ofVec3f ParticleSystem::getRandom3DDirection() {
@@ -194,131 +185,41 @@ ofVec3f ParticleSystem::getRandom3DDirection() {
     return randomDirection;
 }
 
-void ParticleSystem::pause(Boolean _pauseActive) {
-    pauseActive = _pauseActive;
-}
-
-void ParticleSystem::nextFrame() {
-    nextFrameActive = true;
-}
-
-void ParticleSystem::saveSvg() {
-    exportFrameActive = true;
-}
-
-// mouse input
-void ParticleSystem::mouseInput(int x, int y, int button, Boolean active) {
-    mouseInputActive = active;
-    mouseButton = button;
-    mouseInput(x, y);
-}
-
-void ParticleSystem::mouseInput(int x, int y) {
-    mousePosition = ofVec2f(x, y);
-}
-
-void ParticleSystem::setPresence(float _x, float _width) {
-    float x1 = _x;
-    float x2 = _x;
-    float y1 = 0;
-    float y2 = systemHeight;
-
-    presenceBoundary.clear();
-    presenceBoundary.addVertex(ofVec3f(x1, y1));
-    presenceBoundary.addVertex(ofVec3f(x2, y2));
-    presenceBoundary.close();
-        
-    presenceWidth = _width;
-}
-
 // setters
 void ParticleSystem::setNumberParticles(int number) {
     if (number > particles.size()) {
         while (particles.size() < number) {
             addParticle();
         }
-        spatialLookup.resize(particles.size());
-        startIndices.resize(particles.size());
-        connectionsSpatialLookup.resize(particles.size());
-        connectionsStartIndices.resize(particles.size());
-        setMode(drawModeInt);
     }
+    
     if (number < particles.size()) {
         while (particles.size() > number) {
             particles.pop_back();
         }
-        spatialLookup.resize(particles.size());
-        startIndices.resize(particles.size());
-        connectionsSpatialLookup.resize(particles.size());
-        connectionsStartIndices.resize(particles.size());
-        setMode(drawModeInt);
     }
+    
+    int hashTableSize = particles.size() * 2;
+    influenceSpatialLookup.resize(particles.size());
+    influenceStartIndices.resize(hashTableSize, INT_MAX);
+    
+    connectionsSpatialLookup.resize(particles.size());
+    connectionsStartIndices.resize(hashTableSize, INT_MAX);
+
+    setMode(drawModeInt);
 }
 
 void ParticleSystem::setBoundsSize(ofVec3f _boundsSize) {
-    center.x = systemWidth / 2.0;
-    center.y = systemHeight / 2.0;
+    center.x = width / 2.0;
+    center.y = height / 2.0;
     boundsSize = _boundsSize;
     bounds.x = center.x - boundsSize.x / 2.0;
     bounds.y = center.y  - boundsSize.y / 2.0;
-    bounds.z = center.x - boundsSize.z / 2.0;
     
-    xBounds = ofVec2f(bounds.x, bounds.x + boundsSize.x);
     xBounds = ofVec2f(bounds.x, bounds.x + boundsSize.x);
     yBounds = ofVec2f(bounds.y, bounds.y + boundsSize.y);
-    zBounds = ofVec2f(bounds.z, bounds.z + boundsSize.z);
 }
 
-void ParticleSystem::setRadius(float _radius) {
-    for (int i = 0; i < particles.size(); i++) {
-        particles[i].setRadius(_radius);
-    }
-    kernels.calculate3DVolumesFromRadius(_radius);
-    radius = _radius;
-}
-
-void ParticleSystem::setGravityRotation(ofVec2f _gravityRotation) {
-    gravityForce = _gravityRotation * gravityMultiplier;
-}
-
-void ParticleSystem::setGravityMultiplier(float _gravityMultiplier) {
-    gravityMultiplier = _gravityMultiplier;
-}
-
-void ParticleSystem::setDeltaTime(float _deltaTime) {
-    deltaTime = _deltaTime;
-}
-
-void ParticleSystem::setCollisionDamping(float _collisionDamping) {
-    collisionDamping = _collisionDamping;
-}
-
-void ParticleSystem::setTargetDensity(float _targetDensity) {
-    targetDensity = _targetDensity;
-}
-
-void ParticleSystem::setPressureMultiplier(float _pressureMultiplier) {
-    pressureMultiplier = _pressureMultiplier;
-}
-
-void ParticleSystem::setViscosityStrength(float _viscosityStrength) {
-    viscosityStrength = _viscosityStrength;
-}
-
-void ParticleSystem::setNearPressureMultiplier(float _nearPressureMultiplier) {
-    nearPressureMultiplier = _nearPressureMultiplier;
-}
-
-void ParticleSystem::setMouseRadius(int _mouseRadius) {
-    mouseRadius = _mouseRadius;
-}
-
-void ParticleSystem::setGravityTheta(float _gravityTheta) {
-    float x = cos(_gravityTheta);
-    float y = sin(_gravityTheta);
-    
-    gravityForce = ofVec2f(x, y);
-}
 
 void ParticleSystem::setCoolColor(ofColor coolColor) {
     for (int i = 0; i < particles.size(); i++) {
@@ -384,13 +285,10 @@ void ParticleSystem::setMode(int _drawModeInt) {
     } else if (_drawModeInt == 3) {
         drawMode = LINES;
         initializeLinesMesh(particles.size());
-    }
-    else if (_drawModeInt == 4) {
-        
+    } else if (_drawModeInt == 4) {
         drawMode = POINTS;
         initializePointsMesh(particles.size());
-    }
-    else if (_drawModeInt == 5) {
+    } else if (_drawModeInt == 5) {
         // drawMode = SVG;
         // initializePointsMesh(particles.size());
     }
@@ -407,18 +305,83 @@ void ParticleSystem::setCenter(float _centerX, float _centerY) {
     centerY = _centerY;
 }
 
-void ParticleSystem::setCircleBoundary(Boolean _circleBoundaryActive) {
-    circleBoundaryActive = _circleBoundaryActive;
-}
-
-void ParticleSystem::setMouseForce(float _mouseForce) {
-    mouseForce = _mouseForce;
-}
-
 void ParticleSystem::setConnectionRadius(float _connectionRadius) {
     connectionRadius = _connectionRadius;
 }
 
 void ParticleSystem::setInnerBoundarySpace(ofPolyline _innerPolyline) {
     innerPolyline = _innerPolyline;
+}
+
+unsigned int ParticleSystem::hashCell(int cellX, int cellY) {
+    unsigned int a = u_int(cellX * 15823);
+    unsigned int b = u_int(cellY * 9737333);
+    return a + b;
+}
+
+unsigned int ParticleSystem::getKeyFromHash(unsigned int hash, int size) {
+    return hash % u_int(size);
+}
+
+pair<int, int> ParticleSystem::positionToCellCoordinate(ofVec2f position, float radius) {
+    return pair<int, int> (int(position.x / radius), int(position.y / radius));
+}
+
+vector<int> ParticleSystem::foreachPointWithinRadius(int particleIndex, float radius, vector<int> &startIndices, vector<pair<int, unsigned int>> &spatialLookup) {
+    ofVec2f position = particles[particleIndex].position;
+    
+    pair<int, int> center = positionToCellCoordinate(position, radius);
+    int centerX = center.first;
+    int centerY = center.second;
+    float squareRadius = radius * radius;
+    
+    vector<int> indicesWithinConnectionRadius;
+    
+    for (auto offsetPair : cellOffsets) {
+        int offsetX = offsetPair.x;
+        int offsetY = offsetPair.y;
+        
+        unsigned int key = getKeyFromHash(hashCell(centerX + offsetX, centerY + offsetY), startIndices.size());
+        int cellStartIndex = startIndices[key];
+        if (cellStartIndex == INT_MAX) continue;
+
+        for (int i = cellStartIndex; i < spatialLookup.size(); i++) {
+            if (spatialLookup[i].second != key) break;
+            
+            int otherParticleIndex = spatialLookup[i].first;
+            ofVec2f otherPosition = particles[otherParticleIndex].position;
+                        
+            if (otherPosition.squareDistance(position) <= squareRadius) {
+                indicesWithinConnectionRadius.push_back(otherParticleIndex);
+            }
+        }
+    }
+    
+    return indicesWithinConnectionRadius;
+}
+
+void ParticleSystem::updateSpatialLookup(float radius, vector<int> &startIndices, vector<pair<int, unsigned int>> &spatialLookup) {
+    std::fill(startIndices.begin(), startIndices.end(), INT_MAX);
+    
+    tbb::parallel_for( tbb::blocked_range<int>(0, particles.size()), [&](tbb::blocked_range<int> r) {
+        for (int i = r.begin(); i < r.end(); ++i) {
+            pair<int, int> cell = positionToCellCoordinate(particles[i].position, radius);
+            unsigned int cellKey = getKeyFromHash(hashCell(cell.first, cell.second), startIndices.size());
+            spatialLookup[i] = pair<int, unsigned int> (i, cellKey);
+        }
+    });
+    
+    tbb::parallel_sort(spatialLookup.begin(), spatialLookup.end(), [](auto &left, auto &right) {
+        return left.second < right.second;
+    });
+    
+    tbb::parallel_for( tbb::blocked_range<int>(0, particles.size()), [&](tbb::blocked_range<int> r) {
+        for (int i = r.begin(); i < r.end(); ++i) {
+            unsigned int key = spatialLookup[i].second;
+            unsigned int keyPrev = i == 0 ? UINT_MAX : spatialLookup[i - 1].second;
+            if (key != keyPrev) {
+                startIndices[key] = i;
+            }
+        }
+    });
 }
