@@ -56,7 +56,7 @@ void Emanations::setEmanation(int index, float x, float y, float blobWidth) {
 void Emanations::draw() {
     ofPushMatrix();
     ofTranslate(width / 2.0, height / 2.0);
-    // mesh.draw();
+    mesh.draw();
     glow.draw();
     ofPopMatrix();
 }

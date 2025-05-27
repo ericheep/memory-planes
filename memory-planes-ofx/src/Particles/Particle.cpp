@@ -21,6 +21,9 @@ Particle::Particle(ofVec3f _position, int _index) {
     
     minSize = 0.0;
     maxSize = 0.0;
+    targetMinSize = 0.0;
+    targetMaxSize = 0.0;
+    
     size = 0.0;
     index = _index;
     
@@ -264,6 +267,9 @@ void Particle::updateNeighbors() {
 }
 
 void Particle::setSizes() {
+    minSize = ofLerp(minSize, targetMinSize, 0.01);
+    maxSize = ofLerp(maxSize, targetMaxSize, 0.01);
+    
     lerpedMagnitude = ofLerp(lerpedMagnitude, velocity.length(), 0.1);
     
     // clip, scale, and curve

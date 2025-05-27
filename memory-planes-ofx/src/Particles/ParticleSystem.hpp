@@ -48,6 +48,7 @@ public:
     vector<int> connectionsStartIndices;
     
     void setBoundsSize(ofVec3f bounds);
+    void setBounds(ofVec2f xBounds, ofVec2f yBounds);
 
     // aesthetics
     void setMinVelocity(float minVelocity);
@@ -67,6 +68,7 @@ public:
     void setHeight(int height);
     void setConnectionRadius(float connectionRadius);
     void setInnerBoundarySpace(ofPolyline polyline);
+    void resetDistanceLookups();
     
     // spatial lookup functions
     unsigned int hashCell(int cellX, int cellY);
@@ -93,10 +95,13 @@ public:
     void initializeQuadsMesh(int numParticles);
     void initializeLinesMesh(int numParticles);
     void initializePointsMesh(int numParticles);
-
+    void resetRandom();
+    
     void saveSvg();
     
     int width, height;
+    float minVelocity, maxVelocity, minSize, maxSize, velocityCurve, lineThickness;
+    ofColor coolColor, hotColor;
     
     vector<ofVec2f> cellOffsets;
 private:

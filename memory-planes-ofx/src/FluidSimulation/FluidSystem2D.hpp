@@ -40,9 +40,7 @@ public:
     glm::vec2 getClosestPointOnLine(const glm::vec2& a, const glm::vec2& b, const glm::vec2& p);
     
     // reset functions
-    void resetRandom();
     void resetGrid(float scale);
-    void resetCircle(float scale);
     
     // setters
     void setPresence(int index, float x, float width);

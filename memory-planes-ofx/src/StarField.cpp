@@ -28,7 +28,7 @@ StarField::StarField() {
     fluidSystem.setMode(0);
     fluidSystem.setNumberParticles(numberParticles);
     fluidSystem.setHotColor(ofColor::white);
-    fluidSystem.setCoolColor(ofColor::red);
+    fluidSystem.setCoolColor(ofColor::white);
 }
 
 void StarField::update() {
@@ -99,11 +99,6 @@ void StarField::setDrawMode(int & drawMode) {
 
 void StarField::setNumberParticles(int & numberParticles) {
     fluidSystem.setNumberParticles(numberParticles);
-    fluidSystem.setVelocityCurve(velocityCurve);
-    fluidSystem.setMinSize(minSize);
-    fluidSystem.setMaxSize(maxSize);
-    fluidSystem.setMinVelocity(minVelocity);
-    fluidSystem.setMaxVelocity(maxVelocity);
 }
 
 void StarField::setTimeScalar(float & timeScalar) {

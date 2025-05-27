@@ -307,16 +307,6 @@ void FluidSystem2D::resolveCollisions(int particleIndex) {
     }
 }
 
-// reset particles
-void FluidSystem2D::resetRandom() {
-    for (int i = 0; i < particles.size(); ++i) {
-        float x = ofRandom(bounds.x, bounds.x + boundsSize.x);
-        float y = ofRandom(bounds.y, bounds.y + boundsSize.y);
-        particles[i].position = ofVec2f(x, y);
-        particles[i].velocity = getRandom2DDirection();
-    }
-}
-
 void FluidSystem2D::resetGrid(float scale) {
     int rows = ceil(pow(particles.size(), 0.5));
     int cols = ceil(pow(particles.size(), 0.5));

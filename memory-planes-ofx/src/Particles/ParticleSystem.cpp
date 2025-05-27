@@ -158,15 +158,38 @@ void ParticleSystem::draw() {
 
 // create particles
 void ParticleSystem::addParticle() {
-    ofVec2f position;
-    
     float x = ofRandom(bounds.x, bounds.x + boundsSize.x);
     float y = ofRandom(bounds.y, bounds.y + boundsSize.y);
     
-    position = ofVec2f(x, y);
-    
+    addParticle(ofVec2f(x, y));
+}
+
+// create particles
+void ParticleSystem::addParticle(ofVec3f position) {
     int index = particles.size();
-    particles.push_back(Particle(position, index));
+    
+    Particle particle = Particle(position, index);
+    particle.coolColor = coolColor;
+    particle.hotColor = hotColor;
+    particle.lineThickness = lineThickness;
+    particle.velocityCurve = velocityCurve;
+    particle.targetMinSize = minSize;
+    particle.targetMaxSize = maxSize;
+    particle.minVelocity = minVelocity;
+    particle.maxVelocity = maxVelocity;
+    
+    particles.push_back(particle);
+}
+
+void ParticleSystem::resetDistanceLookups() {
+    int hashTableSize = particles.size() * 2;
+    influenceSpatialLookup.resize(particles.size());
+    influenceStartIndices.resize(hashTableSize, INT_MAX);
+    
+    connectionsSpatialLookup.resize(particles.size());
+    connectionsStartIndices.resize(hashTableSize, INT_MAX);
+
+    setMode(drawModeInt);
 }
 
 ofVec2f ParticleSystem::getRandom2DDirection() {
@@ -199,73 +222,84 @@ void ParticleSystem::setNumberParticles(int number) {
         }
     }
     
-    int hashTableSize = particles.size() * 2;
-    influenceSpatialLookup.resize(particles.size());
-    influenceStartIndices.resize(hashTableSize, INT_MAX);
-    
-    connectionsSpatialLookup.resize(particles.size());
-    connectionsStartIndices.resize(hashTableSize, INT_MAX);
-
-    setMode(drawModeInt);
+    resetDistanceLookups();
 }
 
 void ParticleSystem::setBoundsSize(ofVec3f _boundsSize) {
     center.x = width / 2.0;
     center.y = height / 2.0;
+    
     boundsSize = _boundsSize;
     bounds.x = center.x - boundsSize.x / 2.0;
-    bounds.y = center.y  - boundsSize.y / 2.0;
+    bounds.y = center.y - boundsSize.y / 2.0;
     
     xBounds = ofVec2f(bounds.x, bounds.x + boundsSize.x);
     yBounds = ofVec2f(bounds.y, bounds.y + boundsSize.y);
 }
 
+void ParticleSystem::setBounds(ofVec2f _xBounds, ofVec2f _yBounds) {
+    boundsSize = ofVec3f(_xBounds.y - _xBounds.x, _yBounds.y - _yBounds.x, 0);
+    
+    bounds.x = _xBounds.x;
+    bounds.y = _yBounds.x;
+    
+    xBounds = _xBounds;
+    yBounds = _yBounds;
+}
 
-void ParticleSystem::setCoolColor(ofColor coolColor) {
+void ParticleSystem::setCoolColor(ofColor _coolColor) {
+    coolColor = _coolColor;
     for (int i = 0; i < particles.size(); i++) {
         particles[i].coolColor = coolColor;
     }
 }
 
-void ParticleSystem::setHotColor(ofColor hotColor) {
+void ParticleSystem::setHotColor(ofColor _hotColor) {
+    hotColor = _hotColor;
     for (int i = 0; i < particles.size(); i++) {
         particles[i].hotColor = hotColor;
     }
 }
 
-void ParticleSystem::setMinVelocity(float minVelocity) {
+void ParticleSystem::setMinVelocity(float _minVelocity) {
+    minVelocity = _minVelocity;
     for (int i = 0; i < particles.size(); i++) {
         particles[i].minVelocity = minVelocity;
     }
 }
 
-void ParticleSystem::setMaxVelocity(float maxVelocity) {
+void ParticleSystem::setMaxVelocity(float _maxVelocity) {
+    maxVelocity = _maxVelocity;
     for (int i = 0; i < particles.size(); i++) {
         particles[i].maxVelocity = maxVelocity;
     }
 }
 
-void ParticleSystem::setLineThickness(float lineThickness) {
+void ParticleSystem::setLineThickness(float _lineThickness) {
+    lineThickness = _lineThickness;
     for (int i = 0; i < particles.size(); i++) {
         particles[i].lineThickness = lineThickness;
     }
 }
 
-void ParticleSystem::setVelocityCurve(float velocityCurve) {
+void ParticleSystem::setVelocityCurve(float _velocityCurve) {
+    velocityCurve = _velocityCurve;
     for (int i = 0; i < particles.size(); i++) {
         particles[i].velocityCurve = velocityCurve;
     }
 }
 
-void ParticleSystem::setMinSize(float minSize) {
+void ParticleSystem::setMinSize(float _minSize) {
+    minSize = _minSize;
     for (int i = 0; i < particles.size(); i++) {
-        particles[i].minSize = minSize;
+        particles[i].targetMinSize = minSize;
     }
 }
 
-void ParticleSystem::setMaxSize(float maxSize) {
+void ParticleSystem::setMaxSize(float _maxSize) {
+    maxSize = _maxSize;
     for (int i = 0; i < particles.size(); i++) {
-        particles[i].maxSize = maxSize;
+        particles[i].targetMaxSize = maxSize;
     }
 }
 
@@ -384,4 +418,14 @@ void ParticleSystem::updateSpatialLookup(float radius, vector<int> &startIndices
             }
         }
     });
+}
+
+// reset particles
+void ParticleSystem::resetRandom() {
+    for (int i = 0; i < particles.size(); ++i) {
+        float x = ofRandom(bounds.x, bounds.x + boundsSize.x);
+        float y = ofRandom(bounds.y, bounds.y + boundsSize.y);
+        particles[i].position = ofVec2f(x, y);
+        particles[i].velocity = getRandom2DDirection();
+    }
 }

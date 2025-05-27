@@ -19,6 +19,10 @@ public:
     void setPosition(ofVec2f position);
     
     ofVec2f position;
+    int numberParticles, maxNumberParticles;
+    
+    bool canAddParticle;
+    float spawnTimer, spawnTime;
 };
 
 #endif /* Attractor_hpp */

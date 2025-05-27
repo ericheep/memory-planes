@@ -21,6 +21,7 @@ public:
     float lineThickness, lineLength;
     float minVelocity, maxVelocity, velocityCurve;
     float minSize, maxSize, size;
+    float targetMinSize, targetMaxSize;
 
     // drawing variables
     float magnitude, lerpedMagnitude;
@@ -31,6 +32,7 @@ public:
     int index;
     
     ofVec3f position, velocity, predictedPosition;
+    ofVec3f acceleration;
     ofColor particleColor, coolColor, hotColor;
     
     ofMesh circleMesh, rectangleMesh, vectorMesh, lineMesh;
