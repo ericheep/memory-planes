@@ -21,13 +21,7 @@ public:
     void setPosition(ofVec2f position);
     
     ofVec2f position;
-    AttractionSystem attractionSystem;
-    
-    ofParameter<float> velocityCurve;
-    ofParameter<float> minVelocity, maxVelocity;
-    ofParameter<float> minSize, maxSize;
-    ofParameter<float> connectionRadius;
-    
+
     float width, height;
 };
 

@@ -60,6 +60,7 @@ public:
     void setRectangleOffsets();
     void setVectorOffsets();
     void setLineOffsets();
+    void setLastFrameTime(float lastFrameTime);
 
     void initializeCircleMeshes();
     void initializeRectangleMeshes();
@@ -77,6 +78,10 @@ public:
     
     void draw();
     void drawConnections();
+    
+    bool isAlive, isDying;
+    float lifetime, totalLifetime;
+    float lastFrameTime;
 private:
 };
 

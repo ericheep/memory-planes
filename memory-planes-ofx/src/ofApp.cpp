@@ -87,6 +87,8 @@ void ofApp::setup(){
     innerNoiseTime = 0.0f;
     outerNoiseTime = 0.0f;
     overallBlurRadius = 1.0f;
+    
+    state = idle;
 }
 
 void ofApp::setupWarpers() {
@@ -109,7 +111,7 @@ void ofApp::setupGui() {
     gui.setSize(140, 12);
     gui.setDefaultWidth(120);
     gui.setDefaultHeight(12);
-        
+    
     gui.add(scale.set("inner scale", 1.0, 0.0, 3.0));
     gui.add(innerBlurAmount.set("inner blur", 1.0, 0.0, 1.0));
     gui.add(innerNoiseAmount.set("inner noise", 0.0, 0.0, 1.0));
@@ -120,7 +122,7 @@ void ofApp::setupGui() {
     gui.add(outerRadialNoiseAmount.set("outer radial noise", 0.0, 0.0, 1.0));
     
     gui.add(overallBlurAmount.set("overall blur", 1.0, 0.0, 1.0));
-
+    
     // general gui settings
     gui.add(starField.numberParticles.set("number", 100, 50, 5000));
     gui.add(starField.influenceRadius.set("influence radius", 10.0, 0.5, 75.0));
@@ -135,11 +137,27 @@ void ofApp::setupGui() {
     gui.add(starField.maxVelocity.set("max velocity", 50.0, 0.0, 250.0));
     gui.add(starField.minSize.set("min size", 1.0, 0.0, 50.0));
     gui.add(starField.maxSize.set("max size", 25.0, 0.0, 100.0));
-
-    gui.add(emanations.leftBound.set("left bound", -width / 2.0, 0, -width));
-    gui.add(emanations.rightBound.set("right bound", width / 2.0, 0, width));
-    gui.add(emanations.backBound.set("back bound", -height / 2.0, 0, -height));
-    gui.add(emanations.frontBound.set("front bound", height / 2.0, 0, height));
+    
+    boundarySettings.setName("boundary settings");
+    boundarySettings.add(leftBoundsScale.set("left bound", -1.0, -2.0, -0.5));
+    boundarySettings.add(rightBoundsScale.set("right bound", 1.0, 0.5, 2.0));
+    boundarySettings.add(backBoundsScale.set("back bound", 0.0, -1.0, 0.5));
+    boundarySettings.add(frontBoundsScale.set("front bound", 1.0, 0.5, 2.0));
+    gui.add(boundarySettings);
+    
+    leftBoundsScale.addListener(this, &ofApp::setLeftBoundsScale);
+    rightBoundsScale.addListener(this, &ofApp::setRightBoundsScale);
+    backBoundsScale.addListener(this, &ofApp::setBackBoundsScale);
+    frontBoundsScale.addListener(this, &ofApp::setFrontBoundsScale);
+    
+    emanationSettings.setName("emanation settings");
+    emanationSettings.add(emanations.minSize.set("attractor min size", 5.0, 0.0, 10.0));
+    emanationSettings.add(emanations.maxSize.set("attractor max size", 10.0, 5.0, 20.0));
+    emanationSettings.add(emanations.minVelocity.set("attractor min vel", 1.0, 0.0, 10.0));
+    emanationSettings.add(emanations.maxVelocity.set("attractor max vel", 10.0, 5.0, 20.0));
+    emanationSettings.add(emanations.connectionRadius.set("attractor connection radius", 50, 0, 200.0));
+    emanationSettings.add(emanations.attractorY.set("attractor y", 0, -height / 2.0, height / 2.0));
+    gui.add(emanationSettings);
     
     simulationSettings.setName("sim settings");
     simulationSettings.add(starField.targetDensity.set("density", 1.0, 0.125, 3.0));
@@ -152,11 +170,23 @@ void ofApp::setupGui() {
 //--------------------------------------------------------------
 void ofApp::update() {
     updateOsc();
+    updateState();
     memoryPlane.update();
     
     starField.setWarp(innerWarper, outerWarper);
     starField.update();
     
+    ofPoint* points = innerWarper.getTargetPoints();
+    
+    ofPoint centroid(0, 0);
+    for (int i = 0; i < 4; i++) {
+        centroid += points[i];
+    }
+    centroid /= 4.0;
+    centroid.x -= width / 2.0;
+    centroid.y -= height / 2.0;
+    
+    emanations.setCenter(centroid);
     emanations.update();
     
     updateInnerFBO();
@@ -169,6 +199,24 @@ void ofApp::update() {
 }
 
 //--------------------------------------------------------------
+void ofApp::updateState() {
+    switch(state) {
+        case idle:
+            emanations.isAttracting = true;
+            emanations.isConverging = false;
+            break;
+        case converge:
+            emanations.isConverging = true;
+            // code block
+            break;
+        case memory:
+            emanations.isAttracting = false;
+            emanations.isConverging = false;
+
+            break;
+    }
+}
+
 void ofApp::drawFps() {
     std::stringstream strm;
     strm << setprecision(3) << "fps: " << ofGetFrameRate();
@@ -182,13 +230,13 @@ void ofApp::draw() {
     
     ofMatrix4x4 innerMatrix = innerWarper.getMatrix();
     ofMatrix4x4 outerMatrix = outerWarper.getMatrix();
-
+    
     ofPushMatrix();
     ofMultMatrix(outerMatrix);
     ofSetColor(ofColor::white);
     fboOuterBlur.draw(0, 0);
     ofPopMatrix();
-        
+    
     ofPushMatrix();
     ofMultMatrix(innerMatrix);
     ofSetColor(ofColor::white);
@@ -202,9 +250,9 @@ void ofApp::draw() {
     fboOverallBlur.draw(0, 0);
     ofDisableBlendMode();
     ofPopMatrix();
-        
+    
     ofDisableAlphaBlending();
-
+    
     drawWarpPoints(innerWarper, innerWarper.getMatrix());
     drawWarpPoints(outerWarper, outerWarper.getMatrix());
     
@@ -335,6 +383,26 @@ void ofApp::updateOverallFBO() {
     fboOverallNoise.draw(0, 0);
     overallBlur.end();
     fboOverallBlur.end();
+}
+
+void ofApp::setLeftBoundsScale(float &leftBoundsScale) {
+    emanations.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
+    starField.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
+}
+
+void ofApp::setRightBoundsScale(float &rightBoundsScale) {
+    emanations.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
+    starField.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
+}
+
+void ofApp::setBackBoundsScale(float &backBoundsScale) {
+    emanations.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
+    starField.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
+}
+
+void ofApp::setFrontBoundsScale(float &frontBoundsScale) {
+    emanations.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
+    starField.setSkew(leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale);
 }
 
 void ofApp::keyPressed(int key) {
@@ -482,8 +550,20 @@ void ofApp::updateOsc() {
             float maxFollow = m.getArgAsFloat(6);
             float noiseSpeed = m.getArgAsFloat(7);
             float octaveMultiplier = m.getArgAsFloat(8);
-                        
+            
             memoryPlane.setMemory(index, radius, theta, arcDistance, thickness, minFollow, maxFollow, noiseSpeed, octaveMultiplier);
+        }
+        
+        if (m.getAddress() == "/state") {
+            string stateString = m.getArgAsString(0);
+            
+            if (stateString == "idle") {
+                state = idle;
+            } else if (stateString == "converge") {
+                state = converge;
+            } else if (stateString == "memory") {
+                state = memory;
+            }
         }
         
         if (m.getAddress() == "/numberParticles") {
@@ -521,8 +601,9 @@ void ofApp::updateOsc() {
         if (m.getAddress() == "/presence") {
             int index = m.getArgAsInt(0);
             float x = m.getArgAsFloat(1);
-            float width = m.getArgAsFloat(2);
-            starField.setPresence(index, x, width);
+            float y = m.getArgAsFloat(2);
+            float width = m.getArgAsFloat(3);
+            starField.setPresence(index, x, y, width);
         }
         
         if (m.getAddress() == "/flip") {

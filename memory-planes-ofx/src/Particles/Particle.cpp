@@ -24,6 +24,9 @@ Particle::Particle(ofVec3f _position, int _index) {
     targetMinSize = 0.0;
     targetMaxSize = 0.0;
     
+    lifetime = 0.0;
+    totalLifetime = 1.0;
+    
     size = 0.0;
     index = _index;
     
@@ -47,6 +50,9 @@ Particle::Particle(ofVec3f _position, int _index) {
     flushMesh.addVertex(ofVec3f(-9999, -9999));
     flushMesh.addVertex(ofVec3f(-9998, -9999));
     flushMesh.addVertex(ofVec3f(-9999, -9998));
+    
+    isAlive = true;
+    isDying = false;
 }
 
 void Particle::setMode(int _mode) {
@@ -121,8 +127,13 @@ void Particle::initializeLineMeshes() {
 }
 
 void Particle::updateCircleMesh() {
+    float dyingScale = 1.0;
+    if (isDying) {
+        dyingScale = 1.0 - lifetime / totalLifetime;
+    }
+    
     for (int i = 0; i < circleMesh.getNumVertices(); i++) {
-        circleMesh.setVertex(i, normalizedCircleMesh.getVertex(i) * size);
+        circleMesh.setVertex(i, normalizedCircleMesh.getVertex(i) * size * dyingScale);
     }
 }
 
@@ -203,6 +214,17 @@ void Particle::update() {
     }
     
     updateNeighbors();
+    
+    if (isDying) {
+        lifetime += lastFrameTime;
+        if (lifetime > totalLifetime) {
+            isAlive = false;
+        }
+    }
+}
+
+void Particle::setLastFrameTime(float _lastFrameTime) {
+    lastFrameTime = _lastFrameTime;
 }
 
 void Particle::updateNeighbor(int index, ofVec2f position) {
@@ -242,14 +264,16 @@ void Particle::updateNeighbors() {
         float localThickness = size * neighbors[i].progress;
         
         ofVec3f leftTop = ofVec3f(position.x + xNormal * localThickness,
-                                  position.y + yNormal * localThickness);
+                                  position.y + yNormal * localThickness,
+                                  position.z);
         
         ofVec3f leftBottom = ofVec3f(position.x - xNormal * localThickness,
-                                     position.y - yNormal * localThickness);
+                                     position.y - yNormal * localThickness,
+                                     position.z);
         
         ofVec3f progressPoint  = position + (neighbors[i].position - position) * neighbors[i].progress;
         
-        ofVec3f top = ofVec3f(progressPoint.x, progressPoint.y);
+        ofVec3f top = ofVec3f(progressPoint.x, progressPoint.y, position.z);
         
         int base = connectionMesh.getNumVertices();
         

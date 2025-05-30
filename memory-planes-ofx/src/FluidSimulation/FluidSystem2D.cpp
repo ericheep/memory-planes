@@ -7,7 +7,7 @@
 
 FluidSystem2D::FluidSystem2D() {
     influenceRadius = 1.0;
-
+    
     kernels.calculate2DVolumesFromRadius(influenceRadius);
     kernels.calculate3DVolumesFromRadius(influenceRadius);
     
@@ -32,6 +32,10 @@ FluidSystem2D::FluidSystem2D() {
     gravityForce = ofVec2f(0.0, -1.0);
 }
 
+void FluidSystem2D::updatePresences(vector<Presence> &_presences) {
+    presences = _presences;
+}
+
 void FluidSystem2D::updateFluidSystem() {
     tbb::parallel_for( tbb::blocked_range<int>(0, particles.size()), [&](tbb::blocked_range<int> r) {
         for (int i = r.begin(); i < r.end(); ++i) {
@@ -42,7 +46,7 @@ void FluidSystem2D::updateFluidSystem() {
     });
     
     updateSpatialLookup(influenceRadius, influenceStartIndices, influenceSpatialLookup);
-
+    
     tbb::parallel_for( tbb::blocked_range<int>(0, particles.size()), [&](tbb::blocked_range<int> r) {
         for (int i = r.begin(); i < r.end(); ++i) {
             particles[i].indicesWithinInfluenceRadius = foreachPointWithinRadius(i, influenceRadius, influenceStartIndices, influenceSpatialLookup);
@@ -82,12 +86,10 @@ ofVec2f FluidSystem2D::calculateInteractiveForce(int particleIndex) {
     
     ofVec2f interactiveForce= ofVec2f::zero();
     
-    presenceActive = true;
-    if (presenceActive) {
-        //interactiveForce = pushParticlesAwayFromLine(presenceBoundary, particlePosition, presenceVelocity);
-        
+    for (auto &presence : presences) {
+        interactiveForce += pushParticlesAwayFromPresence(presence, particlePosition);
     }
-    
+
     return interactiveForce;
 }
 
@@ -125,20 +127,48 @@ ofVec2f FluidSystem2D::pushParticlesAwayFromPoint(ofVec2f pointA, ofVec2f pointB
     return interactiveForce;
 }
 
-ofVec2f FluidSystem2D::pushParticlesAwayFromLine(ofPolyline boundary, ofVec2f pointA, ofVec2f velocity) {
+ofVec2f FluidSystem2D::pushParticlesAwayFromPresence(Presence presence, ofVec2f pointA) {
     ofVec2f interactiveForce = ofVec2f::zero();
     
-    ofVec2f boundaryPoint = boundary.getClosestPoint(ofVec3f(pointA.x, pointA.y));
-    float distance = pointA.distance(boundaryPoint);
+    float force = 50;
+    float triangleWidth = 100;
+
+    ofPoint p = ofPoint(presence.x, presence.y);
     
-    /*if (distance < presenceWidth) {
-     ofVec2f direction = (pointA - boundaryPoint) / distance;
-     float scalarProximity = 1.0 - (distance / presenceWidth);
-     
-     interactiveForce =  direction * 20 * scalarProximity * scalarProximity;
-     }*/
+    ofPolyline triangle;
+    triangle.addVertex(p);
+    triangle.addVertex(ofPoint(p.x - triangleWidth, height));
+    triangle.addVertex(ofPoint(p.x + triangleWidth, height));
+    triangle.close();
+
+    ofVec2f boundaryPoint = triangle.getClosestPoint(ofPoint(pointA.x, pointA.y));
+    float squareDistance = pointA.squareDistance(boundaryPoint);
+    
+    if (squareDistance < presence.blobWidth * presence.blobWidth) {
+        float distance = sqrt(squareDistance);
+        ofVec2f direction = (pointA - boundaryPoint) / distance;
+        float scalarProximity = 1.0 - (distance / presence.blobWidth);
+        
+        interactiveForce =  direction * force * scalarProximity * scalarProximity;
+    }
     
     return interactiveForce;
+}
+
+ofVec2f FluidSystem2D::getClosestPointOnLineSegment(const ofVec2f& A, const ofVec2f& B, const ofVec2f& P) {
+    ofVec2f AB = B - A;
+    ofVec2f AP = P - A;
+    float ab2 = AB.lengthSquared(); // equivalent to dot(AB, AB)
+    
+    // Handle degenerate case where A and B are the same
+    if (ab2 == 0.0) return A;
+
+    float t = AP.dot(AB) / ab2;
+
+    // Clamp t to the segment [0,1]
+    t = ofClamp(t, 0.0f, 1.0f);
+
+    return A + t * AB;
 }
 
 ofVec2f FluidSystem2D::calculateExternalForce(int particleIndex) {
@@ -160,12 +190,11 @@ pair<float, float> FluidSystem2D::calculateDensity(int particleIndex, float radi
         int neighborParticleIndex = indicesWithinRadius[i];
         
         float distance = particlePosition.distance(particles[neighborParticleIndex].predictedPosition);
-
+        
         density += kernels.densityKernel(distance, radius);
         nearDensity += kernels.nearDensityKernel(distance, radius);
-        // cout << distance << " " << radius << " " << density << endl;
     }
-
+    
     return pair<float, float> (density, nearDensity);
 }
 
@@ -381,16 +410,16 @@ void FluidSystem2D::setNearPressureMultiplier(float _nearPressureMultiplier) {
     nearPressureMultiplier = _nearPressureMultiplier;
 }
 
-void FluidSystem2D::setPresence(int index, float _x, float _width) {
-    float x1 = _x;
-    float x2 = _x;
-    float y1 = 0;
-    float y2 = height;
-    
-    presenceBoundaries[index].clear();
-    presenceBoundaries[index].addVertex(ofVec3f(x1, y1));
-    presenceBoundaries[index].addVertex(ofVec3f(x2, y2));
-    presenceBoundaries[index].close();
-    
-    presenceWidths[index] = _width;
-}
+/*void FluidSystem2D::setPresence(int index, float _x, float _width) {
+ float x1 = _x;
+ float x2 = _x;
+ float y1 = 0;
+ float y2 = height;
+ 
+ presenceBoundaries[index].clear();
+ presenceBoundaries[index].addVertex(ofVec3f(x1, y1));
+ presenceBoundaries[index].addVertex(ofVec3f(x2, y2));
+ presenceBoundaries[index].close();
+ 
+ presenceWidths[index] = _width;
+ }*/

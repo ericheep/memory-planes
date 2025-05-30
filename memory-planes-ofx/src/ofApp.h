@@ -14,7 +14,7 @@
 
 #define RECEIVING_PORT 6543
 
-#define DEV_MODE true
+#define DEV_MODE false
 
 class ofApp : public ofBaseApp{
 public:
@@ -24,6 +24,7 @@ public:
     void setupWarper(ofxQuadWarp &warper, int width, int height);
     
     void update();
+    void updateState();
     void updateInnerFBO();
     void updateOuterFBO();
     void updateOverallFBO();
@@ -34,17 +35,17 @@ public:
     
     void drawFps();
     void drawWarpPoints(ofxQuadWarp warper, ofMatrix4x4 warpMatrix);
-
-    void setCalibrationMode(bool &calibrationMode);
-    void setCenterMute(bool &fresnelMute);
-    void setLeftMute(bool &leftMute);
-    void setRightMute(bool &rightMute);
     
     void exit();
     void saveWarp(const string& path, ofxQuadWarp warper);
     void loadWarp(const string& path, ofxQuadWarp &warper);
     void keyPressed(int key);
     
+    void setLeftBoundsScale(float &leftBoundsScale);
+    void setRightBoundsScale(float &rightBoundsScale);
+    void setBackBoundsScale(float &backBoundsScale);
+    void setFrontBoundsScale(float &frontBoundsScale);
+
     ofxQuadWarp innerWarper;
     ofxQuadWarp outerWarper;
     
@@ -53,6 +54,7 @@ public:
     
     ofxPanel gui;
     ofParameterGroup simulationSettings;
+    ofParameterGroup emanationSettings;
     ofParameterGroup boundarySettings;
     
     ofParameter<float> scale;
@@ -66,8 +68,13 @@ public:
     ofParameter<float> defaultOctaveMultiplier;
     ofParameter<float> defaultNoiseSpeed;
     
-    ofParameter<bool> calibrationMode;
-
+    ofParameter<float> leftBoundsScale;
+    ofParameter<float> rightBoundsScale;
+    ofParameter<float> frontBoundsScale;
+    ofParameter<float> backBoundsScale;
+        
+    enum State { idle, converge, memory };
+    State state;
 private:
     void updateOsc();
    

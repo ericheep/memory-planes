@@ -164,6 +164,13 @@ void ParticleSystem::addParticle() {
     addParticle(ofVec2f(x, y));
 }
 
+void ParticleSystem::setZ(float _z) {
+    z = _z;
+    for (auto &particle : particles) {
+        particle.position.z = z;
+    }
+}
+
 // create particles
 void ParticleSystem::addParticle(ofVec3f position) {
     int index = particles.size();
@@ -196,18 +203,6 @@ ofVec2f ParticleSystem::getRandom2DDirection() {
     return ofVec2f(1.0, 0.0).rotateRad(ofRandom(0, TWO_PI));
 }
 
-ofVec3f ParticleSystem::getRandom3DDirection() {
-    ofVec3f unitVector = ofVec3f(1.0, 0.0, 0.0);
-    
-    float rX = ofRandom(0, TWO_PI);
-    float rY = ofRandom(0, TWO_PI);
-    float rZ = ofRandom(0, TWO_PI);
-    
-    ofVec3f randomDirection = unitVector.rotateRad(rX, rY, rZ);
-    
-    return randomDirection;
-}
-
 // setters
 void ParticleSystem::setNumberParticles(int number) {
     if (number > particles.size()) {
@@ -223,6 +218,31 @@ void ParticleSystem::setNumberParticles(int number) {
     }
     
     resetDistanceLookups();
+}
+
+void ParticleSystem::removeRandomParticle() {
+    int randomIndex = ofRandom(0, particles.size() - 1);
+    particles.erase(particles.begin() + randomIndex);
+    
+    resetDistanceLookups();
+}
+
+void ParticleSystem::removeDeadParticles() {
+    int prevParticlesSize = particles.size();
+    
+    particles.erase(std::remove_if(particles.begin(), particles.end(), [](Particle& particle) {
+        return !particle.isAlive;
+    }), particles.end());
+    
+    if (prevParticlesSize != particles.size()) {
+        resetDistanceLookups();
+    }
+}
+
+void ParticleSystem::setLastFrameTime(float lastFrameTime) {
+    for (auto &particle : particles) {
+        particle.setLastFrameTime(lastFrameTime);
+    }
 }
 
 void ParticleSystem::setBoundsSize(ofVec3f _boundsSize) {

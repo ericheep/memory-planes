@@ -6,7 +6,7 @@
 #include "Neighbor.hpp"
 
 Neighbor::Neighbor() {
-    progressIncrement = 0.01;
+    progressIncrement = 0.1;
     progress = 0.0;
     isAlive = true;
     position = ofVec2f::zero();

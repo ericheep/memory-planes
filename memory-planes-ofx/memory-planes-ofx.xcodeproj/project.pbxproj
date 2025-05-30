@@ -12,6 +12,7 @@
 		0685895E2DE4C2FF00A15784 /* Attractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0685895D2DE4C2FF00A15784 /* Attractor.cpp */; };
 		068589612DE4D47500A15784 /* AttractionSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 068589602DE4D47500A15784 /* AttractionSystem.cpp */; };
 		06C9E6D72DD3E1390093306F /* Neighbor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06C9E6D62DD3E1390093306F /* Neighbor.cpp */; };
+		06DD695D2DE91F62007149C4 /* Presence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06DD695C2DE91F62007149C4 /* Presence.cpp */; };
 		"0A1DE329-A57C-4FA7-A82B-3DEA9E5CC6B3" /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "1D5598E5-95ED-4317-A492-57651831B042" /* ofxOscParameterSync.cpp */; };
 		"0B843575-E6CF-4912-B823-D4E569E0ECAB" /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "A99789BC-930F-49E4-B3CF-F447AEDECF79" /* ofxPanel.cpp */; };
 		"1000BB8C-4F08-41BB-926E-95D0EFD2A4DB" /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "E6BFBAC6-4298-4EB5-85D1-8546690BF6F3" /* OscPrintReceivedElements.cpp */; };
@@ -111,6 +112,8 @@
 		06C9E6DA2DD5B9670093306F /* noise.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = noise.frag; sourceTree = "<group>"; };
 		06C9E6DB2DD5B9670093306F /* noise.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
 		"06D71AE1-983F-4455-909D-52D7BD041C5F" /* video.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = video.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/video.hpp; sourceTree = SOURCE_ROOT; };
+		06DD695B2DE91F62007149C4 /* Presence.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Presence.hpp; sourceTree = "<group>"; };
+		06DD695C2DE91F62007149C4 /* Presence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Presence.cpp; sourceTree = "<group>"; };
 		"07359B6E-CFEA-41E7-9849-F145CFE1F8CB" /* ofxCvGrayscaleImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxCvGrayscaleImage.cpp; path = ../../../../addons/ofxOpenCv/src/ofxCvGrayscaleImage.cpp; sourceTree = SOURCE_ROOT; };
 		"07C189F0-DD1F-4DC5-BD8E-0165953DAB12" /* vec_distance.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vec_distance.hpp; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/cuda/vec_distance.hpp; sourceTree = SOURCE_ROOT; };
 		"08593E19-5E70-4F7E-A6B1-CD0353208F22" /* ofxCvContourFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxCvContourFinder.h; path = ../../../../addons/ofxOpenCv/src/ofxCvContourFinder.h; sourceTree = SOURCE_ROOT; };
@@ -2371,6 +2374,8 @@
 				"36AD401A-27C2-42A2-8AB8-200098847218" /* MemoryPlane.hpp */,
 				"A63527E8-BBDF-4D50-9839-694CC6F2B823" /* StarField.cpp */,
 				"36CF5E05-A99C-41CF-93ED-24ED71EAA7EB" /* StarField.hpp */,
+				06DD695C2DE91F62007149C4 /* Presence.cpp */,
+				06DD695B2DE91F62007149C4 /* Presence.hpp */,
 				068589512DE3A7D100A15784 /* Emanations.cpp */,
 				068589502DE3A7D100A15784 /* Emanations.hpp */,
 				0685894E2DE3A60D00A15784 /* Glow.cpp */,
@@ -2581,6 +2586,7 @@
 			files = (
 				06C9E6D72DD3E1390093306F /* Neighbor.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				06DD695D2DE91F62007149C4 /* Presence.cpp in Sources */,
 				0685894F2DE3A60D00A15784 /* Glow.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				"72F86D28-1AF2-4315-87DA-75080E363C88" /* Anchor.cpp in Sources */,

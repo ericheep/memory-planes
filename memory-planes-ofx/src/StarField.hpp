@@ -9,6 +9,7 @@
 #include "ofMain.h"
 #include "ofxQuadWarp.h"
 #include "FluidSystem2D.hpp"
+#include "Presence.hpp"
 
 class StarField {
 public:
@@ -19,14 +20,13 @@ public:
     void setWarp(ofxQuadWarp & innerWarper, ofxQuadWarp & outerWarper);
     void setSize(float width, float height);
     void setInnerSize(float innerWidth, float innerHeight);
-    
-    void setPresence(int index, float x, float width);
-    
+        
     ofPolyline innerBounds;
     FluidSystem2D fluidSystem;
     
     float width, height;
     float innerWidth, innerHeight;
+    float leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale;
     
     ofParameter<int> drawMode;
     ofParameter<int> numberParticles;
@@ -67,7 +67,13 @@ public:
     void setLineThickness(float & lineThickness);
     
     void setConnectionRadius(float & connectionRadius);
+    void setSkew(float leftBoundsScale, float rightBoundsScale, float backBoundsScale, float frontBoundsScale);
     
+    void setPresence(int index, float x, float y, float width);
+    int getPresenceVectorIndex(int index);
+    void addPresence(int index, float x, float y, float blobWidth);
+    
+    vector<Presence> presences;
 };
 
 #endif /* StarField_hpp */

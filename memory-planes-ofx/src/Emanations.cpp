@@ -6,7 +6,6 @@
 #include "Emanations.hpp"
 
 Emanations::Emanations() {
-    position = ofVec3f(0, 0, 0);
 }
 
 Emanations::Emanations(float _width, float _height) {
@@ -14,50 +13,90 @@ Emanations::Emanations(float _width, float _height) {
     height = _height;
     depth = width;
     rectangleWidth = 20;
-    glow = Glow(width, height);
+
+    position = ofVec3f(0, 0, 0);
+    
+    attractionSystem = AttractionSystem(width, height);
+    
+    ofVec2f xBounds = ofVec2f(-width / 2.0, width / 2.0);
+    ofVec2f yBounds = ofVec2f(-height / 2.0, height / 2.0);
+    attractionSystem.setBounds(xBounds * 0.25, yBounds * 0.25);
+    
+    minSize = 5.0;
+    maxSize = 10.0;
+    minVelocity = 1.0;
+    maxVelocity = 10.0;
+    velocityCurve = 1.0;
+    
+    attractionSystem.setNumberParticles(0);
+    attractionSystem.setConnectionRadius(50);
+    attractionSystem.setHotColor(ofColor::white);
+    attractionSystem.setCoolColor(ofColor::white);
+    attractionSystem.setVelocityCurve(velocityCurve);
+    attractionSystem.setMinSize(minSize);
+    attractionSystem.setMaxSize(maxSize);
+    attractionSystem.setMinVelocity(minVelocity);
+    attractionSystem.setMaxVelocity(maxVelocity);
+    attractionSystem.setMode(0);
+    
+    isConverging = false;
+    isAttracting = true;
+}
+
+void Emanations::setCenter(ofVec2f center) {
+    attractionSystem.centerAttractor.position = center;
 }
 
 void Emanations::update() {
-    glow.setPosition(position);
-    glow.update();
+    attractionSystem.updateAttractionSystem();
+    attractionSystem.updateParticleSystem();
+    attractionSystem.isConverging = isConverging;
+    attractionSystem.isAttracting = isAttracting;
+    
+    for (auto &glow : glows) {
+        glow.draw();
+    }
+}
+
+void Emanations::setAttractorY(float &attractorY) {
+    for (auto &attractors : attractionSystem.attractors) {
+        attractors.position.y = attractorY;
+    }
+}
+
+void Emanations::setSkew(float _leftBoundsScale, float _rightBoundsScale, float _backBoundsScale, float _frontBoundsScale) {
+    leftBoundsScale = _leftBoundsScale;
+    rightBoundsScale = _rightBoundsScale;
+    backBoundsScale = _backBoundsScale;
+    frontBoundsScale = _frontBoundsScale;
 }
 
 void Emanations::setEmanation(int index, float x, float y, float blobWidth) {
-    position.x = x * width;
-    position.y = 0;
-    position.z = y * depth;
+    y = ofMap(y, 0.0, 1.0, backBoundsScale, frontBoundsScale);
     
-    // Create a quad as two triangles
-    mesh.clear();
-    mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+    float xScalar = cos(atan2(y, x));
+    xScalar = ofMap(xScalar, -1.0, 1.0, leftBoundsScale, rightBoundsScale);
     
-    float hw = rectangleWidth / 2.0;
-    float hh = 10;
+    ofVec2f position = ofVec3f(xScalar * width, attractorY);
     
-    ofVec3f v0 = position + ofVec3f(-hw, -hh, 0);
-    ofVec3f v1 = position + ofVec3f( hw, -hh, 0);
-    ofVec3f v2 = position + ofVec3f( hw,  hh, 0);
-    ofVec3f v3 = position + ofVec3f(-hw,  hh, 0);
-    
-    mesh.addVertex(v0);
-    mesh.addVertex(v1);
-    mesh.addVertex(v2);
-    mesh.addVertex(v3);
-    
-    mesh.addIndex(0);
-    mesh.addIndex(1);
-    mesh.addIndex(2);
-
-    mesh.addIndex(0);
-    mesh.addIndex(2);
-    mesh.addIndex(3);
+    int vectorIndex = attractionSystem.getAttractorVectorIndex(index);
+    if (vectorIndex >= 0) {
+        attractionSystem.setAttractorPosition(vectorIndex, position);
+    } else {
+        attractionSystem.addAttractor(index, position);
+    }
 }
 
 void Emanations::draw() {
     ofPushMatrix();
     ofTranslate(width / 2.0, height / 2.0);
-    mesh.draw();
-    glow.draw();
+    
+    // attractionSystem.drawAttractors();
+    attractionSystem.draw();
+    
+    for (auto &glow : glows) {
+        glow.draw();
+    }
+
     ofPopMatrix();
 }
-

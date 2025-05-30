@@ -18,19 +18,30 @@ public:
     void update();
     void draw();
     
+    void setCenter(ofVec2f center);
     void setEmanation(int index, float x, float y, float width);
+    void setAttractor(float x, float y, float width);
+    void setAttractorY(float &attractorY);
+    void setSkew(float leftBoundsScale, float rightBoundsScale, float backBoundsScale, float frontBoundsScale);
+
     void addGlow();
+    void createMesh();
     
     float width, height, depth;
     float rectangleWidth;
     ofMesh mesh;
     ofVec3f position;
-    Glow glow;
+    float leftBoundsScale, rightBoundsScale, backBoundsScale, frontBoundsScale;
     
-    ofParameter<float> leftBound;
-    ofParameter<float> rightBound;
-    ofParameter<float> frontBound;
-    ofParameter<float> backBound;
+    vector<Glow> glows;
+    AttractionSystem attractionSystem;
+    bool isConverging, isAttracting;
+    
+    ofParameter<float> velocityCurve;
+    ofParameter<float> minVelocity, maxVelocity;
+    ofParameter<float> minSize, maxSize;
+    ofParameter<float> connectionRadius;
+    ofParameter<float> attractorY;
 };
 
 #endif /* Emanations_hpp */

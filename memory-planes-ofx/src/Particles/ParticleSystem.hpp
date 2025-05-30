@@ -38,6 +38,7 @@ public:
     ofVec3f boundsSize;
     ofVec3f bounds;
     float connectionRadius;
+    float lastFrameTime;
     
     ofPolyline innerPolyline;
     
@@ -60,6 +61,8 @@ public:
     void setVelocityHue(float hue);
     void setHotColor(ofColor hotColor);
     void setCoolColor(ofColor coolColor);
+    void setZ(float z);
+    void setLastFrameTime(float lastFrameTime);
     
     void setNumberParticles(int number);
     void setCenter(float centerX, float centerY);
@@ -80,8 +83,9 @@ public:
     // creation functions
     void addParticle();
     void addParticle(ofVec3f position);
+    void removeRandomParticle();
+    void removeDeadParticles();
     ofVec2f getRandom2DDirection();
-    ofVec3f getRandom3DDirection();
     
     void updateParticleSystem();
     void draw();
@@ -101,6 +105,7 @@ public:
     
     int width, height;
     float minVelocity, maxVelocity, minSize, maxSize, velocityCurve, lineThickness;
+    float z;
     ofColor coolColor, hotColor;
     
     vector<ofVec2f> cellOffsets;

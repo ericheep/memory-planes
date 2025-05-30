@@ -10,5 +10,17 @@
             "lo0:_127_0_0_1": "0"
         },
         "start_headless": "1"
+    },
+    "settings": {
+        "auto_save": "0",
+        "blob_persistence__s_": "0.1",
+        "cluster_epsilon__mm_": "100",
+        "cluster_min_points": "6",
+        "interfaces": {
+            "en0:_10_0_0_128": "0",
+            "en7:_192_168_0_15": "0",
+            "lo0:_127_0_0_1": "0"
+        },
+        "start_headless": "0"
     }
 }

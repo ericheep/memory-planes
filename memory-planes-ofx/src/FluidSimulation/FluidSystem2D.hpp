@@ -10,6 +10,7 @@
 #include "ofMain.h"
 #include "ParticleSystem.hpp"
 #include "Kernels.hpp"
+#include "Presence.hpp"
 #include "tbb/parallel_for.h"
 #include "tbb/parallel_sort.h"
 
@@ -17,12 +18,13 @@ class FluidSystem2D : public ParticleSystem {
 public:
     FluidSystem2D();
     
+    void updatePresences(vector<Presence> &presences);
     void updateFluidSystem();
 
     void resolveCollisions(int particleIndex);
     ofVec2f pushParticlesAwayFromPoint(ofVec2f pointA, ofVec2f pointB, ofVec2f velocity);
     ofVec2f pullParticlesToPoint(ofVec2f pointA, ofVec2f pointB);
-    ofVec2f pushParticlesAwayFromLine(ofPolyline line, ofVec2f pointA, ofVec2f velocity);
+    ofVec2f pushParticlesAwayFromPresence(Presence presence, ofVec2f pointA);
     
     // math
     float calculatePressureFromDensity(float density);
@@ -43,7 +45,6 @@ public:
     void resetGrid(float scale);
     
     // setters
-    void setPresence(int index, float x, float width);
     void setDeltaTime(float deltaTime);
     void setInfluenceRadius(float influenceRadius);
     void setGravityMultiplier(float gravityMultiplier);
@@ -54,15 +55,13 @@ public:
     void setViscosityStrength(float viscosityStrength);
     void setCollisionDamping(float collisionDamping);
     void setGravityTheta(float gravityTheta);
+    ofVec2f getClosestPointOnLineSegment(const ofVec2f& A, const ofVec2f& B, const ofVec2f& P);
     
     Kernels kernels;
     float influenceRadius, gravityConstant, deltaTime, collisionDamping, predictionFactor;
     float targetDensity, nearPressureMultiplier, pressureMultiplier, gravityMultiplier, timeScalar, viscosityStrength;
     
-    bool presenceActive;
-    vector<float> presenceWidths;
-    vector<ofPolyline> presenceBoundaries;
-    ofVec2f presenceVelocity;
+    vector<Presence> presences;
 private:
     vector<ofVec2f> cellOffsets;
 };
