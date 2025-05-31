@@ -14,7 +14,7 @@
 
 #define RECEIVING_PORT 6543
 
-#define DEV_MODE true
+#define DEV_MODE false
 
 class ofApp : public ofBaseApp{
 public:
@@ -49,8 +49,8 @@ public:
     ofxQuadWarp innerWarper;
     ofxQuadWarp outerWarper;
     
-    Boolean innerWarperActive;
-    Boolean outerWarperActive;
+    bool innerWarperActive;
+    bool outerWarperActive;
     
     ofxPanel gui;
     ofParameterGroup simulationSettings;

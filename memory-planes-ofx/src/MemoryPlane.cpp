@@ -11,20 +11,6 @@ MemoryPlane::MemoryPlane() {
 MemoryPlane::MemoryPlane(int _width, int _height) {
     width = _width;
     height = _height;
-    
-    // memories
-    for (int i = 0; i < 5; i++) {
-        Memory memory = Memory(width, height);
-        memory.setRadius(0.0);
-        memory.setTheta(PI * i);
-        memory.setArcDistance(0);
-        memory.setThickness(0);
-        memory.setFill(true);
-        memory.setNoiseSpeed(1.0);
-        memory.setOctaveMultiplier(1.0);
-        
-        memories.push_back(memory);
-    }
 }
 
 void MemoryPlane::update() {
@@ -89,7 +75,5 @@ void MemoryPlane::setMemory(int index, float radius, float theta, float arcDista
         memory.lifetime = 0;
 
         memories.push_back(memory);
-        
-        cout << "ADD" << index << endl;
     }
 }

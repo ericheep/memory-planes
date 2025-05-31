@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetVerticalSync(TRUE);
+    ofSetVerticalSync(true);
     ofSetFrameRate(60);
     ofEnableSmoothing();
     ofEnableAlphaBlending();
@@ -223,7 +223,7 @@ void ofApp::updateState() {
 
 void ofApp::drawFps() {
     std::stringstream strm;
-    strm << setprecision(3) << "fps: " << ofGetFrameRate();
+    strm << std::setprecision(3) << "fps: " << ofGetFrameRate();
     ofSetWindowTitle(strm.str());
 }
 

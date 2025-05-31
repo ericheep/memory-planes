@@ -21,12 +21,12 @@ Tear::Tear(int _numAnchors, int _width, int _height) {
         anchors.push_back(anchor);
     }
     
-    for (int i = 0; i < numAnchors * 3 * 2 + 2; i++) {
+    for (int i = 0; i < numAnchors * 3 * 2 + 4; i++) {
         targetValues.push_back(ofRandom(0.03, 0.15));
         targetPoints.push_back(ofVec2f::zero());
         currentPoints.push_back(ofVec2f::zero());
     }
-    
+	    
     isFilled = true;
     isFlipped = false;
 }
