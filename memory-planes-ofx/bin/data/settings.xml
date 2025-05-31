@@ -31,30 +31,30 @@
 	<noise_speed>0.9505</noise_speed>
 	<scale>1.39286</scale>
 	<shader_noise>0.0214286</shader_noise>
-	<number>100</number>
-	<influence_radius>30.8321</influence_radius>
-	<time_scalar>1</time_scalar>
+	<number>300</number>
+	<influence_radius>10</influence_radius>
+	<time_scalar>4</time_scalar>
 	<gravity_multiplier>0</gravity_multiplier>
-	<connection_radius>22.8571</connection_radius>
+	<connection_radius>10</connection_radius>
 	<draw_mode>0</draw_mode>
 	<velocity_curve>1</velocity_curve>
 	<min_velocity>2.5</min_velocity>
 	<max_velocity>3</max_velocity>
 	<min_size>1</min_size>
-	<max_size>3</max_size>
+	<max_size>1</max_size>
 	<sim_settings>
 		<density>0.7</density>
 		<pressure>1</pressure>
 		<near_pressure>1</near_pressure>
 	</sim_settings>
-	<inner_noise>1</inner_noise>
-	<outer_noise>1</outer_noise>
-	<inner_radial_noise>1</inner_radial_noise>
+	<inner_noise>0</inner_noise>
+	<outer_noise>0</outer_noise>
+	<inner_radial_noise>0</inner_radial_noise>
 	<outer_radial_noise>0</outer_radial_noise>
 	<inner_scale>1.26429</inner_scale>
-	<inner_blur>1</inner_blur>
+	<inner_blur>0</inner_blur>
 	<outer_blur>1</outer_blur>
-	<overall_blur>0.242857</overall_blur>
+	<overall_blur>1</overall_blur>
 	<left_bound>-1</left_bound>
 	<right_bound>1</right_bound>
 	<back_bound>0</back_bound>

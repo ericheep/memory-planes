@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 4,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 2691.0, 358.0, 871.0, 477.0 ],
+		"rect" : [ 45.0, 409.0, 871.0, 477.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -171,8 +171,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 494.0, 139.0, 73.0, 22.0 ],
-					"text" : "loadmess 1."
+					"patching_rect" : [ 494.0, 139.0, 80.0, 22.0 ],
+					"text" : "loadmess 0.6"
 				}
 
 			}
@@ -409,8 +409,8 @@
 					"numinlets" : 8,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 157.0, 240.0, 609.333333333333258, 22.0 ],
-					"text" : "poly~ mem.pony 5"
+					"patching_rect" : [ 157.0, 240.0, 607.0, 22.0 ],
+					"text" : "poly~ mem.pony 9"
 				}
 
 			}
@@ -422,8 +422,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 86.0, 331.0, 24.0, 24.0 ],
-					"svg" : ""
+					"patching_rect" : [ 86.0, 331.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -642,8 +641,7 @@
 				}
 
 			}
- ],
-		"originid" : "pat-1454"
+ ]
 	}
 
 }

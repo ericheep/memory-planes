@@ -14,7 +14,7 @@
 
 #define RECEIVING_PORT 6543
 
-#define DEV_MODE false
+#define DEV_MODE true
 
 class ofApp : public ofBaseApp{
 public:
@@ -73,7 +73,7 @@ public:
     ofParameter<float> frontBoundsScale;
     ofParameter<float> backBoundsScale;
         
-    enum State { idle, converge, memory };
+    enum State { idle, firefly, converge, memory };
     State state;
 private:
     void updateOsc();

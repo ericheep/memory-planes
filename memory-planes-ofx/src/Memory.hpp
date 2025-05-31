@@ -34,6 +34,10 @@ public:
     void flip(float theta);
     
     int index;
+    float lifetime, totalLifetime;
+    float birthTime, birthTimer;
+    float lastFrameTime;
+    bool isAlive;
 private:
     void drawShape(ofPolyline &polygon);
     

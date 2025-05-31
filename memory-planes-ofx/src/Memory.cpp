@@ -30,6 +30,14 @@ Memory::Memory(int _width, int _height) {
     int numAnchors = 100;
     
     tear = Tear(numAnchors, width, height);
+    lifetime = 0;
+    totalLifetime = 1.0;
+    lastFrameTime = 0.016;
+    
+    birthTimer = 0.0;
+    birthTime = 1.0;
+    
+    isAlive = true;
 }
 
 void Memory::setColor(ofColor _primaryColor) {
@@ -77,6 +85,11 @@ void Memory::flip(float _theta) {
 }
 
 void Memory::update() {
+    float birthScalar = ofMap(birthTimer, 0.0, birthTime, 0.0, 1.0, true);
+    
+    float lifetimeScalar = 1.0 - lifetime / totalLifetime;
+    lifetimeScalar = ofMap(lifetimeScalar, 0.0, 0.9, 0.0, 1.0, true);
+    
     radius = ofLerp(radius, targetRadius, follow);
     theta = ofLerp(theta, targetTheta, follow);
     arcDistance = ofLerp(arcDistance, targetArcDistance, follow);
@@ -84,8 +97,18 @@ void Memory::update() {
     noiseSpeed = ofLerp(noiseSpeed, targetNoiseSpeed, follow);
     octaveMultiplier = ofLerp(octaveMultiplier, targetOctaveMultiplier, follow);
     noiseTime += (ofGetLastFrameTime() * noiseSpeed);
+    
+    radius *= lifetimeScalar * birthScalar;
+    arcDistance *= lifetimeScalar * birthScalar;
+    thickness *= lifetimeScalar * birthScalar;
         
     updateTear(tear, 1.0);
+    
+    lifetime += lastFrameTime;
+    birthTimer += lastFrameTime;
+    if (lifetime > totalLifetime) {
+        isAlive = false;
+    }
 }
 
 void Memory::updateTear(Tear &tear, float visibility) {

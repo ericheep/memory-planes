@@ -28,9 +28,16 @@ MemoryPlane::MemoryPlane(int _width, int _height) {
 }
 
 void MemoryPlane::update() {
+    float lastFrameTime = ofGetLastFrameTime();
+    
     for (int i = 0; i < memories.size(); i++) {
+        memories[i].lastFrameTime = lastFrameTime;
         memories[i].update();
     }
+    
+    memories.erase(std::remove_if(memories.begin(), memories.end(), [](Memory& memory) {
+        return !memory.isAlive;
+    }), memories.end());
 }
 
 void MemoryPlane::draw() {
@@ -46,16 +53,43 @@ void MemoryPlane::flip(int index, float _theta) {
     }
 }
 
+int MemoryPlane::getMemoryVectorIndex(int index) {
+    for (int i = 0; i < memories.size(); i++) {
+        if (memories[i].index == index) return i;
+    }
+    
+    return -1;
+}
+
 void MemoryPlane::setMemory(int index, float radius, float theta, float arcDistance, float thickness, float minFollow, float maxFollow, float noiseSpeed, float octaveMultiplier) {
     index -= 1;
     
-    if (index >= 0 && index < memories.size()) {
-        memories[index].setRadius(radius);
-        memories[index].setTheta(theta);
-        memories[index].setArcDistance(arcDistance);
-        memories[index].setThickness(thickness);
-        memories[index].setFollow(minFollow, maxFollow);
-        memories[index].setNoiseSpeed(noiseSpeed);
-        memories[index].setOctaveMultiplier(octaveMultiplier);
+    int vectorIndex = getMemoryVectorIndex(index);
+
+    if (vectorIndex >= 0) {
+        memories[vectorIndex].setRadius(radius);
+        memories[vectorIndex].setTheta(theta);
+        memories[vectorIndex].setArcDistance(arcDistance);
+        memories[vectorIndex].setThickness(thickness);
+        memories[vectorIndex].setFollow(minFollow, maxFollow);
+        memories[vectorIndex].setNoiseSpeed(noiseSpeed);
+        memories[vectorIndex].setOctaveMultiplier(octaveMultiplier);
+        memories[vectorIndex].lifetime = 0;
+    } else {
+        Memory memory = Memory(width, height);
+        
+        memory.index = index;
+        memory.setRadius(radius);
+        memory.setTheta(theta);
+        memory.setArcDistance(arcDistance);
+        memory.setThickness(thickness);
+        memory.setFollow(minFollow, maxFollow);
+        memory.setNoiseSpeed(noiseSpeed);
+        memory.setOctaveMultiplier(octaveMultiplier);
+        memory.lifetime = 0;
+
+        memories.push_back(memory);
+        
+        cout << "ADD" << index << endl;
     }
 }

@@ -202,6 +202,10 @@ void ofApp::update() {
 void ofApp::updateState() {
     switch(state) {
         case idle:
+            emanations.isAttracting = false;
+            emanations.isConverging = false;
+            break;
+        case firefly:
             emanations.isAttracting = true;
             emanations.isConverging = false;
             break;
@@ -559,11 +563,22 @@ void ofApp::updateOsc() {
             
             if (stateString == "idle") {
                 state = idle;
+            } else if (stateString == "firefly") {
+                state = firefly;
             } else if (stateString == "converge") {
                 state = converge;
             } else if (stateString == "memory") {
                 state = memory;
             }
+        }
+        
+        if (m.getAddress() == "/presence") {
+            int index = m.getArgAsInt(0);
+            float x = m.getArgAsFloat(1);
+            float y = m.getArgAsFloat(2);
+            float width = m.getArgAsFloat(3);
+            starField.setPresence(index, x, y, width);
+            emanations.setEmanation(index, x, y, width);
         }
         
         if (m.getAddress() == "/numberParticles") {
@@ -591,33 +606,17 @@ void ofApp::updateOsc() {
         }
         
         if (m.getAddress() == "/connectionRadius") {
-            starField.maxSize = m.getArgAsFloat(0);
+            starField.connectionRadius = m.getArgAsFloat(0);
         }
         
         if (m.getAddress() == "/gravityTheta") {
             starField.gravityTheta = m.getArgAsFloat(0);
         }
         
-        if (m.getAddress() == "/presence") {
-            int index = m.getArgAsInt(0);
-            float x = m.getArgAsFloat(1);
-            float y = m.getArgAsFloat(2);
-            float width = m.getArgAsFloat(3);
-            starField.setPresence(index, x, y, width);
-        }
-        
         if (m.getAddress() == "/flip") {
             int index = m.getArgAsInt(0);
             float theta = m.getArgAsFloat(1);
             memoryPlane.flip(index, theta);
-        }
-        
-        if (m.getAddress() == "/emanation") {
-            int index = m.getArgAsInt(0);
-            float x = m.getArgAsFloat(1);
-            float y = m.getArgAsFloat(2);
-            float width = m.getArgAsFloat(3);
-            emanations.setEmanation(index, x, y, width);
         }
     }
 }

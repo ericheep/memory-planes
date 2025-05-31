@@ -20,6 +20,7 @@ public:
 
     void flip(int index, float theta);
     
+    int getMemoryVectorIndex(int index);
     void setMemory(int index, float radius, float theta, float arcDistance, float thickness, float minFollow, float maxFollow, float noiseSpeed, float octaveMultiplier);
     
 private:
