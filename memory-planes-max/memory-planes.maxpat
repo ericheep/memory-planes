@@ -208,7 +208,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 49.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 82.916664689779282, 3.311258554458618, 47.08333221077919, 18.0 ],
-									"text" : "74.0 %",
+									"text" : "72.0 %",
 									"textjustification" : 2
 								}
 
@@ -267,7 +267,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 47.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 83.0, 23.0, 46.728127256035805, 18.0 ],
-									"text" : "29.3 %",
+									"text" : "96.3 %",
 									"textjustification" : 2
 								}
 
@@ -382,7 +382,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 76.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 218.749994784593582, 3.311258554458618, 49.382719993591309, 18.0 ],
-									"text" : "5892 MB",
+									"text" : "5916 MB",
 									"textjustification" : 2
 								}
 
@@ -1079,7 +1079,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 21.0, 125.0, 136.0, 22.0 ],
+					"patching_rect" : [ 27.0, 125.0, 136.0, 22.0 ],
 					"text" : "mem.memory 1 cicadas"
 				}
 
@@ -1890,9 +1890,9 @@
 			"obj-21::obj-15" : [ "mc.live.gain~[9]", "reverb", 0 ],
 			"obj-47" : [ "mc.live.gain~", "main", 0 ],
 			"obj-49::obj-100" : [ "mc.live.gain~[15]", "memory echo", 0 ],
-			"obj-49::obj-13" : [ "mc.live.gain~[13]", "reverb", 0 ],
+			"obj-49::obj-13" : [ "mc.live.gain~[12]", "reverb", 0 ],
 			"obj-49::obj-39" : [ "mc.live.gain~[14]", "memory echo", 0 ],
-			"obj-49::obj-44" : [ "mc.live.gain~[12]", "main", 0 ],
+			"obj-49::obj-44" : [ "mc.live.gain~[13]", "main", 0 ],
 			"obj-4::obj-18::obj-56" : [ "tab", "tab", 0 ],
 			"obj-59::obj-43" : [ "vst~[1]", "vst~[1]", 0 ],
 			"obj-60" : [ "mc.live.gain~[8]", "reverb send", 0 ],
@@ -1968,7 +1968,7 @@
 				}
 ,
 				"obj-49::obj-13" : 				{
-					"parameter_longname" : "mc.live.gain~[13]"
+					"parameter_longname" : "mc.live.gain~[12]"
 				}
 ,
 				"obj-49::obj-39" : 				{
@@ -1976,7 +1976,7 @@
 				}
 ,
 				"obj-49::obj-44" : 				{
-					"parameter_longname" : "mc.live.gain~[12]"
+					"parameter_longname" : "mc.live.gain~[13]"
 				}
 ,
 				"obj-61::obj-71::obj-10" : 				{
