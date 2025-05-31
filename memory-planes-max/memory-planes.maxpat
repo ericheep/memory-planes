@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1570.0, 120.0, 861.0, 669.0 ],
+		"rect" : [ 1721.0, 193.0, 861.0, 669.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -208,7 +208,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 49.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 82.916664689779282, 3.311258554458618, 47.08333221077919, 18.0 ],
-									"text" : "72.0 %",
+									"text" : "75.0 %",
 									"textjustification" : 2
 								}
 
@@ -267,7 +267,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 47.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 83.0, 23.0, 46.728127256035805, 18.0 ],
-									"text" : "96.3 %",
+									"text" : "85.2 %",
 									"textjustification" : 2
 								}
 
@@ -382,7 +382,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 76.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 218.749994784593582, 3.311258554458618, 49.382719993591309, 18.0 ],
-									"text" : "5916 MB",
+									"text" : "5943 MB",
 									"textjustification" : 2
 								}
 
@@ -657,7 +657,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 474.0, 15.0, 274.0, 46.0 ],
+					"patching_rect" : [ 576.0, 16.0, 274.0, 46.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -1574,7 +1574,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 366.5, 42.0, 24.0, 24.0 ]
+					"patching_rect" : [ 505.0, 74.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -1584,7 +1584,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 366.5, 77.0, 84.0, 22.0 ],
+					"patching_rect" : [ 505.0, 109.0, 84.0, 22.0 ],
 					"text" : "mem.carousel"
 				}
 
@@ -2157,6 +2157,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "mem.ears.maxpat",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "mem.forLoop.maxpat",
 				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
 				"patcherrelativepath" : ".",
@@ -2178,6 +2185,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "mem.inchesToMeters.maxpat",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "mem.lidar.maxpat",
 				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
 				"patcherrelativepath" : ".",
@@ -2186,6 +2200,13 @@
 			}
 , 			{
 				"name" : "mem.memory.maxpat",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "mem.nextBlob.maxpat",
 				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -2207,6 +2228,13 @@
 			}
 , 			{
 				"name" : "mem.pony.maxpat",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "mem.reindex.maxpat",
 				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memoryPlanes-v2/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
