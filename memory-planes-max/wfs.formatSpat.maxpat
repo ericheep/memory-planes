@@ -10,22 +10,9 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 2286.0, 390.0, 792.0, 451.0 ],
+		"rect" : [ 2479.0, 458.0, 599.0, 383.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
-				"box" : 				{
-					"fontface" : 1,
-					"id" : "obj-23",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 544.0, 95.0, 239.0, 33.0 ],
-					"text" : "3 to 6m away from the array converts to \n7 to 4m in SPAT"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-4",
