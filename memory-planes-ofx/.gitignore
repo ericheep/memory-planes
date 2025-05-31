@@ -1,5 +1,6 @@
 **.DS_Store
 Makefile
+Project.xcconfig
 
 #########################
 # openFrameworks patterns
@@ -11,6 +12,8 @@ openFrameworksDebug.a
 openFrameworksUniversal.a
 libs/openFrameworksCompiled/lib/*/*
 !libs/openFrameworksCompiled/lib/*/.gitkeep
+
+**.xcodeproj
 
 # apothecary
 scripts/apothecary
