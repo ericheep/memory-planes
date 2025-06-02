@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 139.0, 248.0, 1014.0, 423.0 ],
+		"rect" : [ 118.0, 188.0, 1013.0, 424.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -101,7 +101,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 97.0, 325.0, 68.0, 22.0 ],
+					"patching_rect" : [ 27.0, 325.0, 68.0, 22.0 ],
 					"text" : "mc.stereo~"
 				}
 
@@ -1008,7 +1008,7 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-14",
-					"lastchannelcount" : 16,
+					"lastchannelcount" : 21,
 					"maxclass" : "mc.live.gain~",
 					"numinlets" : 1,
 					"numoutlets" : 4,
@@ -1240,7 +1240,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 49.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 82.916664689779282, 3.311258554458618, 47.08333221077919, 18.0 ],
-									"text" : "67.0 %",
+									"text" : "80.0 %",
 									"textjustification" : 2
 								}
 
@@ -1299,7 +1299,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 47.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 83.0, 23.0, 46.728127256035805, 18.0 ],
-									"text" : "17.0 %",
+									"text" : "67.2 %",
 									"textjustification" : 2
 								}
 
@@ -1374,7 +1374,7 @@
 									"fontface" : 1,
 									"fontsize" : 10.0,
 									"id" : "obj-77",
-									"items" : [ "None", ",", "VG278", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
+									"items" : [ "None", ",", "VG278", ",", "Sprout100", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -1414,7 +1414,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 76.0, 18.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 218.749994784593582, 3.311258554458618, 49.382719993591309, 18.0 ],
-									"text" : "1189 MB",
+									"text" : "1445 MB",
 									"textjustification" : 2
 								}
 
@@ -2610,7 +2610,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 325.0, 54.0, 22.0 ],
+					"patching_rect" : [ 27.0, 362.0, 54.0, 22.0 ],
 					"text" : "mc.dac~"
 				}
 
@@ -2793,7 +2793,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
+					"destination" : [ "obj-38", 0 ],
 					"source" : [ "obj-47", 0 ]
 				}
 
@@ -2874,7 +2874,7 @@
 			"obj-49::obj-39" : [ "mc.live.gain~[19]", "memory echo", 0 ],
 			"obj-49::obj-92" : [ "mc.live.gain~[21]", "memory echo", 0 ],
 			"obj-4::obj-18::obj-56" : [ "tab", "tab", 0 ],
-			"obj-59::obj-43" : [ "mc.vst~", "mc.vst~", 0 ],
+			"obj-59::obj-43" : [ "vst~", "vst~", 0 ],
 			"obj-60" : [ "mc.live.gain~[8]", "reverb send", 0 ],
 			"obj-61::obj-71::obj-10" : [ "live.tab[8]", "live.tab", 0 ],
 			"obj-61::obj-71::obj-14" : [ "live.toggle[3]", "live.toggle", 0 ],
