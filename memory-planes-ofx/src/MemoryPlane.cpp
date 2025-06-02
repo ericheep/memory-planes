@@ -33,10 +33,8 @@ void MemoryPlane::draw() {
 }
 
 void MemoryPlane::flip(int index, float _theta) {
-    index -= 1;
-    if (index >= 0 && index < memories.size()) {
-        memories[index].flip(_theta);
-    }
+    int vectorIndex = getMemoryVectorIndex(index);
+    if (vectorIndex > -1) memories[vectorIndex].flip(_theta);
 }
 
 int MemoryPlane::getMemoryVectorIndex(int index) {
@@ -48,11 +46,9 @@ int MemoryPlane::getMemoryVectorIndex(int index) {
 }
 
 void MemoryPlane::setMemory(int index, float radius, float theta, float arcDistance, float thickness, float minFollow, float maxFollow, float noiseSpeed, float octaveMultiplier) {
-    index -= 1;
-    
     int vectorIndex = getMemoryVectorIndex(index);
 
-    if (vectorIndex >= 0) {
+    if (vectorIndex > -1) {
         memories[vectorIndex].setRadius(radius);
         memories[vectorIndex].setTheta(theta);
         memories[vectorIndex].setArcDistance(arcDistance);

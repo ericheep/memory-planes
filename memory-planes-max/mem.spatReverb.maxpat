@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 2390.0, 488.0, 699.0, 275.0 ],
+		"rect" : [ 134.0, 172.0, 699.0, 275.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -122,7 +122,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.pan~ @inputs #1 @outputs 6 @initwith \"/panning/type knn\" @mc 1",
+					"text" : "spat5.pan~ @inputs #1 @outputs 4 @initwith \"/panning/type knn\" @mc 1",
 					"varname" : "spat5.pan~"
 				}
 

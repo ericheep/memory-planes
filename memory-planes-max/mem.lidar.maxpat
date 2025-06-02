@@ -10,15 +10,26 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1874.0, 182.0, 1000.0, 755.0 ],
+		"rect" : [ 874.0, 727.0, 260.0, 200.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 126.0, 130.0, 71.0, 22.0 ],
+					"text" : "s mem.blob"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-20",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 33.0, 138.0, 77.0, 22.0 ],
+					"patching_rect" : [ 33.0, 130.0, 77.0, 22.0 ],
 					"text" : "s mem.blobs"
 				}
 
@@ -30,20 +41,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 33.0, 102.0, 71.0, 22.0 ],
+					"patching_rect" : [ 33.0, 91.0, 71.0, 22.0 ],
 					"text" : "route /blobs"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-3",
-					"maxclass" : "newobj",
-					"numinlets" : 6,
-					"numoutlets" : 6,
-					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 188.0, 138.0, 501.0, 22.0 ],
-					"text" : "route 1 2 3 4 5"
 				}
 
 			}
@@ -54,7 +53,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 188.0, 102.0, 65.0, 22.0 ],
+					"patching_rect" : [ 126.0, 91.0, 65.0, 22.0 ],
 					"text" : "route /blob"
 				}
 
@@ -90,7 +89,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
+					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-2", 0 ]
 				}
 
