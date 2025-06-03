@@ -202,5 +202,4 @@ function checkExperiencing(oldState) {
 function setState(newState) {
 	previousState = state
 	state = newState
-	post(state)
 }

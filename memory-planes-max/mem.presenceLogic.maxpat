@@ -20,7 +20,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 111.0, 54.0, 30.0, 30.0 ]
 				}
 
@@ -33,7 +33,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 73.0, 54.0, 30.0, 30.0 ]
 				}
 
@@ -46,7 +46,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 30.0, 54.0, 30.0, 30.0 ]
 				}
 
@@ -60,7 +60,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 571.0, 367.0, 50.0, 22.0 ]
+					"patching_rect" : [ 634.0, 367.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -70,7 +70,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 571.0, 405.0, 125.0, 22.0 ],
+					"patching_rect" : [ 634.0, 405.0, 125.0, 22.0 ],
 					"text" : "s mem.stateTotalTime"
 				}
 
@@ -81,7 +81,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 439.0, 405.0, 122.0, 22.0 ],
+					"patching_rect" : [ 481.0, 405.0, 122.0, 22.0 ],
 					"text" : "s mem.stateProgress"
 				}
 
@@ -95,7 +95,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 439.0, 367.0, 50.0, 22.0 ]
+					"patching_rect" : [ 481.0, 367.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -105,7 +105,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 307.0, 405.0, 148.0, 22.0 ],
+					"patching_rect" : [ 328.0, 405.0, 148.0, 22.0 ],
 					"text" : "s mem.stateProgressTime"
 				}
 
@@ -566,7 +566,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 307.0, 367.0, 50.0, 22.0 ]
+					"patching_rect" : [ 328.0, 367.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -578,7 +578,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 190.0, 367.0, 88.0, 22.0 ],
-					"text" : "idle"
+					"text" : "finale"
 				}
 
 			}
@@ -589,7 +589,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "float", "float", "float" ],
-					"patching_rect" : [ 175.0, 315.0, 414.999999999999886, 22.0 ],
+					"patching_rect" : [ 175.0, 315.0, 478.0, 22.0 ],
 					"text" : "unpack s f f f"
 				}
 
