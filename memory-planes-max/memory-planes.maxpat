@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 154.0, 1106.0, 578.0 ],
+		"rect" : [ 58.0, 236.0, 1228.0, 539.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -166,8 +166,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 371.0, 211.0, 143.0, 22.0 ],
-					"text" : "mem.memory cicadas 43"
+					"patching_rect" : [ 371.0, 211.0, 153.0, 22.0 ],
+					"text" : "mem.memory 3 cicadas 43"
 				}
 
 			}
@@ -217,8 +217,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 199.0, 211.0, 139.0, 22.0 ],
-					"text" : "mem.memory insects 22"
+					"patching_rect" : [ 199.0, 211.0, 149.0, 22.0 ],
+					"text" : "mem.memory 2 insects 22"
 				}
 
 			}
@@ -397,7 +397,7 @@
 									"patching_rect" : [ 37.0, 125.0, 105.0, 20.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 6.0, 6.0, 139.0, 20.0 ],
-									"text" : "state: idle"
+									"text" : "state: finale"
 								}
 
 							}
@@ -1734,7 +1734,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 54.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 86.333343982696533, 8.0, 53.0, 19.0 ],
-									"text" : "69.0 %",
+									"text" : "86.0 %",
 									"textjustification" : 2
 								}
 
@@ -1793,7 +1793,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 53.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 88.333343982696533, 30.0, 51.0, 19.0 ],
-									"text" : "64.0 %",
+									"text" : "42.6 %",
 									"textjustification" : 2
 								}
 
@@ -1868,7 +1868,7 @@
 									"fontface" : 1,
 									"fontsize" : 10.0,
 									"id" : "obj-77",
-									"items" : [ "None", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
+									"items" : [ "None", ",", "VG278", ",", "Sprout100", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -1908,7 +1908,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 83.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 85.333343982696533, 52.0, 54.0, 19.0 ],
-									"text" : "2627 MB",
+									"text" : "2177 MB",
 									"textjustification" : 2
 								}
 
@@ -2554,8 +2554,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 27.0, 211.0, 136.0, 22.0 ],
-					"text" : "mem.memory cicadas 1"
+					"patching_rect" : [ 27.0, 211.0, 146.0, 22.0 ],
+					"text" : "mem.memory 1 cicadas 1"
 				}
 
 			}
@@ -3398,14 +3398,14 @@
 			"obj-21::obj-15" : [ "mc.live.gain~[9]", "reverb", 0 ],
 			"obj-24" : [ "mc.live.gain~[23]", "cicades", 0 ],
 			"obj-25::obj-112" : [ "mc.live.gain~[37]", "reverb", 0 ],
-			"obj-25::obj-13" : [ "mc.live.gain~[11]", "reverb", 0 ],
-			"obj-25::obj-39" : [ "mc.live.gain~[36]", "memory echo", 0 ],
-			"obj-25::obj-92" : [ "mc.live.gain~[38]", "memory echo", 0 ],
+			"obj-25::obj-13" : [ "mc.live.gain~[38]", "reverb", 0 ],
+			"obj-25::obj-39" : [ "mc.live.gain~[11]", "memory echo", 0 ],
+			"obj-25::obj-92" : [ "mc.live.gain~[13]", "memory echo", 0 ],
 			"obj-29" : [ "mc.live.gain~[32]", "cicades", 0 ],
-			"obj-30::obj-112" : [ "mc.live.gain~[13]", "reverb", 0 ],
+			"obj-30::obj-112" : [ "mc.live.gain~[40]", "reverb", 0 ],
 			"obj-30::obj-13" : [ "mc.live.gain~[12]", "reverb", 0 ],
-			"obj-30::obj-39" : [ "mc.live.gain~[24]", "memory echo", 0 ],
-			"obj-30::obj-92" : [ "mc.live.gain~[29]", "memory echo", 0 ],
+			"obj-30::obj-39" : [ "mc.live.gain~[14]", "memory echo", 0 ],
+			"obj-30::obj-92" : [ "mc.live.gain~[39]", "memory echo", 0 ],
 			"obj-47" : [ "mc.live.gain~", "main", 0 ],
 			"obj-49::obj-112" : [ "mc.live.gain~[35]", "reverb", 0 ],
 			"obj-49::obj-13" : [ "mc.live.gain~[6]", "reverb", 0 ],
@@ -3480,31 +3480,31 @@
 				}
 ,
 				"obj-25::obj-13" : 				{
-					"parameter_longname" : "mc.live.gain~[11]"
-				}
-,
-				"obj-25::obj-39" : 				{
-					"parameter_longname" : "mc.live.gain~[36]"
-				}
-,
-				"obj-25::obj-92" : 				{
 					"parameter_longname" : "mc.live.gain~[38]"
 				}
 ,
-				"obj-49::obj-112" : 				{
-					"parameter_longname" : "mc.live.gain~[35]"
+				"obj-25::obj-39" : 				{
+					"parameter_longname" : "mc.live.gain~[11]"
 				}
 ,
-				"obj-49::obj-13" : 				{
-					"parameter_longname" : "mc.live.gain~[6]"
+				"obj-25::obj-92" : 				{
+					"parameter_longname" : "mc.live.gain~[13]"
 				}
 ,
-				"obj-49::obj-39" : 				{
-					"parameter_longname" : "mc.live.gain~[30]"
+				"obj-30::obj-112" : 				{
+					"parameter_longname" : "mc.live.gain~[40]"
 				}
 ,
-				"obj-49::obj-92" : 				{
-					"parameter_longname" : "mc.live.gain~[34]"
+				"obj-30::obj-13" : 				{
+					"parameter_longname" : "mc.live.gain~[12]"
+				}
+,
+				"obj-30::obj-39" : 				{
+					"parameter_longname" : "mc.live.gain~[14]"
+				}
+,
+				"obj-30::obj-92" : 				{
+					"parameter_longname" : "mc.live.gain~[39]"
 				}
 ,
 				"obj-61::obj-71::obj-10" : 				{
@@ -3665,7 +3665,21 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "calculateDirection.js",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "exponentialEcho.js",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"patcherrelativepath" : ".",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "gestureDetection.js",
 				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
