@@ -10,9 +10,21 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 88.0, 168.0, 1202.0, 584.0 ],
+		"rect" : [ 88.0, 168.0, 970.0, 584.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "multichannelsignal" ],
+					"patching_rect" : [ 27.0, 463.0, 68.0, 22.0 ],
+					"text" : "mc.stereo~"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-65",
 					"maxclass" : "newobj",
@@ -1694,14 +1706,14 @@
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,
-							"parameter_shortname" : "cicadas",
+							"parameter_shortname" : "places",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4
 						}
 
 					}
 ,
-					"varname" : "mc.live.gain~[4]"
+					"varname" : "places"
 				}
 
 			}
@@ -1912,8 +1924,8 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 54.0, 19.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 86.333343982696533, 8.0, 53.0, 19.0 ],
-									"text" : "71.0 %",
+									"presentation_rect" : [ 97.0, 8.0, 53.0, 19.0 ],
+									"text" : "65.0 %",
 									"textjustification" : 2
 								}
 
@@ -1971,8 +1983,8 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 53.0, 19.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 88.333343982696533, 30.0, 51.0, 19.0 ],
-									"text" : "30.8 %",
+									"presentation_rect" : [ 99.0, 30.0, 51.0, 19.0 ],
+									"text" : "28.6 %",
 									"textjustification" : 2
 								}
 
@@ -2047,7 +2059,7 @@
 									"fontface" : 1,
 									"fontsize" : 10.0,
 									"id" : "obj-77",
-									"items" : [ "None", ",", "Dante Virtual Soundcard", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
+									"items" : [ "None", ",", "VG278", ",", "Sprout100", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -2055,7 +2067,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 40.0, 266.0, 166.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 6.0, 74.0, 133.333343982696533, 20.0 ],
+									"presentation_rect" : [ 6.0, 74.0, 144.0, 20.0 ],
 									"textcolor" : [ 0.149, 0.149, 0.149, 1.0 ]
 								}
 
@@ -2086,8 +2098,8 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 83.0, 19.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 85.333343982696533, 52.0, 54.0, 19.0 ],
-									"text" : "2635 MB",
+									"presentation_rect" : [ 96.0, 52.0, 54.0, 19.0 ],
+									"text" : "4572 MB",
 									"textjustification" : 2
 								}
 
@@ -2362,7 +2374,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 478.0, 20.0, 146.0, 103.0 ],
+					"patching_rect" : [ 478.0, 20.0, 158.0, 103.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -2715,8 +2727,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 27.0, 211.0, 146.0, 22.0 ],
-					"text" : "mem.memory 1 cicadas 1"
+					"patching_rect" : [ 27.0, 211.0, 140.0, 22.0 ],
+					"text" : "mem.memory 1 places 1"
 				}
 
 			}
@@ -3395,7 +3407,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 452.0, 54.0, 22.0 ],
+					"patching_rect" : [ 27.0, 494.0, 54.0, 22.0 ],
 					"text" : "mc.dac~"
 				}
 
@@ -3614,7 +3626,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
+					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-47", 0 ]
 				}
 
@@ -3691,6 +3703,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-28", 3 ],
 					"source" : [ "obj-60", 0 ]
 				}
@@ -3719,7 +3738,7 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-14" : [ "mc.live.gain~[16]", "cicadas", 0 ],
+			"obj-14" : [ "mc.live.gain~[16]", "places", 0 ],
 			"obj-15" : [ "mc.live.gain~[10]", "blips", 0 ],
 			"obj-1::obj-71::obj-10" : [ "live.tab[10]", "live.tab", 0 ],
 			"obj-1::obj-71::obj-14" : [ "live.toggle[4]", "live.toggle", 0 ],
@@ -3734,7 +3753,7 @@
 			"obj-47" : [ "mc.live.gain~", "main", 0 ],
 			"obj-49::obj-112" : [ "mc.live.gain~[35]", "reverb", 0 ],
 			"obj-49::obj-13" : [ "mc.live.gain~[6]", "reverb", 0 ],
-			"obj-49::obj-39" : [ "mc.live.gain~[30]", "memory echo", 0 ],
+			"obj-49::obj-39" : [ "mc.live.gain~[30]", "distortion", 0 ],
 			"obj-49::obj-92" : [ "mc.live.gain~[34]", "memory echo", 0 ],
 			"obj-4::obj-18::obj-56" : [ "tab", "tab", 0 ],
 			"obj-59::obj-43" : [ "mc.vst~", "mc.vst~", 0 ],
@@ -3755,22 +3774,6 @@
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-49::obj-112" : 				{
-					"parameter_longname" : "mc.live.gain~[35]"
-				}
-,
-				"obj-49::obj-13" : 				{
-					"parameter_longname" : "mc.live.gain~[6]"
-				}
-,
-				"obj-49::obj-39" : 				{
-					"parameter_longname" : "mc.live.gain~[30]"
-				}
-,
-				"obj-49::obj-92" : 				{
-					"parameter_longname" : "mc.live.gain~[34]"
-				}
-,
 				"obj-73::obj-19::obj-42" : 				{
 					"parameter_longname" : "mc.live.gain~[26]"
 				}
