@@ -10,9 +10,48 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 88.0, 168.0, 970.0, 584.0 ],
+		"rect" : [ 88.0, 168.0, 1220.0, 584.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-24",
+					"lastchannelcount" : 21,
+					"maxclass" : "mc.live.gain~",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "multichannelsignal", "", "float", "list" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 199.0, 243.0, 146.0, 50.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_longname" : "mc.live.gain~[4]",
+							"parameter_mmax" : 6.0,
+							"parameter_mmin" : -70.0,
+							"parameter_modmode" : 3,
+							"parameter_shortname" : "places",
+							"parameter_type" : 0,
+							"parameter_unitstyle" : 4
+						}
+
+					}
+,
+					"varname" : "places[1]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-25",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "multichannelsignal" ],
+					"patching_rect" : [ 199.0, 211.0, 148.0, 22.0 ],
+					"text" : "mem.memory 2 people 22"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
@@ -421,7 +460,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 27.0, 301.0, 535.0, 22.0 ],
+					"patching_rect" : [ 27.0, 308.0, 535.0, 22.0 ],
 					"text" : "mc.combine~ 4"
 				}
 
@@ -1925,7 +1964,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 54.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 97.0, 8.0, 53.0, 19.0 ],
-									"text" : "65.0 %",
+									"text" : "58.0 %",
 									"textjustification" : 2
 								}
 
@@ -1984,7 +2023,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 53.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 99.0, 30.0, 51.0, 19.0 ],
-									"text" : "28.6 %",
+									"text" : "17.4 %",
 									"textjustification" : 2
 								}
 
@@ -2099,7 +2138,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 83.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 96.0, 52.0, 54.0, 19.0 ],
-									"text" : "4572 MB",
+									"text" : "5144 MB",
 									"textjustification" : 2
 								}
 
@@ -3532,6 +3571,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-28", 1 ],
+					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-24", 0 ],
+					"source" : [ "obj-25", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
 					"source" : [ "obj-26", 0 ]
 				}
@@ -3558,6 +3611,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-28", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
+					"source" : [ "obj-31", 2 ]
 				}
 
 			}
@@ -3600,6 +3660,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-10", 1 ],
 					"source" : [ "obj-35", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-25", 1 ],
+					"source" : [ "obj-36", 0 ]
 				}
 
 			}
@@ -3750,6 +3817,11 @@
 			"obj-1::obj-71::obj-71" : [ "live.dial[1]", "scaling", 0 ],
 			"obj-1::obj-71::obj-81" : [ "live.text[3]", "live.text[16]", 0 ],
 			"obj-21::obj-15" : [ "mc.live.gain~[9]", "reverb", 0 ],
+			"obj-24" : [ "mc.live.gain~[4]", "places", 0 ],
+			"obj-25::obj-112" : [ "mc.live.gain~[12]", "reverb", 0 ],
+			"obj-25::obj-13" : [ "mc.live.gain~[22]", "reverb", 0 ],
+			"obj-25::obj-39" : [ "mc.live.gain~[11]", "distortion", 0 ],
+			"obj-25::obj-92" : [ "mc.live.gain~[21]", "memory echo", 0 ],
 			"obj-47" : [ "mc.live.gain~", "main", 0 ],
 			"obj-49::obj-112" : [ "mc.live.gain~[35]", "reverb", 0 ],
 			"obj-49::obj-13" : [ "mc.live.gain~[6]", "reverb", 0 ],
@@ -3774,6 +3846,22 @@
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-25::obj-112" : 				{
+					"parameter_longname" : "mc.live.gain~[12]"
+				}
+,
+				"obj-25::obj-13" : 				{
+					"parameter_longname" : "mc.live.gain~[22]"
+				}
+,
+				"obj-25::obj-39" : 				{
+					"parameter_longname" : "mc.live.gain~[11]"
+				}
+,
+				"obj-25::obj-92" : 				{
+					"parameter_longname" : "mc.live.gain~[21]"
+				}
+,
 				"obj-73::obj-19::obj-42" : 				{
 					"parameter_longname" : "mc.live.gain~[26]"
 				}
