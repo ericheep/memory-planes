@@ -28,6 +28,7 @@ void ofApp::setup(){
     
     // osc settings
     oscReceiver.setup(RECEIVING_PORT);
+    oscSender.setup("127.0.0.1", SENDING_PORT);
     
     // load shaders
     innerBlur.load("shaders/blur");
@@ -93,12 +94,12 @@ void ofApp::setup(){
 
 void ofApp::setupWarpers() {
     setupWarper(innerWarper, innerWidth, innerHeight);
-    // loadWarp("innerWarper.xml", innerWarper);
+    loadWarp("innerWarper.xml", innerWarper);
     innerWarper.hide();
     innerWarper.disableKeyboardShortcuts();
     
     setupWarper(outerWarper, width, height);
-    // loadWarp("outerWarper.xml", outerWarper);
+    loadWarp("outerWarper.xml", outerWarper);
     outerWarper.hide();
     outerWarper.disableKeyboardShortcuts();
 }
@@ -196,6 +197,12 @@ void ofApp::update() {
     innerNoiseTime += innerNoiseAmount * 0.06;
     outerNoiseTime += outerNoiseAmount * 0.06;
     overallBlurRadius = ofMap(ofNoise(ofGetElapsedTimef()) * 3.1f, 0.0f, 1.0f, 0.85f, 1.2f);
+    
+    ofxOscMessage msg;
+    msg.setAddress("/fps");
+    msg.addFloatArg(ofGetFrameRate());
+    oscSender.sendMessage(msg);
+    
 }
 
 //--------------------------------------------------------------

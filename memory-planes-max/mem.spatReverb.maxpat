@@ -44,8 +44,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 223.0, 62.0, 144.0, 22.0 ],
-					"text" : "mem.wfsReverbPositions"
+					"patching_rect" : [ 223.0, 62.0, 164.0, 22.0 ],
+					"text" : "mem.wfsReverbPositions 1 2"
 				}
 
 			}
@@ -122,7 +122,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.pan~ @inputs #1 @outputs 4 @initwith \"/panning/type knn\" @mc 1",
+					"text" : "spat5.pan~ @inputs #1 @outputs 2 @initwith \"/panning/type knn\" @mc 1",
 					"varname" : "spat5.pan~"
 				}
 

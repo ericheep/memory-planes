@@ -96,7 +96,7 @@
 										"valueof" : 										{
 											"parameter_enum" : [ "none", "focus+nonfocus", "withamplitudepanning" ],
 											"parameter_initial" : [ 2.0 ],
-											"parameter_longname" : "live.tab[6]",
+											"parameter_longname" : "live.tab[9]",
 											"parameter_mmax" : 2,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : "live.tab",
@@ -148,7 +148,7 @@
 											"parameter_enum" : [ "val1", "val2" ],
 											"parameter_initial" : [ 1.0 ],
 											"parameter_initial_enable" : 1,
-											"parameter_longname" : "live.text[2]",
+											"parameter_longname" : "live.text[3]",
 											"parameter_mmax" : 1,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : "live.text[16]",
@@ -225,7 +225,7 @@
 										"valueof" : 										{
 											"parameter_initial" : [ 100 ],
 											"parameter_initial_enable" : 1,
-											"parameter_longname" : "live.dial[15]",
+											"parameter_longname" : "live.dial[1]",
 											"parameter_mmax" : 200.0,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : "scaling",
@@ -269,7 +269,7 @@
 										"valueof" : 										{
 											"parameter_initial" : [ 100 ],
 											"parameter_initial_enable" : 1,
-											"parameter_longname" : "live.dial[9]",
+											"parameter_longname" : "live.dial[3]",
 											"parameter_mmax" : 200.0,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : "scaling",
@@ -309,7 +309,7 @@
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "vdelay", "xdelay" ],
-											"parameter_longname" : "live.tab[8]",
+											"parameter_longname" : "live.tab[10]",
 											"parameter_mmax" : 1,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : "live.tab",
@@ -355,7 +355,7 @@
 										"valueof" : 										{
 											"parameter_initial" : [ 20 ],
 											"parameter_initial_enable" : 1,
-											"parameter_longname" : "live.dial[10]",
+											"parameter_longname" : "live.dial[2]",
 											"parameter_mmax" : 1000.0,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : " ",
@@ -401,7 +401,7 @@
 										"valueof" : 										{
 											"parameter_initial" : [ 20 ],
 											"parameter_initial_enable" : 1,
-											"parameter_longname" : "live.dial[13]",
+											"parameter_longname" : "live.dial[16]",
 											"parameter_mmax" : 1000.0,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : " ",
@@ -441,7 +441,7 @@
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "nearest", "linear", "lagrange3", "allpass", "nearestXfade", "hermite3", "watte3", "bspline3", "parabolic" ],
-											"parameter_longname" : "live.menu[3]",
+											"parameter_longname" : "live.menu[4]",
 											"parameter_mmax" : 8,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : "live.menu",
@@ -499,7 +499,7 @@
 ,
 										"valueof" : 										{
 											"parameter_enum" : [ "val1", "val2" ],
-											"parameter_longname" : "live.toggle[3]",
+											"parameter_longname" : "live.toggle[4]",
 											"parameter_mmax" : 1,
 											"parameter_modmode" : 0,
 											"parameter_shortname" : "live.toggle",
@@ -757,12 +757,12 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 69.0, 82.0, 360.0, 22.0 ],
+					"patching_rect" : [ 69.0, 82.0, 353.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.viewer @initwith \"/source/number 128, /speaker/number 64\"",
+					"text" : "spat5.viewer @initwith \"/source/number 65, /speaker/number 64\"",
 					"varname" : "spat5.viewer"
 				}
 

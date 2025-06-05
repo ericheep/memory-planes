@@ -13,8 +13,9 @@
 #include "Emanations.hpp"
 
 #define RECEIVING_PORT 6543
+#define SENDING_PORT 7654
 
-#define DEV_MODE true
+#define DEV_MODE false
 
 class ofApp : public ofBaseApp{
 public:
@@ -105,7 +106,7 @@ private:
     ofFbo fboOverallNoise;
     ofFbo fboOverallRadialNoise;
     
-    // ofEasyCam cam;
+    ofxOscSender oscSender;
     ofxOscReceiver oscReceiver;
     
     ofColor primaryColor;

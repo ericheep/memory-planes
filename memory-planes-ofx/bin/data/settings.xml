@@ -32,16 +32,16 @@
 	<scale>1.39286</scale>
 	<shader_noise>0.0214286</shader_noise>
 	<number>300</number>
-	<influence_radius>10</influence_radius>
-	<time_scalar>4</time_scalar>
+	<influence_radius>29.9754</influence_radius>
+	<time_scalar>1</time_scalar>
 	<gravity_multiplier>0</gravity_multiplier>
-	<connection_radius>10</connection_radius>
+	<connection_radius>49.9508</connection_radius>
 	<draw_mode>0</draw_mode>
 	<velocity_curve>1</velocity_curve>
 	<min_velocity>2.5</min_velocity>
 	<max_velocity>3</max_velocity>
-	<min_size>1</min_size>
-	<max_size>1</max_size>
+	<min_size>1.99877</min_size>
+	<max_size>2.99754</max_size>
 	<sim_settings>
 		<density>0.7</density>
 		<pressure>1</pressure>

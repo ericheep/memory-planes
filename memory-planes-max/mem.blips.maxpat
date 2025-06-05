@@ -404,7 +404,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 79.0, 714.0, 108.0, 22.0 ],
-					"text" : "mc.send~ reverb 4"
+					"text" : "mc.send~ reverb 2"
 				}
 
 			}
@@ -423,7 +423,7 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-15",
-					"lastchannelcount" : 4,
+					"lastchannelcount" : 2,
 					"maxclass" : "mc.live.gain~",
 					"numinlets" : 1,
 					"numoutlets" : 4,

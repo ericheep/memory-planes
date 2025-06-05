@@ -10,9 +10,81 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 241.0, 149.0, 1228.0, 539.0 ],
+		"rect" : [ 88.0, 168.0, 1202.0, 584.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-65",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 227.0, 344.0, 177.0, 22.0 ],
+					"text" : "mem.wfsReverbPositions 64 65"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-64",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 884.5, 492.0, 59.0, 22.0 ],
+					"text" : "route /fps"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-63",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 853.5, 555.0, 50.0, 22.0 ],
+					"text" : "59"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-56",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 884.5, 524.0, 29.5, 22.0 ],
+					"text" : "i 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-38",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 884.5, 463.0, 97.0, 22.0 ],
+					"text" : "udpreceive 7654"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-58",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 984.0, 174.0, 83.0, 22.0 ],
+					"text" : "r mem.startup"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-57",
 					"maxclass" : "message",
@@ -20,7 +92,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 451.0, 443.0, 50.0, 22.0 ],
-					"text" : "tap"
+					"text" : "hold 0"
 				}
 
 			}
@@ -148,7 +220,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 233.5, 344.0, 77.0, 22.0 ],
+					"patching_rect" : [ 424.0, 344.0, 77.0, 22.0 ],
 					"text" : "p globalMute"
 				}
 
@@ -203,7 +275,7 @@
 				"box" : 				{
 					"id" : "obj-32",
 					"maxclass" : "newobj",
-					"numinlets" : 0,
+					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 984.0, 211.0, 214.0, 22.0 ],
 					"text" : "selectDriver \"Dante Virtual Soundcard\""
@@ -332,91 +404,13 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-29",
-					"lastchannelcount" : 21,
-					"maxclass" : "mc.live.gain~",
-					"numinlets" : 1,
-					"numoutlets" : 4,
-					"outlettype" : [ "multichannelsignal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 371.0, 243.0, 146.0, 50.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_longname" : "mc.live.gain~[32]",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 3,
-							"parameter_shortname" : "cicades",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
-						}
-
-					}
-,
-					"varname" : "mc.live.gain~[5]"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-30",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 371.0, 211.0, 153.0, 22.0 ],
-					"text" : "mem.memory 3 cicadas 43"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-28",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
+					"numinlets" : 4,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 27.0, 311.0, 363.0, 22.0 ],
-					"text" : "mc.combine~ 3"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-24",
-					"lastchannelcount" : 21,
-					"maxclass" : "mc.live.gain~",
-					"numinlets" : 1,
-					"numoutlets" : 4,
-					"outlettype" : [ "multichannelsignal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 199.0, 243.0, 146.0, 50.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_longname" : "mc.live.gain~[23]",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 3,
-							"parameter_shortname" : "cicades",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
-						}
-
-					}
-,
-					"varname" : "mc.live.gain~[1]"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-25",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 199.0, 211.0, 149.0, 22.0 ],
-					"text" : "mem.memory 2 insects 22"
+					"patching_rect" : [ 27.0, 301.0, 535.0, 22.0 ],
+					"text" : "mc.combine~ 4"
 				}
 
 			}
@@ -574,14 +568,13 @@
 								"box" : 								{
 									"fontface" : 1,
 									"id" : "obj-5",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 152.0, 125.0, 106.0, 33.0 ],
+									"patching_rect" : [ 152.0, 125.0, 106.0, 20.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 6.0, 31.0, 139.0, 20.0 ],
-									"text" : "listener: experiencing"
+									"text" : "listener: missing"
 								}
 
 							}
@@ -589,14 +582,13 @@
 								"box" : 								{
 									"fontface" : 1,
 									"id" : "obj-3",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 37.0, 125.0, 105.0, 33.0 ],
+									"patching_rect" : [ 37.0, 125.0, 105.0, 20.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 6.0, 6.0, 139.0, 20.0 ],
-									"text" : "state: converging"
+									"text" : "state: idle"
 								}
 
 							}
@@ -1702,7 +1694,7 @@
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,
-							"parameter_shortname" : "cicades",
+							"parameter_shortname" : "cicadas",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4
 						}
@@ -1921,7 +1913,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 54.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 86.333343982696533, 8.0, 53.0, 19.0 ],
-									"text" : "85.0 %",
+									"text" : "71.0 %",
 									"textjustification" : 2
 								}
 
@@ -1980,7 +1972,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 53.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 88.333343982696533, 30.0, 51.0, 19.0 ],
-									"text" : "37.7 %",
+									"text" : "30.8 %",
 									"textjustification" : 2
 								}
 
@@ -2055,7 +2047,7 @@
 									"fontface" : 1,
 									"fontsize" : 10.0,
 									"id" : "obj-77",
-									"items" : [ "None", ",", "PT-RZ570", ",", "Sprout100", ",", "Dante Virtual Soundcard", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
+									"items" : [ "None", ",", "Dante Virtual Soundcard", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -2095,7 +2087,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 83.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 85.333343982696533, 52.0, 54.0, 19.0 ],
-									"text" : "3030 MB",
+									"text" : "2635 MB",
 									"textjustification" : 2
 								}
 
@@ -2401,38 +2393,14 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-6",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 403.0, 311.0, 144.0, 22.0 ],
-					"text" : "mem.wfsReverbPositions"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-61",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 557.0, 311.0, 67.0, 22.0 ],
-					"text" : "mem.wfs 4"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-60",
-					"lastchannelcount" : 4,
+					"lastchannelcount" : 2,
 					"maxclass" : "mc.live.gain~",
 					"numinlets" : 1,
 					"numoutlets" : 4,
 					"outlettype" : [ "multichannelsignal", "", "float", "list" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 557.0, 243.0, 77.0, 50.0 ],
+					"patching_rect" : [ 543.0, 243.0, 77.0, 50.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "mc.live.gain~[8]",
@@ -2471,6 +2439,30 @@
 						"rect" : [ 134.0, 172.0, 446.0, 249.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "signal", "signal" ],
+									"patching_rect" : [ 24.0, 61.5, 74.0, 22.0 ],
+									"text" : "mc.unpack~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "multichannelsignal" ],
+									"patching_rect" : [ 24.0, 145.0, 60.0, 22.0 ],
+									"text" : "mc.pack~"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-9",
 									"maxclass" : "message",
@@ -2526,7 +2518,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "multichannelsignal" ],
 									"patching_rect" : [ 24.0, 19.0, 121.0, 22.0 ],
-									"text" : "mc.receive~ reverb 4"
+									"text" : "mc.receive~ reverb 2"
 								}
 
 							}
@@ -2544,110 +2536,92 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-47",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "multichannelsignal" ],
-									"patching_rect" : [ 24.0, 146.5, 97.0, 22.0 ],
-									"text" : "mc.interleave~ 2"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-44",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "multichannelsignal", "multichannelsignal" ],
-									"patching_rect" : [ 24.0, 61.5, 110.0, 22.0 ],
-									"text" : "mc.deinterleave~ 2"
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"autosave" : 1,
 									"bgmode" : 0,
 									"border" : 0,
 									"clickthrough" : 0,
-									"data" : 									{
-										"autosave" : 1,
-										"snapshot" : 										{
-											"filetype" : "C74Snapshot",
-											"version" : 2,
-											"minorversion" : 0,
-											"name" : "snapshotlist",
-											"origin" : "vst~",
-											"type" : "list",
-											"subtype" : "Undefined",
-											"embed" : 1,
-											"snapshot" : 											{
-												"pluginname" : "FabFilter Pro-R 2.vstinfo",
-												"plugindisplayname" : "FabFilter Pro-R 2",
-												"pluginsavedname" : "",
-												"pluginsaveduniqueid" : 1179791984,
-												"version" : 1,
-												"isbank" : 0,
-												"isbase64" : 1,
-												"blob" : "666.CMlaKA....fQPMDZ....AXjTx.G...P.....AvzatcFHPwVXzUF..........................HfWFYjPSE.....h....KzO19....7C...3ODxPS+................r9Ji8C........xBA............fdCA...............Dzo85C..............9C...3OvK.NAQnpG7KVcjoO.....A...9C...3O...f+3bDfDDH1hrOX0Ql9....9C...3O..........vzBrVPr3n.+hUGY5C....P...f+...........ZO2GAA........vO.........9C..........n8beDD.........+.........3O..........f1y8QP.........7C........f+....9C...3OMWXPAgDjmBTaxwpO...P.A...9C....P...f+....9C...3OkNkt.A....PczGvO.....A.........P...f+....9C...3OdSeVAA....vkvTtO...f.A....D....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+....7C...vO....+....7C...vO....+....7C...vO....+.....PyLyzOMyLS+....7C...................................3O.....XjTx.2.....J....vzatcFHPwVXzU1+++++A.........P.....CU2TVE.........."
-											}
-,
-											"snapshotlist" : 											{
-												"current_snapshot" : 0,
-												"entries" : [ 													{
-														"filetype" : "C74Snapshot",
-														"version" : 2,
-														"minorversion" : 0,
-														"name" : "Pro-R 2",
-														"origin" : "FabFilter Pro-R 2.vstinfo",
-														"type" : "VST",
-														"subtype" : "MidiEffect",
-														"embed" : 0,
-														"snapshot" : 														{
-															"pluginname" : "FabFilter Pro-R 2.vstinfo",
-															"plugindisplayname" : "FabFilter Pro-R 2",
-															"pluginsavedname" : "",
-															"pluginsaveduniqueid" : 1179791984,
-															"version" : 1,
-															"isbank" : 0,
-															"isbase64" : 1,
-															"blob" : "666.CMlaKA....fQPMDZ....AXjTx.G...P.....AvzatcFHPwVXzUF..........................HfWFYjPSE.....h....KzO19....7C...3ODxPS+................r9Ji8C........xBA............fdCA...............Dzo85C..............9C...3OvK.NAQnpG7KVcjoO.....A...9C...3O...f+3bDfDDH1hrOX0Ql9....9C...3O..........vzBrVPr3n.+hUGY5C....P...f+...........ZO2GAA........vO.........9C..........n8beDD.........+.........3O..........f1y8QP.........7C........f+....9C...3OMWXPAgDjmBTaxwpO...P.A...9C....P...f+....9C...3OkNkt.A....PczGvO.....A.........P...f+....9C...3OdSeVAA....vkvTtO...f.A....D....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+....7C...vO....+....7C...vO....+....7C...vO....+.....PyLyzOMyLS+....7C...................................3O.....XjTx.2.....J....vzatcFHPwVXzU1+++++A.........P.....CU2TVE.........."
-														}
-,
-														"fileref" : 														{
-															"name" : "Pro-R 2",
-															"filename" : "Pro-R 2_20250502.maxsnap",
-															"filepath" : "~/Documents/Max 9/Snapshots",
-															"filepos" : -1,
-															"snapshotfileid" : "1adf382a89cf4b851763c10a5dbfecc7"
-														}
-
-													}
- ]
-											}
-
+									"id" : "obj-43",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 8,
+									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal", "signal", "", "list", "int", "", "", "" ],
+									"patching_rect" : [ 24.0, 104.0, 160.0, 22.0 ],
+									"save" : [ "#N", "vst~", "loaduniqueid", 0, "FabFilter Pro-R 2.vst3", ";" ],
+									"saved_attribute_attributes" : 									{
+										"valueof" : 										{
+											"parameter_invisible" : 1,
+											"parameter_longname" : "mc.vst~",
+											"parameter_modmode" : 0,
+											"parameter_shortname" : "mc.vst~",
+											"parameter_type" : 3
 										}
 
 									}
 ,
-									"enablehscroll" : 0,
-									"enablevscroll" : 0,
-									"id" : "obj-43",
-									"lockeddragscroll" : 0,
-									"lockedsize" : 0,
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 9,
-									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "multichannelsignal", "multichannelsignal", "", "", "", "", "", "", "" ],
-									"patching_rect" : [ 24.0, 104.0, 189.0, 22.0 ],
 									"saved_object_attributes" : 									{
+										"enablevscroll" : 0,
 										"parameter_enable" : 1,
 										"parameter_mappable" : 0
 									}
 ,
-									"text" : "mc.vst~ \"FabFilter Pro-R 2.vst3\" 2",
+									"snapshot" : 									{
+										"filetype" : "C74Snapshot",
+										"version" : 2,
+										"minorversion" : 0,
+										"name" : "snapshotlist",
+										"origin" : "vst~",
+										"type" : "list",
+										"subtype" : "Undefined",
+										"embed" : 1,
+										"snapshot" : 										{
+											"pluginname" : "FabFilter Pro-R 2.vstinfo",
+											"plugindisplayname" : "FabFilter Pro-R 2",
+											"pluginsavedname" : "",
+											"pluginsaveduniqueid" : 1179791984,
+											"version" : 1,
+											"isbank" : 0,
+											"isbase64" : 1,
+											"blob" : "863.CMlaKA....fQPMDZ....AXjTx.G...P.....APTYlEVcrQGHSUFczklamA...................LvHFYjPSE.....h........+.........vO....+.....flYloO.....LyLy7C........xBA............fdCA...............PxID1C..............9C...3O+ofd.A8eT6KeCuqO...f+....9C...3O...f+HwowDDRODruLiXh9.........3O..........f1y8QP.........7C........f+...........ZO2GAA........vO.........9C..........n8beDD.........+.........3O..........f1y8QP.........7C........f+...........ZO2KAA....7JMfwO.........9C....P...f+....9C...3Ob+LVAA....L...vO...f.A...9C....P...f+....9C...3O9j5DAA..PB7pk+rO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+....7C...vO....+....7C...vO....+....7C...vO....+.....PyLyzOMyLS+....7C...................................3O.....XjTx.2.....O....PTYlEVcrQGHSUFczklam8++++e..........D....vP0MkUA....L....fA....AUEUH8jTI....XTXhYTZrQWYxs.....QEM0PRkDTTkzSNcG....Unk1bfj1bfPGZkABYkYVX0wFcf.mbkMWYzAhYuIGHPI2asHEHxvBH2gVZigFHoMGHr8VXjUFYfX1axARY1Ulb4AhakcGHo41bzElaiUlKJnfQkUFafXlbkUFHz8FHiU2bz8VaooWYfjFcfD1bfj2a0ABaosVYgP.....UAczTS....PVYlEVcrQGKnEFarwRakQVZ00F"
+										}
+,
+										"snapshotlist" : 										{
+											"current_snapshot" : 0,
+											"entries" : [ 												{
+													"filetype" : "C74Snapshot",
+													"version" : 2,
+													"minorversion" : 0,
+													"name" : "Pro-R 2",
+													"origin" : "FabFilter Pro-R 2.vstinfo",
+													"type" : "VST",
+													"subtype" : "MidiEffect",
+													"embed" : 0,
+													"snapshot" : 													{
+														"pluginname" : "FabFilter Pro-R 2.vstinfo",
+														"plugindisplayname" : "FabFilter Pro-R 2",
+														"pluginsavedname" : "",
+														"pluginsaveduniqueid" : 1179791984,
+														"version" : 1,
+														"isbank" : 0,
+														"isbase64" : 1,
+														"blob" : "863.CMlaKA....fQPMDZ....AXjTx.G...P.....APTYlEVcrQGHSUFczklamA...................LvHFYjPSE.....h........+.........vO....+.....flYloO.....LyLy7C........xBA............fdCA...............PxID1C..............9C...3O+ofd.A8eT6KeCuqO...f+....9C...3O...f+HwowDDRODruLiXh9.........3O..........f1y8QP.........7C........f+...........ZO2GAA........vO.........9C..........n8beDD.........+.........3O..........f1y8QP.........7C........f+...........ZO2KAA....7JMfwO.........9C....P...f+....9C...3Ob+LVAA....L...vO...f.A...9C....P...f+....9C...3O9j5DAA..PB7pk+rO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+...........ZO2GAA........vO.........9C....P...f+....7C...vO....+....7C...vO....+....7C...vO....+.....PyLyzOMyLS+....7C...................................3O.....XjTx.2.....O....PTYlEVcrQGHSUFczklam8++++e..........D....vP0MkUA....L....fA....AUEUH8jTI....XTXhYTZrQWYxs.....QEM0PRkDTTkzSNcG....Unk1bfj1bfPGZkABYkYVX0wFcf.mbkMWYzAhYuIGHPI2asHEHxvBH2gVZigFHoMGHr8VXjUFYfX1axARY1Ulb4AhakcGHo41bzElaiUlKJnfQkUFafXlbkUFHz8FHiU2bz8VaooWYfjFcfD1bfj2a0ABaosVYgP.....UAczTS....PVYlEVcrQGKnEFarwRakQVZ00F"
+													}
+,
+													"fileref" : 													{
+														"name" : "Pro-R 2",
+														"filename" : "Pro-R 2_20250502.maxsnap",
+														"filepath" : "~/Documents/Max 9/Snapshots",
+														"filepos" : -1,
+														"snapshotfileid" : "1adf382a89cf4b851763c10a5dbfecc7"
+													}
+
+												}
+ ]
+										}
+
+									}
+,
+									"text" : "vst~ \"FabFilter Pro-R 2.vst3\"",
 									"varname" : "mc.vst~",
 									"viewvisibility" : 0
 								}
@@ -2656,43 +2630,43 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
-									"destination" : [ "obj-44", 0 ],
+									"destination" : [ "obj-2", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
 									"source" : [ "obj-3", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-47", 1 ],
-									"source" : [ "obj-43", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-47", 0 ],
-									"source" : [ "obj-43", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-43", 1 ],
-									"source" : [ "obj-44", 1 ]
+									"source" : [ "obj-4", 1 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-43", 0 ],
-									"source" : [ "obj-44", 0 ]
+									"source" : [ "obj-4", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-2", 0 ],
-									"source" : [ "obj-47", 0 ]
+									"destination" : [ "obj-1", 1 ],
+									"source" : [ "obj-43", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-43", 0 ]
 								}
 
 							}
@@ -2729,7 +2703,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 557.0, 211.0, 53.0, 22.0 ],
+					"patching_rect" : [ 543.0, 211.0, 53.0, 22.0 ],
 					"text" : "p reverb"
 				}
 
@@ -3433,7 +3407,7 @@
 					"maxdynamicnodes" : 7,
 					"nodecolor" : [ 0.964705882352941, 0.784313725490196, 0.956862745098039, 1.0 ],
 					"nodenumber" : 5,
-					"nodesnames" : [ "1", "2", "3", "4", "5" ],
+					"nodesnames" : [ " ", " ", " ", " ", " " ],
 					"nsize" : [ 0.05, 0.05, 0.05, 0.05, 0.05 ],
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -3443,8 +3417,8 @@
 					"pointcolor" : [ 0.964705882352941, 0.784313725490196, 0.956862745098039, 1.0 ],
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"varname" : "nodes",
-					"xplace" : [ 0.38777856528759, 0.0, 0.0, 0.0, 0.0 ],
-					"yplace" : [ 0.281116437911987, 0.0, 0.0, 0.0, 0.0 ]
+					"xplace" : [ 0.0, 0.0, 0.0, 0.0, 0.0 ],
+					"yplace" : [ 0.0, 0.0, 0.0, 0.0, 0.0 ]
 				}
 
 			}
@@ -3483,7 +3457,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
 					"patching_rect" : [ 27.0, 344.0, 73.0, 22.0 ],
-					"text" : "mem.wfs 63"
+					"text" : "mem.wfs 65"
 				}
 
 			}
@@ -3546,20 +3520,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-28", 1 ],
-					"source" : [ "obj-24", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
-					"source" : [ "obj-25", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
 					"source" : [ "obj-26", 0 ]
 				}
@@ -3586,34 +3546,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-28", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-28", 2 ],
-					"source" : [ "obj-29", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-29", 0 ],
-					"source" : [ "obj-30", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-25", 0 ],
-					"source" : [ "obj-31", 2 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-30", 0 ],
-					"source" : [ "obj-31", 4 ]
 				}
 
 			}
@@ -3654,13 +3586,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-30", 1 ],
-					"source" : [ "obj-34", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-10", 1 ],
 					"source" : [ "obj-35", 0 ]
 				}
@@ -3668,15 +3593,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-25", 1 ],
-					"source" : [ "obj-36", 0 ]
+					"destination" : [ "obj-10", 2 ],
+					"source" : [ "obj-37", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 2 ],
-					"source" : [ "obj-37", 0 ]
+					"destination" : [ "obj-64", 0 ],
+					"source" : [ "obj-38", 0 ]
 				}
 
 			}
@@ -3745,6 +3670,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-63", 1 ],
+					"source" : [ "obj-56", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-32", 0 ],
+					"source" : [ "obj-58", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-60", 0 ],
 					"source" : [ "obj-59", 0 ]
 				}
@@ -3752,23 +3691,22 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-61", 1 ],
-					"source" : [ "obj-6", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-61", 0 ],
+					"destination" : [ "obj-28", 3 ],
 					"source" : [ "obj-60", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-47", 0 ],
-					"midpoints" : [ 566.5, 380.87109375, 39.0, 380.87109375, 39.0, 387.0, 36.5, 387.0 ],
-					"source" : [ "obj-61", 0 ]
+					"destination" : [ "obj-56", 0 ],
+					"source" : [ "obj-64", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 1 ],
+					"source" : [ "obj-65", 0 ]
 				}
 
 			}
@@ -3781,7 +3719,7 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-14" : [ "mc.live.gain~[16]", "cicades", 0 ],
+			"obj-14" : [ "mc.live.gain~[16]", "cicadas", 0 ],
 			"obj-15" : [ "mc.live.gain~[10]", "blips", 0 ],
 			"obj-1::obj-71::obj-10" : [ "live.tab[10]", "live.tab", 0 ],
 			"obj-1::obj-71::obj-14" : [ "live.toggle[4]", "live.toggle", 0 ],
@@ -3793,33 +3731,14 @@
 			"obj-1::obj-71::obj-71" : [ "live.dial[1]", "scaling", 0 ],
 			"obj-1::obj-71::obj-81" : [ "live.text[3]", "live.text[16]", 0 ],
 			"obj-21::obj-15" : [ "mc.live.gain~[9]", "reverb", 0 ],
-			"obj-24" : [ "mc.live.gain~[23]", "cicades", 0 ],
-			"obj-25::obj-112" : [ "mc.live.gain~[37]", "reverb", 0 ],
-			"obj-25::obj-13" : [ "mc.live.gain~[38]", "reverb", 0 ],
-			"obj-25::obj-39" : [ "mc.live.gain~[11]", "memory echo", 0 ],
-			"obj-25::obj-92" : [ "mc.live.gain~[13]", "memory echo", 0 ],
-			"obj-29" : [ "mc.live.gain~[32]", "cicades", 0 ],
-			"obj-30::obj-112" : [ "mc.live.gain~[40]", "reverb", 0 ],
-			"obj-30::obj-13" : [ "mc.live.gain~[12]", "reverb", 0 ],
-			"obj-30::obj-39" : [ "mc.live.gain~[14]", "memory echo", 0 ],
-			"obj-30::obj-92" : [ "mc.live.gain~[39]", "memory echo", 0 ],
 			"obj-47" : [ "mc.live.gain~", "main", 0 ],
 			"obj-49::obj-112" : [ "mc.live.gain~[35]", "reverb", 0 ],
 			"obj-49::obj-13" : [ "mc.live.gain~[6]", "reverb", 0 ],
 			"obj-49::obj-39" : [ "mc.live.gain~[30]", "memory echo", 0 ],
 			"obj-49::obj-92" : [ "mc.live.gain~[34]", "memory echo", 0 ],
 			"obj-4::obj-18::obj-56" : [ "tab", "tab", 0 ],
-			"obj-59::obj-43" : [ "mc.vst~[1]", "mc.vst~[1]", 0 ],
+			"obj-59::obj-43" : [ "mc.vst~", "mc.vst~", 0 ],
 			"obj-60" : [ "mc.live.gain~[8]", "reverb send", 0 ],
-			"obj-61::obj-71::obj-10" : [ "live.tab[8]", "live.tab", 0 ],
-			"obj-61::obj-71::obj-14" : [ "live.toggle[3]", "live.toggle", 0 ],
-			"obj-61::obj-71::obj-18" : [ "live.tab[6]", "live.tab", 0 ],
-			"obj-61::obj-71::obj-26" : [ "live.menu[3]", "live.menu", 0 ],
-			"obj-61::obj-71::obj-28" : [ "live.dial[13]", " ", 0 ],
-			"obj-61::obj-71::obj-32" : [ "live.dial[10]", " ", 0 ],
-			"obj-61::obj-71::obj-41" : [ "live.dial[9]", "scaling", 0 ],
-			"obj-61::obj-71::obj-71" : [ "live.dial[15]", "scaling", 0 ],
-			"obj-61::obj-71::obj-81" : [ "live.text[2]", "live.text[16]", 0 ],
 			"obj-73::obj-100" : [ "mc.live.gain~[20]", "memory echo", 0 ],
 			"obj-73::obj-19::obj-42" : [ "mc.live.gain~[26]", "blob", 0 ],
 			"obj-73::obj-19::obj-43" : [ "mc.live.gain~[1]", "blob", 0 ],
@@ -3836,108 +3755,20 @@
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-1::obj-71::obj-10" : 				{
-					"parameter_longname" : "live.tab[10]"
+				"obj-49::obj-112" : 				{
+					"parameter_longname" : "mc.live.gain~[35]"
 				}
 ,
-				"obj-1::obj-71::obj-14" : 				{
-					"parameter_longname" : "live.toggle[4]"
+				"obj-49::obj-13" : 				{
+					"parameter_longname" : "mc.live.gain~[6]"
 				}
 ,
-				"obj-1::obj-71::obj-18" : 				{
-					"parameter_longname" : "live.tab[9]"
+				"obj-49::obj-39" : 				{
+					"parameter_longname" : "mc.live.gain~[30]"
 				}
 ,
-				"obj-1::obj-71::obj-26" : 				{
-					"parameter_longname" : "live.menu[4]"
-				}
-,
-				"obj-1::obj-71::obj-28" : 				{
-					"parameter_longname" : "live.dial[16]"
-				}
-,
-				"obj-1::obj-71::obj-32" : 				{
-					"parameter_longname" : "live.dial[2]"
-				}
-,
-				"obj-1::obj-71::obj-41" : 				{
-					"parameter_longname" : "live.dial[3]"
-				}
-,
-				"obj-1::obj-71::obj-71" : 				{
-					"parameter_longname" : "live.dial[1]"
-				}
-,
-				"obj-1::obj-71::obj-81" : 				{
-					"parameter_longname" : "live.text[3]"
-				}
-,
-				"obj-25::obj-112" : 				{
-					"parameter_longname" : "mc.live.gain~[37]"
-				}
-,
-				"obj-25::obj-13" : 				{
-					"parameter_longname" : "mc.live.gain~[38]"
-				}
-,
-				"obj-25::obj-39" : 				{
-					"parameter_longname" : "mc.live.gain~[11]"
-				}
-,
-				"obj-25::obj-92" : 				{
-					"parameter_longname" : "mc.live.gain~[13]"
-				}
-,
-				"obj-30::obj-112" : 				{
-					"parameter_longname" : "mc.live.gain~[40]"
-				}
-,
-				"obj-30::obj-13" : 				{
-					"parameter_longname" : "mc.live.gain~[12]"
-				}
-,
-				"obj-30::obj-39" : 				{
-					"parameter_longname" : "mc.live.gain~[14]"
-				}
-,
-				"obj-30::obj-92" : 				{
-					"parameter_longname" : "mc.live.gain~[39]"
-				}
-,
-				"obj-61::obj-71::obj-10" : 				{
-					"parameter_longname" : "live.tab[8]"
-				}
-,
-				"obj-61::obj-71::obj-14" : 				{
-					"parameter_longname" : "live.toggle[3]"
-				}
-,
-				"obj-61::obj-71::obj-18" : 				{
-					"parameter_longname" : "live.tab[6]"
-				}
-,
-				"obj-61::obj-71::obj-26" : 				{
-					"parameter_longname" : "live.menu[3]"
-				}
-,
-				"obj-61::obj-71::obj-28" : 				{
-					"parameter_longname" : "live.dial[13]"
-				}
-,
-				"obj-61::obj-71::obj-32" : 				{
-					"parameter_longname" : "live.dial[10]"
-				}
-,
-				"obj-61::obj-71::obj-41" : 				{
-					"parameter_longname" : "live.dial[9]"
-				}
-,
-				"obj-61::obj-71::obj-71" : 				{
-					"parameter_longname" : "live.dial[15]"
-				}
-,
-				"obj-61::obj-71::obj-81" : 				{
-					"parameter_longname" : "live.text[2]"
+				"obj-49::obj-92" : 				{
+					"parameter_longname" : "mc.live.gain~[34]"
 				}
 ,
 				"obj-73::obj-19::obj-42" : 				{
@@ -4021,6 +3852,13 @@
 			}
 , 			{
 				"name" : "beam.patcheditor.FixtureInspector.maxpat",
+				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
+				"patcherrelativepath" : "../../../../../Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "beam.patcheditor.FixtureListItem.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
 				"patcherrelativepath" : "../../../../../Max 9/Packages/Beam for Max/patchers/beam_patcheditor",
 				"type" : "JSON",

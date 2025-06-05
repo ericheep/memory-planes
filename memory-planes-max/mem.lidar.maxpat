@@ -66,6 +66,7 @@
 						"classnamespace" : "box",
 						"rect" : [ 618.0, 265.0, 438.0, 550.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-76",
@@ -422,7 +423,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"patching_rect" : [ 67.0, 94.25, 54.0, 22.0 ],
-									"text" : "delay 30"
+									"text" : "delay 50"
 								}
 
 							}
