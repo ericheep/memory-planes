@@ -64,9 +64,8 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 618.0, 265.0, 438.0, 550.0 ],
+						"rect" : [ 618.0, 266.0, 438.0, 549.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-76",

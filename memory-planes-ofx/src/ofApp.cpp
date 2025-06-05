@@ -94,12 +94,12 @@ void ofApp::setup(){
 
 void ofApp::setupWarpers() {
     setupWarper(innerWarper, innerWidth, innerHeight);
-    loadWarp("innerWarper.xml", innerWarper);
+    if (!DEV_MODE) loadWarp("innerWarper.xml", innerWarper);
     innerWarper.hide();
     innerWarper.disableKeyboardShortcuts();
     
     setupWarper(outerWarper, width, height);
-    loadWarp("outerWarper.xml", outerWarper);
+    if (!DEV_MODE) loadWarp("outerWarper.xml", outerWarper);
     outerWarper.hide();
     outerWarper.disableKeyboardShortcuts();
 }
