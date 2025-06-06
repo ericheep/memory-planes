@@ -14,6 +14,18 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 26.0, 39.0, 80.0, 22.0 ],
+					"text" : "speedlim 100"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
 					"index" : 1,
@@ -360,7 +372,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 26.0, 66.5, 88.0, 22.0 ],
+					"patching_rect" : [ 26.0, 71.0, 88.0, 22.0 ],
 					"text" : "p reindexBlobs"
 				}
 
@@ -372,7 +384,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 26.0, 31.0, 75.0, 22.0 ],
+					"patching_rect" : [ 26.0, 11.0, 75.0, 22.0 ],
 					"text" : "r mem.blobs"
 				}
 
@@ -389,6 +401,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-21", 0 ],
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -439,7 +458,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-21", 0 ],
+					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 

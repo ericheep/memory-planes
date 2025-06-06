@@ -452,8 +452,7 @@ void ofApp::keyPressed(int key) {
 }
 
 void ofApp::exit() {
-    saveWarp("innerWarper.xml", innerWarper);
-    saveWarp("outerWarper.xml", outerWarper);
+
 }
 
 void ofApp::setupWarper(ofxQuadWarp &warper, int width, int height) {
