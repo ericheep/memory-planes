@@ -80,12 +80,15 @@ function checkMissing(oldState) {
 			setState("idle")
     		break
 		case "oneMemory":
+			progressTimer = 0.0
 			setState("fadeMemory")
     		break
 		case "twoMemories":
+			progressTimer = 0.0
 			setState("fadeMemory")
     		break
 		case "threeMemories":
+			progressTimer = 0.0
 			setState("fadeMemory")
     		break
 	} 
