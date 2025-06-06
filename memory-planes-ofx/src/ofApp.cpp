@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetVerticalSync(true);
-    ofSetFrameRate(60);
+    ofSetFrameRate(120);
     ofEnableSmoothing();
     ofEnableAlphaBlending();
     ofSetBackgroundAuto(false);
@@ -174,7 +174,6 @@ void ofApp::update() {
     updateState();
     memoryPlane.update();
     
-    starField.setWarp(innerWarper, outerWarper);
     starField.update();
     
     ofPoint* points = innerWarper.getTargetPoints();
@@ -632,3 +631,11 @@ void ofApp::updateOsc() {
     }
 }
 
+void ofApp::onMouseDragged(ofMouseEventArgs& mouseArgs) {
+    starField.setWarp(innerWarper, outerWarper);
+
+}
+
+void ofApp::onMouseReleased(ofMouseEventArgs& mouseArgs) {
+    starField.setWarp(innerWarper, outerWarper);
+}

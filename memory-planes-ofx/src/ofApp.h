@@ -30,23 +30,27 @@ public:
     void updateOuterFBO();
     void updateOverallFBO();
     
-    void draw();
+    void draw() override;
     void drawInnerWindow(ofEventArgs & args);
     void drawOuterWindow(ofEventArgs & args);
     
     void drawFps();
     void drawWarpPoints(ofxQuadWarp warper, ofMatrix4x4 warpMatrix);
     
-    void exit();
+    void exit() override;
     void saveWarp(const string& path, ofxQuadWarp warper);
     void loadWarp(const string& path, ofxQuadWarp &warper);
-    void keyPressed(int key);
+    void keyPressed(int key) override;
     
     void setLeftBoundsScale(float &leftBoundsScale);
     void setRightBoundsScale(float &rightBoundsScale);
     void setBackBoundsScale(float &backBoundsScale);
     void setFrontBoundsScale(float &frontBoundsScale);
 
+    void onMouseMoved(ofMouseEventArgs& mouseArgs);
+    void onMouseDragged(ofMouseEventArgs& mouseArgs);
+    void onMouseReleased(ofMouseEventArgs& mouseArgs);
+    
     ofxQuadWarp innerWarper;
     ofxQuadWarp outerWarper;
     
