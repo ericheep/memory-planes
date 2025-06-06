@@ -1003,7 +1003,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1106.0, 402.0, 184.0, 22.0 ],
-					"text" : "1 andy-and-emilys-backyard.wav"
+					"text" : "1 living-room-rain.wav"
 				}
 
 			}
@@ -2221,6 +2221,7 @@
 						"classnamespace" : "box",
 						"rect" : [ 208.0, 100.0, 1113.0, 848.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-78",
@@ -2454,8 +2455,8 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "float" ],
-													"patching_rect" : [ 243.333333333333343, 97.0, 36.0, 22.0 ],
-													"text" : "f -12."
+													"patching_rect" : [ 243.333333333333343, 97.0, 29.5, 22.0 ],
+													"text" : "f -8."
 												}
 
 											}
@@ -2467,7 +2468,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "float" ],
 													"patching_rect" : [ 177.666666666666686, 97.0, 29.5, 22.0 ],
-													"text" : "f -6."
+													"text" : "f -4."
 												}
 
 											}
@@ -2515,7 +2516,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 112.0, 22.0, 112.0, 22.0 ],
+													"patching_rect" : [ 112.0, 22.0, 112.0, 35.0 ],
 													"text" : "r #0_focusState"
 												}
 

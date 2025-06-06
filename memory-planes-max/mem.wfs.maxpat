@@ -774,7 +774,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.viewer @initwith \"/source/number 52, /speaker/number 64\"",
+					"text" : "spat5.viewer @initwith \"/source/number 44, /speaker/number 64\"",
 					"varname" : "spat5.viewer"
 				}
 

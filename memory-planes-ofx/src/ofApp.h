@@ -15,7 +15,7 @@
 #define RECEIVING_PORT 6543
 #define SENDING_PORT 7654
 
-#define DEV_MODE true
+#define DEV_MODE false
 
 class ofApp : public ofBaseApp{
 public:
