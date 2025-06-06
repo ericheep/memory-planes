@@ -624,6 +624,11 @@ void ofApp::updateOsc() {
             float theta = m.getArgAsFloat(1);
             memoryPlane.flip(index, theta);
         }
+        
+        if (m.getAddress() == "/innerRadialNoise") {
+            innerNoiseAmount.set(m.getArgAsFloat(0));
+            innerRadialNoiseAmount.set(m.getArgAsFloat(1));
+        }
     }
 }
 

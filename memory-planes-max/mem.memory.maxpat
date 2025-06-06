@@ -2221,7 +2221,6 @@
 						"classnamespace" : "box",
 						"rect" : [ 208.0, 100.0, 1113.0, 848.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-78",
@@ -2971,7 +2970,6 @@
 										"classnamespace" : "box",
 										"rect" : [ 175.0, 146.0, 582.0, 581.0 ],
 										"gridsize" : [ 15.0, 15.0 ],
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-2",
