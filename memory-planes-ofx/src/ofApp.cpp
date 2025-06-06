@@ -122,7 +122,7 @@ void ofApp::setupGui() {
     gui.add(outerNoiseAmount.set("outer noise", 0.0, 0.0, 1.0));
     gui.add(outerRadialNoiseAmount.set("outer radial noise", 0.0, 0.0, 1.0));
     
-    gui.add(overallBlurAmount.set("overall blur", 1.0, 0.0, 1.0));
+    // gui.add(overallBlurAmount.set("overall blur", 1.0, 0.0, 1.0));
     
     // general gui settings
     gui.add(starField.numberParticles.set("number", 100, 50, 5000));
@@ -174,6 +174,7 @@ void ofApp::update() {
     updateState();
     memoryPlane.update();
     
+	starField.setWarp(innerWarper, outerWarper);
     starField.update();
     
     ofPoint* points = innerWarper.getTargetPoints();
@@ -315,6 +316,7 @@ void ofApp::updateInnerFBO() {
     innerBlur.setUniform1f("u_blurMix", innerBlurAmount);
     fboInnerNoise.draw(0, 0);
     innerBlur.end();
+	memoryPlane.draw();
     fboInnerBlur.end();
 }
 
@@ -353,11 +355,13 @@ void ofApp::updateOuterFBO() {
     outerBlur.setUniform1f("u_blurMix", outerBlurAmount);
     fboOuterNoise.draw(0, 0);
     outerBlur.end();
+	starField.draw();
+
     fboOuterBlur.end();
 }
 
 void ofApp::updateOverallFBO() {
-    // overall fbo
+    /* // overall fbo
     fboOverallWindow.begin();
     ofClear(0.0f, 0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255, 128);
@@ -381,18 +385,19 @@ void ofApp::updateOverallFBO() {
     fboOverallWindow.draw(0, 0);
     overallRadialNoise.end();
     overallNoise.end();
-    fboOverallNoise.end();
+    fboOverallNoise.end(); */
     
     // blur fbo
-    fboOverallBlur.begin();
-    ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+    //fboOverallBlur.begin();
+    /*ofClear(0.0f, 0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255, 128);
     overallBlur.begin();
     overallBlur.setUniform1f("u_blurMix", overallBlurAmount);
     overallBlur.setUniform1f("u_blurRadiusScalar", overallBlurRadius);
     fboOverallNoise.draw(0, 0);
-    overallBlur.end();
-    fboOverallBlur.end();
+    overallBlur.end();*/
+	//emanations.draw();
+    //fboOverallBlur.end();
 }
 
 void ofApp::setLeftBoundsScale(float &leftBoundsScale) {

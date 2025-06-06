@@ -7,9 +7,9 @@
 		<point x="0" y="720" />
 	</src>
 	<dst>
-		<point x="715" y="201" />
-		<point x="1278" y="210" />
-		<point x="1265" y="762" />
-		<point x="713" y="763" />
+		<point x="752" y="327" />
+		<point x="1275" y="268" />
+		<point x="1264" y="817" />
+		<point x="718" y="814" />
 	</dst>
 </quadwarp>

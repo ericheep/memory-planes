@@ -19,12 +19,12 @@
 
 class ofApp : public ofBaseApp{
 public:
-    void setup();
+    void setup() override;
     void setupWarpers();
     void setupGui();
     void setupWarper(ofxQuadWarp &warper, int width, int height);
     
-    void update();
+    void update() override;
     void updateState();
     void updateInnerFBO();
     void updateOuterFBO();

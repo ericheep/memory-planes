@@ -27,7 +27,7 @@ Memory::Memory(int _width, int _height) {
     windowRadius = height / 2.0;
     isFilled = true;
     
-    int numAnchors = 100;
+    int numAnchors = 70;
     
     tear = Tear(numAnchors, width, height);
     lifetime = 0;

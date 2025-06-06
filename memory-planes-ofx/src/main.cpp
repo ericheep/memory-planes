@@ -13,9 +13,9 @@ int main( ){
         settings.setSize(smallWidth, smallHeight);
         settings.windowMode = OF_WINDOW;
     } else {
-        settings.setSize(1920, 1200);
-        settings.setPosition(ofVec2f(1920, 0));
-        // settings.windowMode = OF_FULLSCREEN;
+        //settings.setSize(1920, 1200);
+        //settings.setPosition(ofVec2f(0, 0));
+        settings.windowMode = OF_FULLSCREEN;
     }
     
     auto window = ofCreateWindow(settings);
