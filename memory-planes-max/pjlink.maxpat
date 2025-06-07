@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -13.0, 222.0, 1212.0, 531.0 ],
+		"rect" : [ 34.0, 222.0, 1582.0, 716.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
@@ -33,7 +33,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 242.5, 98.0, 63.0, 22.0 ],
-					"text" : "loadmess "
+					"text" : "loadmess"
 				}
 
 			}
@@ -45,7 +45,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 1306.0, 261.0, 24.0, 24.0 ]
+					"patching_rect" : [ 1344.0, 261.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -55,7 +55,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1344.5, 152.0, 82.0, 20.0 ],
+					"patching_rect" : [ 1383.0, 152.0, 82.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 3.0, 147.0, 82.0, 20.0 ],
 					"text" : "Query Status:"
@@ -69,7 +69,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 1346.0, 220.0, 103.0, 22.0 ],
+					"patching_rect" : [ 1384.0, 220.0, 103.0, 22.0 ],
 					"text" : "route queryStatus"
 				}
 
@@ -81,7 +81,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1346.0, 185.0, 79.0, 22.0 ],
+					"patching_rect" : [ 1384.0, 185.0, 79.0, 22.0 ],
 					"text" : "r pjlink.config"
 				}
 
@@ -94,7 +94,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 1346.0, 261.0, 24.0, 24.0 ],
+					"patching_rect" : [ 1384.0, 261.0, 24.0, 24.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 86.0, 145.0, 24.0, 24.0 ]
 				}
@@ -403,11 +403,11 @@
 				"box" : 				{
 					"id" : "obj-291",
 					"maxclass" : "newobj",
-					"numinlets" : 4,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 774.25, 51.0, 545.5, 22.0 ],
-					"text" : "route power videoMute audioMute"
+					"numinlets" : 5,
+					"numoutlets" : 5,
+					"outlettype" : [ "", "", "", "", "" ],
+					"patching_rect" : [ 774.0, 51.0, 724.0, 22.0 ],
+					"text" : "route power videoMute audioMute query"
 				}
 
 			}
@@ -433,7 +433,7 @@
 					"patching_rect" : [ 328.0, 208.0, 161.5, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 13.0, 184.0, 160.0, 20.0 ],
-					"text" : "IP Address: "
+					"text" : "IP Address: 192.168.0.8"
 				}
 
 			}
@@ -484,7 +484,7 @@
 					"patching_rect" : [ 155.5, 135.0, 150.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 95.0, 212.0, 192.0, 20.0 ],
-					"text" : "%1CLSS=1"
+					"text" : "%1POWR=OK"
 				}
 
 			}
@@ -675,7 +675,6 @@
 						"classnamespace" : "box",
 						"rect" : [ 134.0, 172.0, 540.0, 286.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-2",
@@ -1206,7 +1205,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 1346.0, 301.0, 69.0, 22.0 ],
+					"patching_rect" : [ 1384.0, 301.0, 69.0, 22.0 ],
 					"text" : "metro 5000"
 				}
 
@@ -3206,7 +3205,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1432.0, 378.0, 106.0, 22.0 ],
+					"patching_rect" : [ 1470.0, 378.0, 106.0, 22.0 ],
 					"text" : "s pjlink.disconnect"
 				}
 
@@ -3217,7 +3216,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1346.0, 378.0, 75.0, 22.0 ],
+					"patching_rect" : [ 1384.0, 378.0, 75.0, 22.0 ],
 					"text" : "s pjlink.send"
 				}
 
@@ -3969,7 +3968,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 1346.0, 342.0, 105.0, 22.0 ],
+					"patching_rect" : [ 1384.0, 342.0, 105.0, 22.0 ],
 					"text" : "p queryStatus"
 				}
 
@@ -5667,6 +5666,14 @@
 				"patchline" : 				{
 					"destination" : [ "obj-294", 0 ],
 					"source" : [ "obj-291", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 1312.25, 126.0, 1353.5, 126.0 ],
+					"source" : [ "obj-291", 3 ]
 				}
 
 			}
