@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 2449.0, 656.0, 450.0, 274.0 ],
+		"rect" : [ 1328.0, 652.0, 450.0, 274.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
@@ -286,14 +286,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "md5.js",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pjlink.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

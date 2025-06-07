@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1828.0, 285.0, 991.0, 580.0 ],
+		"rect" : [ 233.0, 140.0, 991.0, 580.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -4589,7 +4589,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 54.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 99.0, 35.0, 53.0, 19.0 ],
-									"text" : "31.0 %",
+									"text" : "42.0 %",
 									"textjustification" : 2
 								}
 
@@ -4648,7 +4648,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 53.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 101.0, 57.0, 51.0, 19.0 ],
-									"text" : "61.0 %",
+									"text" : "73.0 %",
 									"textjustification" : 2
 								}
 
@@ -4723,7 +4723,7 @@
 									"fontface" : 1,
 									"fontsize" : 10.0,
 									"id" : "obj-77",
-									"items" : [ "None", ",", "VG278", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
+									"items" : [ "None", ",", "Dante Virtual Soundcard", ",", "Mac mini Speakers" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -4763,7 +4763,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 83.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 98.0, 79.0, 54.0, 19.0 ],
-									"text" : "2196 MB",
+									"text" : "1813 MB",
 									"textjustification" : 2
 								}
 
@@ -5330,24 +5330,6 @@
 														"filepath" : "~/Documents/Max 9/Snapshots",
 														"filepos" : -1,
 														"snapshotfileid" : "5302c8d4f22edf47f1f81bd6c3236681"
-													}
-
-												}
-, 												{
-													"filetype" : "C74Snapshot",
-													"version" : 2,
-													"minorversion" : 0,
-													"name" : "Pro-R 2",
-													"origin" : "FabFilter Pro-R 2.vstinfo",
-													"type" : "VST",
-													"subtype" : "MidiEffect",
-													"embed" : 0,
-													"fileref" : 													{
-														"name" : "Pro-R 2",
-														"filename" : "Pro-R 2_20250502.maxsnap",
-														"filepath" : "~/Documents/Max 9/Snapshots",
-														"filepos" : -1,
-														"snapshotfileid" : "1adf382a89cf4b851763c10a5dbfecc7"
 													}
 
 												}
@@ -5999,13 +5981,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "Pro-R 2_20250502.maxsnap",
-				"bootpath" : "~/Documents/Max 9/Snapshots",
-				"patcherrelativepath" : "../../../../../Max 9/Snapshots",
-				"type" : "mx@s",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "beam.ioeditor.IOInspector.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
 				"patcherrelativepath" : "../../../../../Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
@@ -6119,7 +6094,7 @@
 			}
 , 			{
 				"name" : "calculateDirection.js",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -6130,161 +6105,161 @@
 			}
 , 			{
 				"name" : "gestureDetection.js",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.follow.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.forLoop.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.haze.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.inchesToMeters.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.lidar.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.lidarToNodes.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.memoriesLogic.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.memory.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.memoryLogic.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.polyMemory.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.presenceLogic.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.radialPan.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.setNode.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.spatConfig.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.spatReverb.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.starField.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.stutter.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.wfs.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.wfsReverbPositions.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.wfsScaling.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "relativetoabsolute.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "selectDriver.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -6311,7 +6286,7 @@
 			}
 , 			{
 				"name" : "stateLogic.js",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -6331,14 +6306,14 @@
 			}
 , 			{
 				"name" : "wfs.formatSpat.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wfs.stackedSpeakerConfig.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
