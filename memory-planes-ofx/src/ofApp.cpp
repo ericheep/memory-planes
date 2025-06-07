@@ -248,13 +248,13 @@ void ofApp::draw() {
     fboInnerBlur.draw(0, 0);
     ofPopMatrix();
     
-    /*ofPushMatrix();
+    ofPushMatrix();
     ofMultMatrix(outerMatrix);
     ofSetColor(ofColor::white);
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     fboOverallBlur.draw(0, 0);
     ofDisableBlendMode();
-    ofPopMatrix();*/
+    ofPopMatrix();
     
     ofDisableAlphaBlending();
     
@@ -352,7 +352,8 @@ void ofApp::updateOverallFBO() {
     fboOverallWindow.end();
     
     // noise fbo
-    fboOverallNoise.begin();
+    /*
+     fboOverallNoise.begin();
     ofClear(0.0f, 0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255, 128);
     overallNoise.begin();
@@ -362,6 +363,7 @@ void ofApp::updateOverallFBO() {
     fboOverallWindow.draw(0, 0);
     overallNoise.end();
     fboOverallNoise.end();
+     */
     
     // blur fbo
     fboOverallBlur.begin();
@@ -370,7 +372,7 @@ void ofApp::updateOverallFBO() {
     overallBlur.begin();
     overallBlur.setUniform1f("u_blurMix", overallBlurAmount);
     overallBlur.setUniform1f("u_blurRadiusScalar", overallBlurRadius);
-    fboOverallNoise.draw(0, 0);
+    fboOverallWindow.draw(0, 0);
     overallBlur.end();
 	emanations.draw();
     fboOverallBlur.end();
