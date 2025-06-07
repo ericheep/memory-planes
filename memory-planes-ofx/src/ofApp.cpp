@@ -174,7 +174,7 @@ void ofApp::update() {
     
     ofPoint* points = innerWarper.getTargetPoints();
     
-    /* ofPoint centroid(0, 0);
+    ofPoint centroid(0, 0);
     for (int i = 0; i < 4; i++) {
         centroid += points[i];
     }
@@ -183,7 +183,7 @@ void ofApp::update() {
     centroid.y -= height / 2.0;
     
     emanations.setCenter(centroid);
-    emanations.update();*/
+    emanations.update();
     
     updateInnerFBO();
     updateOuterFBO();
