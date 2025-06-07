@@ -15,7 +15,7 @@
 #define RECEIVING_PORT 6543
 #define SENDING_PORT 7654
 
-#define DEV_MODE false
+#define DEV_MODE true
 
 class ofApp : public ofBaseApp{
 public:
@@ -68,8 +68,6 @@ public:
     ofParameter<float> overallBlurAmount;
     ofParameter<float> innerNoiseAmount;
     ofParameter<float> outerNoiseAmount;
-    ofParameter<float> innerRadialNoiseAmount;
-    ofParameter<float> outerRadialNoiseAmount;
     ofParameter<float> defaultOctaveMultiplier;
     ofParameter<float> defaultNoiseSpeed;
     
@@ -85,30 +83,24 @@ private:
    
     ofShader innerBlur;
     ofShader innerNoise;
-    ofShader innerRadialNoise;
     
     ofShader outerBlur;
     ofShader outerNoise;
-    ofShader outerRadialNoise;
     
     ofShader overallBlur;
     ofShader overallNoise;
-    ofShader overallRadialNoise;
     
     ofFbo fboInnerWindow;
     ofFbo fboInnerBlur;
     ofFbo fboInnerNoise;
-    ofFbo fboInnerRadialNoise;
     
     ofFbo fboOuterWindow;
     ofFbo fboOuterBlur;
     ofFbo fboOuterNoise;
-    ofFbo fboOuterRadialNoise;
     
     ofFbo fboOverallWindow;
     ofFbo fboOverallBlur;
     ofFbo fboOverallNoise;
-    ofFbo fboOverallRadialNoise;
     
     ofxOscSender oscSender;
     ofxOscReceiver oscReceiver;

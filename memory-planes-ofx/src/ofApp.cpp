@@ -37,9 +37,6 @@ void ofApp::setup(){
     innerNoise.load("shaders/noise");
     outerNoise.load("shaders/noise");
     overallNoise.load("shaders/noise");
-    innerRadialNoise.load("shaders/radialNoise");
-    outerRadialNoise.load("shaders/radialNoise");
-    overallRadialNoise.load("shaders/radialNoise");
     
     ofFbo::Settings innerSettings;
     innerSettings.width = innerWidth;
@@ -116,11 +113,9 @@ void ofApp::setupGui() {
     gui.add(scale.set("inner scale", 1.0, 0.0, 3.0));
     gui.add(innerBlurAmount.set("inner blur", 1.0, 0.0, 1.0));
     gui.add(innerNoiseAmount.set("inner noise", 0.0, 0.0, 1.0));
-    gui.add(innerRadialNoiseAmount.set("inner radial noise", 0.0, 0.0, 1.0));
     
     gui.add(outerBlurAmount.set("outer blur", 1.0, 0.0, 1.0));
     gui.add(outerNoiseAmount.set("outer noise", 0.0, 0.0, 1.0));
-    gui.add(outerRadialNoiseAmount.set("outer radial noise", 0.0, 0.0, 1.0));
     
     // gui.add(overallBlurAmount.set("overall blur", 1.0, 0.0, 1.0));
     
@@ -179,7 +174,7 @@ void ofApp::update() {
     
     ofPoint* points = innerWarper.getTargetPoints();
     
-    ofPoint centroid(0, 0);
+    /* ofPoint centroid(0, 0);
     for (int i = 0; i < 4; i++) {
         centroid += points[i];
     }
@@ -188,11 +183,10 @@ void ofApp::update() {
     centroid.y -= height / 2.0;
     
     emanations.setCenter(centroid);
-    emanations.update();
+    emanations.update();*/
     
     updateInnerFBO();
     updateOuterFBO();
-    updateOverallFBO();
     
     innerNoiseTime += innerNoiseAmount * 0.06;
     outerNoiseTime += outerNoiseAmount * 0.06;
@@ -254,13 +248,13 @@ void ofApp::draw() {
     fboInnerBlur.draw(0, 0);
     ofPopMatrix();
     
-    ofPushMatrix();
+    /*ofPushMatrix();
     ofMultMatrix(outerMatrix);
     ofSetColor(ofColor::white);
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     fboOverallBlur.draw(0, 0);
     ofDisableBlendMode();
-    ofPopMatrix();
+    ofPopMatrix();*/
     
     ofDisableAlphaBlending();
     
@@ -299,12 +293,7 @@ void ofApp::updateInnerFBO() {
     innerNoise.setUniform1f("u_distortion", innerNoiseAmount);
     innerNoise.setUniform1f("u_time", innerNoiseTime);
     innerNoise.setUniform2f("u_resolution", innerWidth, innerHeight);
-    innerRadialNoise.begin();
-    innerRadialNoise.setUniform1f("u_distortion", innerRadialNoiseAmount);
-    innerRadialNoise.setUniform1f("u_time", innerNoiseTime);
-    innerRadialNoise.setUniform2f("u_resolution", innerWidth, innerHeight);
     fboInnerWindow.draw(0, 0);
-    innerRadialNoise.end();
     innerNoise.end();
     fboInnerNoise.end();
     
@@ -316,7 +305,6 @@ void ofApp::updateInnerFBO() {
     innerBlur.setUniform1f("u_blurMix", innerBlurAmount);
     fboInnerNoise.draw(0, 0);
     innerBlur.end();
-	memoryPlane.draw();
     fboInnerBlur.end();
 }
 
@@ -338,12 +326,7 @@ void ofApp::updateOuterFBO() {
     outerNoise.setUniform1f("u_distortion", outerNoiseAmount);
     outerNoise.setUniform1f("u_time", outerNoiseTime);
     outerNoise.setUniform2f("u_resolution", width, height);
-    outerRadialNoise.begin();
-    outerRadialNoise.setUniform1f("u_distortion", outerRadialNoiseAmount);
-    outerRadialNoise.setUniform1f("u_time", outerNoiseTime);
-    outerRadialNoise.setUniform2f("u_resolution", width, height);
     fboOuterWindow.draw(0, 0);
-    outerRadialNoise.end();
     outerNoise.end();
     fboOuterNoise.end();
     
@@ -355,13 +338,11 @@ void ofApp::updateOuterFBO() {
     outerBlur.setUniform1f("u_blurMix", outerBlurAmount);
     fboOuterNoise.draw(0, 0);
     outerBlur.end();
-	starField.draw();
-
     fboOuterBlur.end();
 }
 
 void ofApp::updateOverallFBO() {
-    /* // overall fbo
+    // overall fbo
     fboOverallWindow.begin();
     ofClear(0.0f, 0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255, 128);
@@ -378,26 +359,21 @@ void ofApp::updateOverallFBO() {
     overallNoise.setUniform1f("u_distortion", outerNoiseAmount);
     overallNoise.setUniform1f("u_time", outerNoiseTime);
     overallNoise.setUniform2f("u_resolution", width, height);
-    overallRadialNoise.begin();
-    overallRadialNoise.setUniform1f("u_distortion", outerRadialNoiseAmount);
-    overallRadialNoise.setUniform1f("u_time", outerNoiseTime);
-    overallRadialNoise.setUniform2f("u_resolution", width, height);
     fboOverallWindow.draw(0, 0);
-    overallRadialNoise.end();
     overallNoise.end();
-    fboOverallNoise.end(); */
+    fboOverallNoise.end();
     
     // blur fbo
-    //fboOverallBlur.begin();
-    /*ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+    fboOverallBlur.begin();
+    ofClear(0.0f, 0.0f, 0.0f, 0.0f);
     ofSetColor(255, 255, 255, 128);
     overallBlur.begin();
     overallBlur.setUniform1f("u_blurMix", overallBlurAmount);
     overallBlur.setUniform1f("u_blurRadiusScalar", overallBlurRadius);
     fboOverallNoise.draw(0, 0);
-    overallBlur.end();*/
-	//emanations.draw();
-    //fboOverallBlur.end();
+    overallBlur.end();
+	emanations.draw();
+    fboOverallBlur.end();
 }
 
 void ofApp::setLeftBoundsScale(float &leftBoundsScale) {
@@ -629,9 +605,8 @@ void ofApp::updateOsc() {
             memoryPlane.flip(index, theta);
         }
         
-        if (m.getAddress() == "/innerRadialNoise") {
+        if (m.getAddress() == "/innerNoise") {
             innerNoiseAmount.set(m.getArgAsFloat(0));
-            innerRadialNoiseAmount.set(m.getArgAsFloat(1));
         }
     }
 }
