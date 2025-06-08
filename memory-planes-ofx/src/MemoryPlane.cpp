@@ -37,6 +37,17 @@ void MemoryPlane::flip(int index, float _theta) {
     if (vectorIndex > -1) memories[vectorIndex].flip(_theta);
 }
 
+void MemoryPlane::fragment(int index) {
+    int vectorIndex = getMemoryVectorIndex(index);
+    if (vectorIndex > -1) memories[vectorIndex].fragment();
+}
+
+void MemoryPlane::setInstability(int index, float instability) {
+    int vectorIndex = getMemoryVectorIndex(index);
+    if (vectorIndex > -1) memories[vectorIndex].setInstability(instability);
+}
+
+
 int MemoryPlane::getMemoryVectorIndex(int index) {
     for (int i = 0; i < memories.size(); i++) {
         if (memories[i].index == index) return i;

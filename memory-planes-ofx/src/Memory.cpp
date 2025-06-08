@@ -84,6 +84,15 @@ void Memory::flip(float _theta) {
     tear.flip();
 }
 
+void Memory::fragment() {
+    float scaledRadius = radius * height / 3.0;;
+    fragments.addFragment(scaledRadius, theta, arcDistance, instability);
+}
+
+void Memory::setInstability(float _instability) {
+    instability = _instability;
+}
+
 void Memory::update() {
     float birthScalar = ofMap(birthTimer, 0.0, birthTime, 0.0, 1.0, true);
     
@@ -103,9 +112,12 @@ void Memory::update() {
     thickness *= lifetimeScalar * birthScalar;
         
     updateTear(tear, 1.0);
+    fragments.update();
     
     lifetime += lastFrameTime;
     birthTimer += lastFrameTime;
+    fragments.setLastFrameTime(lastFrameTime);
+    
     if (lifetime > totalLifetime) {
         isAlive = false;
     }
@@ -122,6 +134,8 @@ void Memory::updateTear(Tear &tear, float visibility) {
     tear.update();
 }
 
+
 void Memory::draw() {
     tear.draw();
+    fragments.draw();
 }

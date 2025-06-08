@@ -191,18 +191,22 @@ void StarField::setMaxVelocity(float & maxVelocity) {
     fluidSystem.setMaxVelocity(maxVelocity);
 }
 
-void StarField::setMinSize(float & minSize) {
+void StarField::setMinSize(float& minSize) {
     fluidSystem.setMinSize(minSize);
 }
 
-void StarField::setMaxSize(float & maxSize) {
+void StarField::setMaxSize(float& maxSize) {
     fluidSystem.setMaxSize(maxSize);
 }
 
-void StarField::setConnectionRadius(float & connectionRadius) {
+void StarField::setConnectionRadius(float& connectionRadius) {
     fluidSystem.setConnectionRadius(connectionRadius);
 }
 
-void StarField::setGravityTheta(float & gravityTheta) {
+void StarField::setGravityTheta(float& gravityTheta) {
     fluidSystem.setGravityTheta(gravityTheta);
+}
+
+void StarField::setBoundaryState(int _boundaryState) {
+    fluidSystem.boundaryState = _boundaryState;
 }

@@ -60,6 +60,7 @@ public:
     Kernels kernels;
     float influenceRadius, gravityConstant, deltaTime, collisionDamping, predictionFactor;
     float targetDensity, nearPressureMultiplier, pressureMultiplier, gravityMultiplier, timeScalar, viscosityStrength;
+    int boundaryState;
     
     vector<Presence> presences;
 private:

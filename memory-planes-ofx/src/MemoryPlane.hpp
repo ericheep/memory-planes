@@ -19,6 +19,8 @@ public:
     void draw();
 
     void flip(int index, float theta);
+    void fragment(int index);
+    void setInstability(int index, float instability);
     
     int getMemoryVectorIndex(int index);
     void setMemory(int index, float radius, float theta, float arcDistance, float thickness, float minFollow, float maxFollow, float noiseSpeed, float octaveMultiplier);

@@ -30,6 +30,8 @@ FluidSystem2D::FluidSystem2D() {
     gravityConstant = 9.8;
     gravityMultiplier = 1.0;
     gravityForce = ofVec2f(0.0, -1.0);
+    
+    boundaryState = 0;
 }
 
 void FluidSystem2D::updatePresences(vector<Presence> &_presences) {
@@ -300,39 +302,88 @@ void FluidSystem2D::resolveCollisions(int particleIndex) {
         particles[particleIndex].position.y = yBounds.y;
     }
     
-    if (innerPolyline.inside(particles[particleIndex].position)) {
-        ofPoint closestPoint = innerPolyline.getClosestPoint(particles[particleIndex].position);
-        
-        glm::vec2 position;
-        position.x = closestPoint.x;
-        position.y = closestPoint.y;
-        
-        float minDistance = std::numeric_limits<float>::max();
-        int segmentIndex = 0;
-        
-        auto & vertices = innerPolyline.getVertices();
-        
-        for (int i = 0; i < vertices.size(); ++i) {
-            glm::vec2 a = vertices[i];
-            glm::vec2 b = vertices[(i + 1) % 4];
-            glm::vec2 closest = getClosestPointOnLine(a, b, position);
+    
+    if (boundaryState == 0) {
+        if (innerPolyline.inside(particles[particleIndex].position)) {
+            ofPoint closestPoint = innerPolyline.getClosestPoint(particles[particleIndex].position);
             
-            float distance = glm::distance(position, closest);
-            if (distance < minDistance) {
-                minDistance = distance;
-                segmentIndex = i;
+            glm::vec2 position;
+            position.x = closestPoint.x;
+            position.y = closestPoint.y;
+            
+            float minDistance = std::numeric_limits<float>::max();
+            int segmentIndex = 0;
+            
+            auto & vertices = innerPolyline.getVertices();
+            
+            for (int i = 0; i < vertices.size(); ++i) {
+                glm::vec2 a = vertices[i];
+                glm::vec2 b = vertices[(i + 1) % 4];
+                glm::vec2 closest = getClosestPointOnLine(a, b, position);
+                
+                float distance = glm::distance(position, closest);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    segmentIndex = i;
+                }
+            }
+            
+            if (segmentIndex == 0 || segmentIndex == 2) {
+                particles[particleIndex].velocity.y *= -1.0 * collisionDamping;
+                particles[particleIndex].position.y = closestPoint.y;
+            }
+            
+            if (segmentIndex == 1 || segmentIndex == 3) {
+                particles[particleIndex].velocity.x *= -1.0 * collisionDamping;
+                particles[particleIndex].position.x = closestPoint.x;
             }
         }
-        
-        if (segmentIndex == 0 || segmentIndex == 2) {
-            particles[particleIndex].velocity.y *= -1.0 * collisionDamping;
-            particles[particleIndex].position.y = closestPoint.y;
+    } else if (boundaryState == 1) {
+        if (!innerPolyline.inside(particles[particleIndex].position)) {
+            ofPoint closestPoint = innerPolyline.getClosestPoint(particles[particleIndex].position);
+            
+            glm::vec2 position;
+            position.x = closestPoint.x;
+            position.y = closestPoint.y;
+            
+            float minDistance = std::numeric_limits<float>::max();
+            int segmentIndex = 0;
+            
+            auto & vertices = innerPolyline.getVertices();
+            
+            for (int i = 0; i < vertices.size(); ++i) {
+                glm::vec2 a = vertices[i];
+                glm::vec2 b = vertices[(i + 1) % 4];
+                glm::vec2 closest = getClosestPointOnLine(a, b, position);
+                
+                float distance = glm::distance(position, closest);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    segmentIndex = i;
+                }
+            }
+            
+            if (segmentIndex == 0 || segmentIndex == 2) {
+                particles[particleIndex].velocity.y *= -1.0 * collisionDamping;
+                
+                if (particles[particleIndex].position.y > closestPoint.y) {
+                    particles[particleIndex].position.y = closestPoint.y - 1;
+                } else {
+                    particles[particleIndex].position.y = closestPoint.y + 1;
+                }
+            }
+            
+            if (segmentIndex == 1 || segmentIndex == 3) {
+                particles[particleIndex].velocity.x *= -1.0 * collisionDamping;
+                if (particles[particleIndex].position.x > closestPoint.x) {
+                    particles[particleIndex].position.x = closestPoint.x - 1;
+                } else {
+                    particles[particleIndex].position.x = closestPoint.x + 1;
+                }
+            }
         }
-        
-        if (segmentIndex == 1 || segmentIndex == 3) {
-            particles[particleIndex].velocity.x *= -1.0 * collisionDamping;
-            particles[particleIndex].position.x = closestPoint.x;
-        }
+    } else if (boundaryState == 2) {
+            // do nothing
     }
 }
 

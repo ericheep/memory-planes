@@ -188,8 +188,8 @@ void ofApp::update() {
     updateInnerFBO();
     updateOuterFBO();
     
-    innerNoiseTime += innerNoiseAmount * 0.06;
-    outerNoiseTime += outerNoiseAmount * 0.06;
+    innerNoiseTime += innerNoiseAmount * 0.02;
+    outerNoiseTime += outerNoiseAmount * 0.02;
     overallBlurRadius = ofMap(ofNoise(ofGetElapsedTimef()) * 3.1f, 0.0f, 1.0f, 0.85f, 1.2f);
     
     ofxOscMessage msg;
@@ -245,7 +245,9 @@ void ofApp::draw() {
     ofPushMatrix();
     ofMultMatrix(innerMatrix);
     ofSetColor(ofColor::white);
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
     fboInnerBlur.draw(0, 0);
+    ofDisableBlendMode();
     ofPopMatrix();
     
     ofPushMatrix();
@@ -303,6 +305,7 @@ void ofApp::updateInnerFBO() {
     ofSetColor(255, 255, 255);
     innerBlur.begin();
     innerBlur.setUniform1f("u_blurMix", innerBlurAmount);
+    innerBlur.setUniform1f("u_blurRadius", ofMap(innerBlurAmount, 0.77, 1.0, 16.0, 64.0));
     fboInnerNoise.draw(0, 0);
     innerBlur.end();
     fboInnerBlur.end();
@@ -546,6 +549,11 @@ void ofApp::updateOsc() {
             memoryPlane.setMemory(index, radius, theta, arcDistance, thickness, minFollow, maxFollow, noiseSpeed, octaveMultiplier);
         }
         
+        if (m.getAddress() == "/fragment") {
+            int index = m.getArgAsInt(0);
+            memoryPlane.fragment(index);
+        }
+        
         if (m.getAddress() == "/state") {
             string stateString = m.getArgAsString(0);
             
@@ -609,6 +617,20 @@ void ofApp::updateOsc() {
         
         if (m.getAddress() == "/innerNoise") {
             innerNoiseAmount.set(m.getArgAsFloat(0));
+        }
+        
+        if (m.getAddress() == "/boundaryState") {
+            starField.setBoundaryState(m.getArgAsInt(0));
+        }
+        
+        if (m.getAddress() == "/innerBlur") {
+            innerBlurAmount = m.getArgAsFloat(0);
+        }
+        
+        if (m.getAddress() == "/instability") {
+            int index = m.getArgAsInt(0);
+            float instability = m.getArgAsFloat(1);
+            memoryPlane.setInstability(index, instability);
         }
     }
 }

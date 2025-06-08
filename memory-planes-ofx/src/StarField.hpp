@@ -20,6 +20,7 @@ public:
     void setWarp(ofxQuadWarp & innerWarper, ofxQuadWarp & outerWarper);
     void setSize(float width, float height);
     void setInnerSize(float innerWidth, float innerHeight);
+    void setInvertBounds(bool isInverted);
         
     ofPolyline innerBounds;
     FluidSystem2D fluidSystem;
@@ -46,33 +47,34 @@ public:
     ofParameter<float> minSize, maxSize;
     ofParameter<float> connectionRadius;
     
-    void setDrawMode(int & drawMode);
-    void setNumberParticles(int & numberParticles);
-    void setTimeScalar(float & timeScalar);
-    void setInfluenceRadius(float & influenceRadius);
-    void setGravityMultiplier(float & gravityMultiplier);
-    void setTargetDensity(float & targetDensity);
-    void setPressureMultiplier(float & pressureMultiplier);
-    void setNearPressureMultiplier(float & nearPressureMultiplier);
-    void setGravityTheta(float & gravityTheta);
-    void setCoolColor(ofColor & coolColor);
-    void setHotColor(ofColor & hotColor);
+    void setDrawMode(int& drawMode);
+    void setNumberParticles(int& numberParticles);
+    void setTimeScalar(float& timeScalar);
+    void setInfluenceRadius(float& influenceRadius);
+    void setGravityMultiplier(float& gravityMultiplier);
+    void setTargetDensity(float& targetDensity);
+    void setPressureMultiplier(float& pressureMultiplier);
+    void setNearPressureMultiplier(float& nearPressureMultiplier);
+    void setGravityTheta(float& gravityTheta);
+    void setCoolColor(ofColor& coolColor);
+    void setHotColor(ofColor& hotColor);
     
     // gui graphic listener functions
-    void setVelocityCurve(float & velocityCurve);
-    void setMinVelocity(float & minVelocity);
-    void setMaxVelocity(float & maxVelocity);
-    void setMinSize(float & minSize);
-    void setMaxSize(float & maxSize);
-    void setLineThickness(float & lineThickness);
+    void setVelocityCurve(float& velocityCurve);
+    void setMinVelocity(float& minVelocity);
+    void setMaxVelocity(float& maxVelocity);
+    void setMinSize(float& minSize);
+    void setMaxSize(float& maxSize);
+    void setLineThickness(float& lineThickness);
     
-    void setConnectionRadius(float & connectionRadius);
+    void setConnectionRadius(float& connectionRadius);
     void setSkew(float leftBoundsScale, float rightBoundsScale, float backBoundsScale, float frontBoundsScale);
     
     void setPresence(int index, float x, float y, float width);
     int getPresenceVectorIndex(int index);
     void addPresence(int index, float x, float y, float blobWidth);
     
+    void setBoundaryState(int boundaryState);
     vector<Presence> presences;
 };
 
