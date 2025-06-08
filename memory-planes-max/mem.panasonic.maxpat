@@ -10,10 +10,24 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1328.0, 652.0, 450.0, 274.0 ],
+		"rect" : [ 816.0, 614.0, 599.0, 340.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 452.0, 98.0, 75.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 384.0, 35.0, 75.0, 22.0 ],
+					"text" : "input HDMI1"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "message",
@@ -104,7 +118,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 45.0, 190.0, 426.0, 246.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 13.0, 12.0, 426.0, 246.0 ],
+					"presentation_rect" : [ 33.0, 90.0, 426.0, 246.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -186,6 +200,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
 					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 1 ],
+					"source" : [ "obj-10", 0 ]
 				}
 
 			}

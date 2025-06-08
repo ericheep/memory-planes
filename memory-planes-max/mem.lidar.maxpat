@@ -10,15 +10,51 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 65.0, 209.0, 429.0, 330.0 ],
+		"rect" : [ 65.0, 209.0, 773.0, 469.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 63.0, 18.0, 101.0, 22.0 ],
+					"text" : "r mem.lidarActive"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "toggle",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 63.0, 55.0, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 63.0, 93.0, 52.0, 22.0 ],
+					"text" : "gate 1 1"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 162.0, 209.0, 122.0, 22.0 ],
+					"patching_rect" : [ 192.0, 288.0, 122.0, 22.0 ],
 					"text" : "s mem.blobsCentroid"
 				}
 
@@ -431,7 +467,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 162.0, 174.0, 81.0, 22.0 ],
+					"patching_rect" : [ 192.0, 253.0, 81.0, 22.0 ],
 					"text" : "p getCentroid"
 				}
 
@@ -443,7 +479,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 53.0, 206.0, 46.0, 22.0 ],
+					"patching_rect" : [ 83.0, 285.0, 46.0, 22.0 ],
 					"text" : "route 1"
 				}
 
@@ -454,7 +490,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 53.0, 244.0, 87.0, 22.0 ],
+					"patching_rect" : [ 83.0, 323.0, 87.0, 22.0 ],
 					"text" : "s mem.listener"
 				}
 
@@ -735,7 +771,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 33.0, 174.0, 88.0, 22.0 ],
+					"patching_rect" : [ 63.0, 253.0, 88.0, 22.0 ],
 					"text" : "p reindexBlobs"
 				}
 
@@ -746,7 +782,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 108.0, 77.0, 22.0 ],
+					"patching_rect" : [ 175.0, 187.0, 77.0, 22.0 ],
 					"text" : "s mem.filters"
 				}
 
@@ -758,7 +794,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 145.0, 63.0, 65.0, 22.0 ],
+					"patching_rect" : [ 175.0, 142.0, 65.0, 22.0 ],
 					"text" : "route /filter"
 				}
 
@@ -769,7 +805,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 300.0, 274.0, 88.0, 22.0 ],
+					"patching_rect" : [ 330.0, 353.0, 88.0, 22.0 ],
 					"text" : "s mem.gesture"
 				}
 
@@ -1498,7 +1534,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 300.0, 242.0, 113.0, 22.0 ],
+					"patching_rect" : [ 330.0, 321.0, 113.0, 22.0 ],
 					"text" : "p calculateDirection"
 				}
 
@@ -1510,7 +1546,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 300.0, 209.0, 46.0, 22.0 ],
+					"patching_rect" : [ 330.0, 288.0, 46.0, 22.0 ],
 					"text" : "route 1"
 				}
 
@@ -1791,7 +1827,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 300.0, 177.0, 88.0, 22.0 ],
+					"patching_rect" : [ 330.0, 256.0, 88.0, 22.0 ],
 					"text" : "p reindexBlobs"
 				}
 
@@ -1803,7 +1839,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 33.0, 108.0, 56.0, 22.0 ],
+					"patching_rect" : [ 63.0, 187.0, 56.0, 22.0 ],
 					"text" : "route 1 4"
 				}
 
@@ -1815,7 +1851,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 33.0, 63.0, 95.0, 22.0 ],
+					"patching_rect" : [ 63.0, 142.0, 95.0, 22.0 ],
 					"text" : "route /filterBlobs"
 				}
 
@@ -1826,7 +1862,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 33.0, 271.0, 77.0, 22.0 ],
+					"patching_rect" : [ 63.0, 350.0, 77.0, 22.0 ],
 					"text" : "s mem.blobs"
 				}
 
@@ -1838,7 +1874,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 33.0, 19.0, 97.0, 22.0 ],
+					"patching_rect" : [ 134.0, 93.0, 97.0, 22.0 ],
 					"text" : "udpreceive 5432"
 				}
 
@@ -1846,9 +1882,16 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-10", 1 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
 					"order" : 0,
-					"source" : [ "obj-1", 0 ]
+					"source" : [ "obj-10", 0 ]
 				}
 
 			}
@@ -1856,7 +1899,21 @@
 				"patchline" : 				{
 					"destination" : [ "obj-53", 0 ],
 					"order" : 1,
-					"source" : [ "obj-1", 0 ]
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-13", 0 ]
 				}
 
 			}

@@ -14,7 +14,7 @@
     "settings": {
         "auto_save": "0",
         "blob_persistence__s_": "0.56087",
-        "cluster_epsilon__mm_": "283.043",
+        "cluster_epsilon__mm_": "222.296",
         "cluster_min_points": "1",
         "interfaces": {
             "en0:_10_0_0_128": "0",

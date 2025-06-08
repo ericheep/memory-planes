@@ -1413,7 +1413,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1106.0, 402.0, 184.0, 22.0 ],
-					"text" : "2 bark-bark.wav"
+					"text" : "1 atalaya-wind-8dB.wav"
 				}
 
 			}
@@ -2475,7 +2475,7 @@
 					"patching_rect" : [ 437.0, 402.0, 50.0, 50.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_longname" : "mc.live.gain~[6]",
+							"parameter_longname" : "mc.live.gain~[11]",
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,
@@ -2537,7 +2537,7 @@
 					"patching_rect" : [ 320.0, 402.0, 119.0, 50.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_longname" : "mc.live.gain~[7]",
+							"parameter_longname" : "mc.live.gain~[10]",
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,
@@ -2626,7 +2626,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 208.0, 100.0, 1113.0, 848.0 ],
+						"rect" : [ 202.0, 101.0, 1113.0, 848.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2921,7 +2921,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 112.0, 22.0, 112.0, 35.0 ],
+													"patching_rect" : [ 112.0, 22.0, 112.0, 22.0 ],
 													"text" : "r #0_focusState"
 												}
 
@@ -3378,6 +3378,18 @@
 										"gridsize" : [ 15.0, 15.0 ],
 										"boxes" : [ 											{
 												"box" : 												{
+													"id" : "obj-5",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "signal" ],
+													"patching_rect" : [ 314.0, 210.0, 44.0, 22.0 ],
+													"text" : "sig~ 1."
+												}
+
+											}
+, 											{
+												"box" : 												{
 													"id" : "obj-8",
 													"maxclass" : "newobj",
 													"numinlets" : 3,
@@ -3395,7 +3407,7 @@
 													"numinlets" : 6,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 314.0, 217.0, 97.0, 22.0 ],
+													"patching_rect" : [ 314.0, 177.0, 97.0, 22.0 ],
 													"text" : "scale 0. 1. 0.5 1."
 												}
 
@@ -3409,7 +3421,7 @@
 													"numoutlets" : 2,
 													"outlettype" : [ "", "bang" ],
 													"parameter_enable" : 0,
-													"patching_rect" : [ 314.0, 180.0, 50.0, 22.0 ]
+													"patching_rect" : [ 314.0, 140.0, 50.0, 22.0 ]
 												}
 
 											}
@@ -3420,7 +3432,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 314.0, 150.0, 107.0, 22.0 ],
+													"patching_rect" : [ 314.0, 110.0, 107.0, 22.0 ],
 													"text" : "r mem.perspective"
 												}
 
@@ -3722,6 +3734,13 @@
 											}
 , 											{
 												"patchline" : 												{
+													"destination" : [ "obj-8", 0 ],
+													"source" : [ "obj-5", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
 													"destination" : [ "obj-84", 0 ],
 													"order" : 0,
 													"source" : [ "obj-50", 0 ]
@@ -3842,7 +3861,7 @@
 											}
 , 											{
 												"patchline" : 												{
-													"destination" : [ "obj-8", 0 ],
+													"destination" : [ "obj-5", 0 ],
 													"source" : [ "obj-7", 0 ]
 												}
 
@@ -6399,7 +6418,7 @@
 					"patching_rect" : [ 704.0, 405.0, 50.0, 50.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_longname" : "mc.live.gain~[5]",
+							"parameter_longname" : "mc.live.gain~[9]",
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,
@@ -6438,7 +6457,7 @@
 					"patching_rect" : [ 619.0, 402.0, 73.0, 56.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_longname" : "mc.live.gain~[25]",
+							"parameter_longname" : "mc.live.gain~[22]",
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,

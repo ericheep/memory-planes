@@ -52,7 +52,7 @@
 	<inner_radial_noise>0</inner_radial_noise>
 	<outer_radial_noise>0</outer_radial_noise>
 	<inner_scale>1.26429</inner_scale>
-	<inner_blur>0.771429</inner_blur>
+	<inner_blur>0.77</inner_blur>
 	<outer_blur>1</outer_blur>
 	<overall_blur>1</overall_blur>
 	<left_bound>-1</left_bound>

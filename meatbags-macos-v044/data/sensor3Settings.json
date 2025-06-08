@@ -1,13 +1,13 @@
 {
     "sensor_3": {
-        "IP_address": "192.168.0.11",
+        "IP_address": "192.168.0.12",
         "auto_reconnect": "1",
         "color": "229, 129, 255, 255",
-        "mirror_angles": "0",
+        "mirror_angles": "1",
         "position": {
-            "position_x": "5.43709",
-            "position_y": "3.10461",
-            "sensor_rotation__deg_": "90.9529"
+            "position_x": "-0.998718",
+            "position_y": "2.52587",
+            "sensor_rotation__deg_": "268.851"
         },
         "show_sensor_info": "0"
     }
