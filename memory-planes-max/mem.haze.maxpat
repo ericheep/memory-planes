@@ -32,7 +32,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 64.0, 107.0, 79.0, 22.0 ],
-					"text" : "expr 3. / 255."
+					"text" : "expr 4. / 255."
 				}
 
 			}
