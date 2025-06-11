@@ -85,8 +85,10 @@ void Memory::flip(float _theta) {
 }
 
 void Memory::fragment() {
-    float scaledRadius = radius * height / 3.0;;
-    fragments.addFragment(scaledRadius, theta, arcDistance, instability);
+    if (radius > 0.01) {
+        float scaledRadius = radius * height / 3.0;;
+        fragments.addFragment(scaledRadius, theta, arcDistance, instability);
+    }
 }
 
 void Memory::setInstability(float _instability) {

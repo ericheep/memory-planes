@@ -32,7 +32,7 @@ void Fragments::addFragment(float radius, float theta, float arcDistance, float 
 
 void Fragments::draw() {
      ofSetCircleResolution(13);
-     for (auto fragment : fragments) {
+     for (auto& fragment : fragments) {
          fragment.draw();
      }
 }
