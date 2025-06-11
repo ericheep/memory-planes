@@ -173,7 +173,6 @@
 						"classnamespace" : "box",
 						"rect" : [ 170.0, 325.0, 1270.0, 457.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-11",
@@ -205,7 +204,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 655.0, 94.0, 122.0, 22.0 ],
-									"presentation_linecount" : 2,
 									"text" : "0 0 0 25000 1. 10000"
 								}
 
