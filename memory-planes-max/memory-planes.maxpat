@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 74.0, 168.0, 988.0, 620.0 ],
+		"rect" : [ 294.0, 235.0, 988.0, 620.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -31,8 +31,8 @@
 					"pointcolor" : [ 0.784313725490196, 0.941176470588235, 0.964705882352941, 1.0 ],
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"varname" : "nodes[1]",
-					"xplace" : [ 0.519169577225094, 0.517270805786632, 0.42411120275449, 0.463309360779539, 0.508972181926298, 0.443989132461844, 0.3921661501925, 0.415963244572877, 0.45219599199215, 0.366290945904031, 0.404613080729636, 0.358984078883441, 0.411298583994051, 0.374289942613134, 0.459316826745865, 0.343636342384425, 0.496989512453797, 0.421118267064835, 0.419319654766209, 0.397161655807019, 0.3682421228777, 0.370885102661513, 0.393170577099718, 0.40518312705637, 0.383913523710847, 0.422443550486029, 0.431664430206466, 0.46792043901135, 0.407473391808567, 0.502142003248579, 0.368940576379072, 0.374661155083778, 0.352449849774387, 0.371622600138948, 0.345134222848088, 0.464393547309912, 0.327091514736537, 0.349412701597378, 0.374736262535932, 0.343010442275277, 0.351003628495316, 0.417037356216806, 0.0, 0.0 ],
-					"yplace" : [ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0 ]
+					"xplace" : [ 0.304016663156482, 0.375983334743368, 0.304016665329971, 0.375983335073157, 0.304016664433322, 0.375983340932157, 0.304016660241904, 0.375983336298387, 0.304016666130977, 0.375983339912989, 0.404613080729636, 0.358984078883441, 0.411298583994051, 0.374289942613134, 0.038450680351573, 0.0, 0.0, 0.0, 0.0, 0.049694888533436, 0.199702490509954, 0.0, 0.026537871525175, 0.0, 0.383913523710847, 0.422443550486029, 0.431664430206466, 0.46792043901135, 0.606539505091691, 0.992903878144896, 0.815013388395092, 0.404140438705628, 0.894284246517288, 0.784075973487451, 0.710248158890462, 0.684711783882887, 0.998872059638161, 0.978691045369842, 0.374736262535932, 0.343010442275277, 0.351003628495316, 0.417037356216806, 0.0, 0.0 ],
+					"yplace" : [ 0.79792, 0.82602, 0.82442, 0.77242, 0.84032, 0.82392, 0.79582, 0.78952, 0.82652, 0.79922, 1.0, 1.0, 1.0, 1.0, 0.274722688155313, 0.273893625469855, 0.263199127546988, 0.291670064861529, 0.249426814713163, 0.237040314416429, 0.250853814119696, 0.221224751434238, 0.28999568874878, 0.297009188452046, 1.0, 1.0, 1.0, 1.0, 0.566568289706674, 0.535855723855139, 0.61866567117391, 0.549820644833296, 0.565351013601897, 0.611705987261282, 0.608293421409746, 0.521603368728518, 0.581058342387903, 0.578613316047289, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0 ]
 				}
 
 			}
@@ -584,16 +584,29 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 730.0, 528.0, 601.0, 343.0 ],
+										"rect" : [ 840.0, 368.0, 601.0, 343.0 ],
 										"gridsize" : [ 15.0, 15.0 ],
+										"visible" : 1,
 										"boxes" : [ 											{
+												"box" : 												{
+													"id" : "obj-4",
+													"maxclass" : "toggle",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "int" ],
+													"parameter_enable" : 0,
+													"patching_rect" : [ 32.0, 40.0, 24.0, 24.0 ]
+												}
+
+											}
+, 											{
 												"box" : 												{
 													"id" : "obj-2",
 													"maxclass" : "newobj",
 													"numinlets" : 2,
 													"numoutlets" : 2,
 													"outlettype" : [ "bang", "" ],
-													"patching_rect" : [ 144.0, 25.0, 34.0, 22.0 ],
+													"patching_rect" : [ 152.0, 41.0, 34.0, 22.0 ],
 													"text" : "sel 0"
 												}
 
@@ -604,7 +617,7 @@
 													"maxclass" : "newobj",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 194.0, 25.0, 87.0, 22.0 ],
+													"patching_rect" : [ 202.0, 41.0, 87.0, 22.0 ],
 													"text" : "s mem.refocus"
 												}
 
@@ -628,7 +641,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 171.0, 120.0, 45.0, 22.0 ],
-													"text" : "0 5000"
+													"text" : "0 1000"
 												}
 
 											}
@@ -640,7 +653,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 224.0, 120.0, 115.0, 22.0 ],
-													"text" : "0 0 0 5000 1. 10000"
+													"text" : "0 0 0 2000 1. 10000"
 												}
 
 											}
@@ -793,8 +806,8 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 32.0, 120.0, 52.0, 22.0 ],
-													"text" : "0 10000"
+													"patching_rect" : [ 32.0, 120.0, 45.0, 22.0 ],
+													"text" : "0 1000"
 												}
 
 											}
@@ -806,7 +819,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 85.0, 120.0, 49.0, 22.0 ],
-													"text" : "1. 5000"
+													"text" : "1. 1000"
 												}
 
 											}
@@ -853,7 +866,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 32.0, 25.0, 69.0, 22.0 ],
+													"patching_rect" : [ 32.0, 9.0, 69.0, 22.0 ],
 													"text" : "r mem.hold"
 												}
 
@@ -984,6 +997,30 @@
 											}
 , 											{
 												"patchline" : 												{
+													"destination" : [ "obj-2", 0 ],
+													"order" : 1,
+													"source" : [ "obj-4", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-25", 0 ],
+													"order" : 2,
+													"source" : [ "obj-4", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-6", 0 ],
+													"order" : 0,
+													"source" : [ "obj-4", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
 													"destination" : [ "obj-31", 0 ],
 													"source" : [ "obj-42", 0 ]
 												}
@@ -1019,24 +1056,7 @@
 											}
 , 											{
 												"patchline" : 												{
-													"destination" : [ "obj-2", 0 ],
-													"order" : 1,
-													"source" : [ "obj-82", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-25", 0 ],
-													"order" : 2,
-													"source" : [ "obj-82", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-6", 0 ],
-													"order" : 0,
+													"destination" : [ "obj-4", 0 ],
 													"source" : [ "obj-82", 0 ]
 												}
 
@@ -2229,9 +2249,8 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 417.0, 293.0, 1081.0, 607.0 ],
+										"rect" : [ 397.0, 293.0, 1081.0, 607.0 ],
 										"gridsize" : [ 15.0, 15.0 ],
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-9",
@@ -5902,7 +5921,7 @@
 									"patching_rect" : [ 848.0, 216.0, 151.0, 20.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 116.0, 79.0, 96.0, 20.0 ],
-									"text" : "-0.16 1.56",
+									"text" : "-0.48 4.00",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
@@ -6119,7 +6138,7 @@
 									"patching_rect" : [ 345.666666666666686, 300.0, 150.0, 20.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 297.0, 78.0, 274.0, 20.0 ],
-									"text" : "john-eagle.wav"
+									"text" : "guitar-melody.wav"
 								}
 
 							}
@@ -6139,14 +6158,14 @@
 								"box" : 								{
 									"fontface" : 1,
 									"id" : "obj-17",
-									"linecount" : 16,
+									"linecount" : 15,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 191.333333333333343, 300.0, 19.0, 221.0 ],
+									"patching_rect" : [ 191.333333333333343, 300.0, 19.0, 208.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 297.0, 56.0, 274.0, 20.0 ],
-									"text" : "dog-star-audience.wav"
+									"text" : "bark-bark-4dB.wav"
 								}
 
 							}
@@ -6172,7 +6191,7 @@
 									"patching_rect" : [ 37.0, 300.0, 186.0, 20.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 297.0, 34.0, 274.0, 20.0 ],
-									"text" : "insects.wav"
+									"text" : "andy-and-emilys-backyard.wav"
 								}
 
 							}
@@ -6750,7 +6769,7 @@
 									"patching_rect" : [ 589.0, 153.5, 150.0, 20.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 5.0, 101.0, 75.0, 20.0 ],
-									"text" : "oF fps: 85"
+									"text" : "oF fps: 120"
 								}
 
 							}
@@ -6942,7 +6961,7 @@
 									"patching_rect" : [ 111.920539140701294, 227.81458854675293, 54.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 99.0, 35.0, 53.0, 19.0 ],
-									"text" : "25.0 %",
+									"text" : "30.0 %",
 									"textjustification" : 2
 								}
 
@@ -7001,7 +7020,7 @@
 									"patching_rect" : [ 272.847704887390137, 277.483466863632202, 53.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 101.0, 57.0, 51.0, 19.0 ],
-									"text" : "71.6 %",
+									"text" : "67.8 %",
 									"textjustification" : 2
 								}
 
@@ -7076,7 +7095,7 @@
 									"fontface" : 1,
 									"fontsize" : 10.0,
 									"id" : "obj-77",
-									"items" : [ "None", ",", "VG278", ",", "PT-RZ570", ",", "Dante Virtual Soundcard", ",", "Mac mini Speakers" ],
+									"items" : [ "None", ",", "MacBook Pro Speakers", ",", "ZoomAudioDevice" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -7116,7 +7135,7 @@
 									"patching_rect" : [ 419.20533299446106, 276.158963441848755, 83.0, 19.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 98.0, 79.0, 54.0, 19.0 ],
-									"text" : "2784 MB",
+									"text" : "2221 MB",
 									"textjustification" : 2
 								}
 
@@ -7683,6 +7702,24 @@
 														"filepath" : "~/Documents/Max 9/Snapshots",
 														"filepos" : -1,
 														"snapshotfileid" : "5302c8d4f22edf47f1f81bd6c3236681"
+													}
+
+												}
+, 												{
+													"filetype" : "C74Snapshot",
+													"version" : 2,
+													"minorversion" : 0,
+													"name" : "Pro-R 2",
+													"origin" : "FabFilter Pro-R 2.vstinfo",
+													"type" : "VST",
+													"subtype" : "MidiEffect",
+													"embed" : 0,
+													"fileref" : 													{
+														"name" : "Pro-R 2",
+														"filename" : "Pro-R 2_20250502.maxsnap",
+														"filepath" : "~/Documents/Max 9/Snapshots",
+														"filepos" : -1,
+														"snapshotfileid" : "1adf382a89cf4b851763c10a5dbfecc7"
 													}
 
 												}
@@ -8293,6 +8330,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "Pro-R 2_20250502.maxsnap",
+				"bootpath" : "~/Documents/Max 9/Snapshots",
+				"patcherrelativepath" : "../../../../../Max 9/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "beam.ioeditor.IOInspector.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
 				"patcherrelativepath" : "../../../../../Max 9/Packages/Beam for Max/patchers/beam_ioeditor",
@@ -8410,182 +8454,182 @@
 			}
 , 			{
 				"name" : "mem.carousel.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.carouselTransition.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.follow.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.forLoop.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.haze.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.inchesToMeters.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.lidar.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.memoriesLogic.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.memory.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.memoryLogic.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.polyMemory.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.pony.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.presenceLogic.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.radialPan.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.setNode.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.sourceToNode.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.spatConfig.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.spatReverb.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.starField.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.stutter.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.wfs.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.wfsReverbPositions.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.wfsScaling.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mem.x.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "relativetoabsolute.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "selectDriver.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -8616,7 +8660,7 @@
 			}
 , 			{
 				"name" : "stateLogic.js",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -8636,14 +8680,14 @@
 			}
 , 			{
 				"name" : "wfs.formatSpat.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wfs.stackedSpeakerConfig.maxpat",
-				"bootpath" : "~/Documents/of_v0.12.1_osx_release/apps/myApps/memory-planes/memory-planes-max",
+				"bootpath" : "~/Documents/of_v0.12.0_osx_release/apps/myApps/memory-planes/memory-planes-max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
