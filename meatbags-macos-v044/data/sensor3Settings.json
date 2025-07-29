@@ -9,6 +9,10 @@
             "position_y": "2.52587",
             "sensor_rotation__deg_": "269.292"
         },
-        "show_sensor_info": "0"
+        "position_x": "-0.953723",
+        "position_y": "2.57505",
+        "sensor_rotation__deg_": "268.496",
+        "show_sensor_info": "0",
+        "which_meatbag": "1"
     }
 }

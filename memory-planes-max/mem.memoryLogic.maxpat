@@ -121,7 +121,6 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-17",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
@@ -293,7 +292,6 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-84",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -860,8 +858,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 78.0, 92.0, 59.0, 22.0 ],
-					"text" : "$1 10000"
+					"patching_rect" : [ 78.0, 92.0, 52.0, 22.0 ],
+					"text" : "$1 5000"
 				}
 
 			}
@@ -1077,7 +1075,6 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-43",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -2020,7 +2017,6 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -2666,7 +2662,6 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-8",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -2897,7 +2892,6 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-43",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 0,
 									"numoutlets" : 1,

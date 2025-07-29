@@ -3,12 +3,16 @@
         "IP_address": "192.168.0.11",
         "auto_reconnect": "1",
         "color": "129, 218, 255, 255",
-        "mirror_angles": "1",
+        "mirror_angles": "0",
         "position": {
             "position_x": "2.31224",
             "position_y": "2.51114",
             "sensor_rotation__deg_": "268.766"
         },
-        "show_sensor_info": "0"
+        "position_x": "2.31224",
+        "position_y": "2.51114",
+        "sensor_rotation__deg_": "268.798",
+        "show_sensor_info": "0",
+        "which_meatbag": "2"
     }
 }

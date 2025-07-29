@@ -1,0 +1,7 @@
+{
+    "meatbags_2": {
+        "blob_persistence__s_": "0",
+        "cluster_epsilon__mm_": "50",
+        "cluster_min_points": "1"
+    }
+}

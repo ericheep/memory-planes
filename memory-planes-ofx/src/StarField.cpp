@@ -116,7 +116,7 @@ void StarField::setSize(float _width, float _height) {
     fluidSystem.setBoundsSize(ofVec3f(width, height, 0));
 }
 
-void StarField::setWarp(ofxQuadWarp & innerWarper, ofxQuadWarp & outerWarper) {
+void StarField::setWarp(ofxQuadWarp innerWarper, ofxQuadWarp outerWarper) {
     // transformation from inner space to outer space
     ofMatrix4x4 innerMatrix = innerWarper.getMatrix();
     ofMatrix4x4 outerMatrix = outerWarper.getMatrix();

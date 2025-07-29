@@ -17,7 +17,7 @@ public:
     
     void update();
     void draw();
-    void setWarp(ofxQuadWarp & innerWarper, ofxQuadWarp & outerWarper);
+    void setWarp(ofxQuadWarp innerWarper, ofxQuadWarp outerWarper);
     void setSize(float width, float height);
     void setInnerSize(float innerWidth, float innerHeight);
     void setInvertBounds(bool isInverted);

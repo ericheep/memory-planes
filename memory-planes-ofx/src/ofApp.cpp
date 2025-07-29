@@ -161,6 +161,8 @@ void ofApp::setupGui() {
     simulationSettings.add(starField.nearPressureMultiplier.set("near pressure", 100, 0.0, 1000.0));
     gui.add(simulationSettings);
     gui.loadFromFile("settings.xml");
+	
+	starField.setWarp(innerWarper, outerWarper);
 }
 
 //--------------------------------------------------------------
@@ -600,6 +602,14 @@ void ofApp::updateOsc() {
         if (m.getAddress() == "/maxSize") {
             starField.maxSize = m.getArgAsFloat(0);
         }
+		
+		if (m.getAddress() == "/minVelocity") {
+			starField.minVelocity = m.getArgAsFloat(0);
+		}
+		
+		if (m.getAddress() == "/maxVelocity") {
+			starField.maxVelocity = m.getArgAsFloat(0);
+		}
         
         if (m.getAddress() == "/connectionRadius") {
             starField.connectionRadius = m.getArgAsFloat(0);
@@ -636,10 +646,10 @@ void ofApp::updateOsc() {
 }
 
 void ofApp::onMouseDragged(ofMouseEventArgs& mouseArgs) {
-    starField.setWarp(innerWarper, outerWarper);
+    //starField.setWarp(innerWarper, outerWarper);
 
 }
 
 void ofApp::onMouseReleased(ofMouseEventArgs& mouseArgs) {
-    starField.setWarp(innerWarper, outerWarper);
+    //starField.setWarp(innerWarper, outerWarper);
 }
